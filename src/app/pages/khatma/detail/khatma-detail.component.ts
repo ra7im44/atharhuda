@@ -11,7 +11,7 @@ import { KhatmaService } from '../../../services/khatma.service';
   imports: [CommonModule, FormsModule],
   template: `
     @if (khatma(); as k) {
-      <div class="max-w-5xl mx-auto px-6 py-10">
+      <div class="max-w-6xl mx-auto px-6 py-10">
 
         <!-- Hero Card -->
         <div class="animate-hero bg-surface-el rounded-3xl border border-brd p-8 md:p-10 mb-10 relative overflow-hidden">
@@ -71,12 +71,13 @@ import { KhatmaService } from '../../../services/khatma.service';
         <!-- Juz Grid -->
         <div class="animate-fade-up delay-300">
           <h2 class="text-base font-bold text-txt mb-5 flex items-center gap-2"><svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg> الأجزاء</h2>
-          <div class="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-10 gap-2.5">
+          <div class="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
             @for (part of k.parts; track part.juzNumber) {
-              <button (click)="onPartClick(part, k)" class="group relative aspect-square rounded-2xl border-2 flex flex-col items-center justify-center transition-all duration-300 hover:scale-105"
+              <button (click)="onPartClick(part, k)" class="group relative min-h-[90px] rounded-2xl border-2 flex flex-col items-center justify-center p-3 text-center transition-all duration-300 hover:scale-[1.03] hover:shadow-md"
                 [class]="part.status === 'completed' ? 'bg-ok/10 border-ok/30 text-ok' : part.status === 'reserved' ? 'bg-warn/10 border-warn/30 text-warn' : 'bg-surface-el border-brd text-txt-muted hover:border-primary/40 hover:text-primary hover:bg-primary/[0.04]'">
-                <span class="text-sm font-black">{{part.juzNumber}}</span>
-                <svg class="w-3 h-3 mt-0.5 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <span class="text-[10px] opacity-60 font-medium mb-1">الجزء {{part.juzNumber}}</span>
+                <span class="text-sm font-black font-quran leading-tight">{{khatmaService.getJuzName(part.juzNumber)}}</span>
+                <svg class="w-3.5 h-3.5 mt-2 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   @if (part.status === 'completed') {<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>}
                   @else if (part.status === 'reserved') {<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>}
                   @else {<path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>}
@@ -85,7 +86,7 @@ import { KhatmaService } from '../../../services/khatma.service';
             }
           </div>
           <!-- Legend -->
-          <div class="flex flex-wrap gap-5 mt-5 justify-center">
+          <div class="flex flex-wrap gap-5 mt-6 justify-center">
             <span class="flex items-center gap-1.5 text-[11px] text-txt-muted"><span class="w-3 h-3 rounded bg-ok/20 border border-ok/30"></span> مكتمل</span>
             <span class="flex items-center gap-1.5 text-[11px] text-txt-muted"><span class="w-3 h-3 rounded bg-warn/20 border border-warn/30"></span> محجوز</span>
             <span class="flex items-center gap-1.5 text-[11px] text-txt-muted"><span class="w-3 h-3 rounded bg-surface-el border border-brd"></span> متاح</span>
@@ -112,7 +113,7 @@ import { KhatmaService } from '../../../services/khatma.service';
 })
 export class KhatmaDetailComponent {
   private route = inject(ActivatedRoute);
-  private khatmaService = inject(KhatmaService);
+  khatmaService = inject(KhatmaService); // Changed to public/protected access implicitly for template
 
   khatma = this.khatmaService.getKhatmaById(this.route.snapshot.paramMap.get('id') || '');
   participants = this.khatmaService.getParticipants(this.route.snapshot.paramMap.get('id') || '');
@@ -130,14 +131,15 @@ export class KhatmaDetailComponent {
 
   onPartClick(part: any, k: any) {
     this.selectedPart = part;
+    const juzName = this.khatmaService.getJuzName(part.juzNumber);
     if (part.status === 'available') {
       this.pendingAction = 'reserve';
-      this.modalTitle.set(`حجز الجزء ${part.juzNumber}`);
-      this.modalDesc.set('أدخل اسمك لحجز هذا الجزء');
+      this.modalTitle.set(`حجز ${juzName}`);
+      this.modalDesc.set(`أدخل اسمك لحجز ${juzName} (${part.juzNumber})`);
       this.showModal.set(true);
     } else if (part.status === 'reserved') {
       this.pendingAction = 'complete';
-      this.modalTitle.set(`إتمام الجزء ${part.juzNumber}`);
+      this.modalTitle.set(`إتمام ${juzName}`);
       this.modalDesc.set('أدخل اسمك لتأكيد إتمام القراءة');
       this.showModal.set(true);
     }

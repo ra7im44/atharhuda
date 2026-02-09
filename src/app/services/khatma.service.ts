@@ -20,6 +20,12 @@ export interface Khatma {
   parts: KhatmaPart[];
 }
 
+export const JUZ_NAMES = [
+  "الم", "سيقول", "تلك الرسل", "لن تنالوا", "والمحصنات", "لا يحب الله", "وإذا سمعوا", "ولو أننا", "قال الملأ", "واعلموا",
+  "يعتذرون", "وما من دابة", "وما أبرئ", "ربما", "سبحان الذي", "قال ألم", "اقترب", "قد أفلح", "وقال الذين", "أمن خلق",
+  "اتلُ ما أوحي", "ومن يقنت", "وما لي", "فمن أظلم", "إليه يُرد", "حم", "قال فما خطبكم", "قد سمع الله", "تبارك", "عمّ"
+];
+
 @Injectable({
   providedIn: 'root'
 })
@@ -63,6 +69,10 @@ export class KhatmaService {
     return computed(() => this.khatmasSignal().find(k => k.id === id));
   }
 
+  getJuzName(juzNumber: number): string {
+    return JUZ_NAMES[juzNumber - 1] || `${juzNumber}`;
+  }
+
   addKhatma(title: string, createdBy: string, deceasedName: string, description: string): string {
     const id = Math.random().toString(36).substr(2, 9);
     const newKhatma: Khatma = {
@@ -104,7 +114,7 @@ export class KhatmaService {
 
   getParticipants(khatmaId: string) {
     return computed(() => {
-      const k = this.khatmasSignal().find(x => x.id === khatmaId);
+      const k = this.khatmasSignal().find(k => k.id === khatmaId);
       if (!k) return [];
       const names = new Set<string>();
       k.parts.forEach(p => {
