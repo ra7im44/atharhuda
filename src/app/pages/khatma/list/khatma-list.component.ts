@@ -75,10 +75,7 @@ import { KhatmaService } from '../../../services/khatma.service';
 
                 <div class="relative bg-surface rounded-[1.5rem] p-6 flex-1 flex flex-col border border-brd/50 group-hover:border-transparent transition-colors">
                   <!-- Top Row -->
-                  <div class="flex justify-between items-start mb-6">
-                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center text-primary font-black text-xl shadow-inner group-hover:scale-110 transition-transform duration-500">
-                      {{k.progress}}%
-                    </div>
+                  <div class="flex justify-end items-start mb-4">
                     @if (k.deceasedName) {
                       <div class="px-3 py-1.5 rounded-full bg-surface-el border border-brd text-[11px] font-bold text-txt-secondary flex items-center gap-1.5 shadow-sm">
                         <span class="w-1.5 h-1.5 rounded-full bg-warn animate-pulse"></span>
