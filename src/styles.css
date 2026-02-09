@@ -458,3 +458,155 @@
 .dark ::selection {
   background: rgba(59, 130, 246, 0.18);
 }
+
+/* ═══════════════ MOBILE RESPONSIVE ═══════════════ */
+@media (max-width: 640px) {
+
+  /* Base typography */
+  html {
+    font-size: 14px;
+  }
+
+  /* Hero section fixes */
+  .min-h-\[92vh\] {
+    min-height: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  /* Reduce large text */
+  .text-\[2\.8rem\],
+  .text-\[3\.6rem\],
+  .text-\[4rem\] {
+    font-size: 1.875rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .text-4xl {
+    font-size: 1.5rem !important;
+  }
+
+  .text-3xl {
+    font-size: 1.25rem !important;
+  }
+
+  .text-2xl {
+    font-size: 1.125rem !important;
+  }
+
+  .text-xl {
+    font-size: 1rem !important;
+  }
+
+  /* Visual/illustration sizing */
+  .w-72,
+  .w-80 {
+    width: 180px !important;
+  }
+
+  .h-72,
+  .h-80 {
+    height: 180px !important;
+  }
+
+  /* Padding adjustments */
+  .px-6 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .py-20 {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  .py-12 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .gap-16 {
+    gap: 1.5rem !important;
+  }
+
+  .gap-8 {
+    gap: 1rem !important;
+  }
+
+  .mb-16 {
+    margin-bottom: 2rem !important;
+  }
+
+  .mb-9 {
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Button sizing */
+  .px-8 {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+
+  .py-4 {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  /* Stats grid */
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Cards */
+  .rounded-\[2rem\],
+  .rounded-\[2\.5rem\] {
+    border-radius: 1.25rem !important;
+  }
+
+  .p-6 {
+    padding: 1rem !important;
+  }
+
+  .p-8 {
+    padding: 1.25rem !important;
+  }
+
+  /* Modal fixes */
+  .max-w-lg {
+    max-width: 100% !important;
+    margin: 0 0.5rem !important;
+  }
+
+  /* Coach chat bubbles */
+  .max-w-\[85\%\] {
+    max-width: 95% !important;
+  }
+
+  /* Hide decorative elements on mobile */
+  .animate-orbit,
+  .animate-orbit-reverse,
+  .animate-drift {
+    display: none !important;
+  }
+
+  /* Footer */
+  footer .flex-col {
+    text-align: center;
+  }
+}
+
+/* Tablet fixes */
+@media (max-width: 768px) {
+  .md\:text-\[3\.6rem\] {
+    font-size: 2.25rem !important;
+  }
+
+  .md\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .lg\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+  }
+}
