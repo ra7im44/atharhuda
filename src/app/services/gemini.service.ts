@@ -1,67 +1,64 @@
 import { Injectable } from '@angular/core';
-import { GoogleGenAI, GenerateContentResponse } from '@google/genai';
-
-const GEMINI_API_KEY = 'AIzaSyD-q_KIuM7Jhipw67rDBb1x91d3YGaQJ0c';
+import { GoogleGenAI } from '@google/genai';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeminiService {
-  private ai: GoogleGenAI;
+  private ai = new GoogleGenAI({ apiKey: environment.geminiApiKey });
 
-  constructor() {
-    this.ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+  async analyzeRecitation(audioBlob: Blob): Promise<any> {
+    const base64 = await this.blobToBase64(audioBlob);
+
+    const prompt = `أنت معلم تجويد قرآن كريم خبير ومتخصص. سأرسل لك تسجيلاً صوتياً لشخص يتلو القرآن الكريم.
+
+مهمتك بالتفصيل:
+1. استمع للتلاوة بدقة وحوّلها لنص مكتوب (transcription) بالتشكيل الكامل.
+2. حدد أي سورة وأي آيات يقرأها القارئ.
+3. قيّم التلاوة من 100 بناءً على: صحة النطق، أحكام التجويد (إدغام، إخفاء، قلقلة، مد)، مخارج الحروف.
+4. حدد كل خطأ بدقة مع ذكر الكلمة الخاطئة ونوع الخطأ ووصفه.
+5. قدم نصيحة عملية واحدة للتحسين.
+
+أجب بصيغة JSON فقط بدون أي نص إضافي:
+{
+  "transcription": "النص المسموع بالتشكيل",
+  "surah": "اسم السورة",
+  "verses": "أرقام الآيات",
+  "score": 85,
+  "mistakes": [
+    {"type": "tajweed|pronunciation|missing|extra", "word": "الكلمة", "description": "وصف الخطأ بالعربية"}
+  ],
+  "feedback": "نصيحة واحدة مختصرة"
+}`;
+
+    const response = await this.ai.models.generateContent({
+      model: 'gemini-2.5-flash',
+      contents: [{
+        role: 'user',
+        parts: [
+          { text: prompt },
+          { inlineData: { mimeType: 'audio/webm', data: base64 } }
+        ]
+      }],
+      config: {
+        responseMimeType: 'application/json',
+      }
+    });
+
+    const text = response.text || '{}';
+    return JSON.parse(text);
   }
 
-  async analyzeRecitation(audioBase64: string, expectedText: string): Promise<any> {
-    const prompt = `
-      أنت معلم قرآن كريم خبير. سأرسل لك تسجيلاً صوتياً لتلاوة آية، والنص الصحيح لهذه الآية.
-      مهمتك:
-      1. تحويل الصوت إلى نص (Transcription).
-      2. مقارنة النص المنطوق بالنص الصحيح بدقة.
-      3. تحديد الأخطاء (نطق خاطئ، كلمة ناقصة، كلمة زائدة، حركات إعرابية خاطئة إن أمكن سماعها).
-      4. إعطاء تقييم من 100.
-      5. تقديم نصيحة للتحسين.
-
-      النص الصحيح المتوقع: "${expectedText}"
-
-      أخرج النتيجة بصيغة JSON فقط بهذا الشكل:
-      {
-        "transcription": "النص الذي سمعته",
-        "score": 85,
-        "mistakes": [
-          {"type": "missing", "word": "الكلمة", "description": "نسيت قراءة كلمة ..."},
-          {"type": "pronunciation", "word": "الكلمة", "description": "نطقت الحرف كذا بدلاً من كذا"}
-        ],
-        "feedback": "نصيحة عامة"
-      }
-    `;
-
-    try {
-      const response: GenerateContentResponse = await this.ai.models.generateContent({
-        model: 'gemini-2.5-flash',
-        contents: {
-          role: 'user',
-          parts: [
-            { text: prompt },
-            {
-              inlineData: {
-                mimeType: 'audio/webm',
-                data: audioBase64
-              }
-            }
-          ]
-        },
-        config: {
-          responseMimeType: 'application/json',
-        }
-      });
-
-      const text = response.text || '{}';
-      return JSON.parse(text);
-    } catch (error) {
-      console.error('Gemini API Error:', error);
-      throw error;
-    }
+  private blobToBase64(blob: Blob): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const result = reader.result as string;
+        resolve(result.split(',')[1]);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
   }
 }
