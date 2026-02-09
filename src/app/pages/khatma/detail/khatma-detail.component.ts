@@ -372,8 +372,8 @@ export class KhatmaDetailComponent {
 
   shareWhatsApp(k: any) {
     let t = `📖 شارك في ختمة "${k.title}"`;
-    if (k.deceasedName) t += `\n🕊️ عن: ${k.deceasedName}`;
-    t += `\n📊 ${k.progress}%\n\n${location.origin}/#/khatmat/${k.id}`;
+    if (k.deceasedName) t += `\n🕊️ عن روح المرحوم: ${k.deceasedName}`;
+    t += `\n\n${location.origin}/#/khatmat/${k.id}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(t)}`, '_blank');
   }
   shareTelegram(k: any) {

@@ -1,9 +1,8 @@
-const CACHE_NAME = 'khatmat-v1';
+const CACHE_NAME = 'khatmat-v2';
 const urlsToCache = [
     '/',
     '/index.html',
-    '/styles.css',
-    '/main.js'
+    '/manifest.webmanifest'
 ];
 
 self.addEventListener('install', (event) => {
