@@ -6,6 +6,7 @@ export interface KhatmaPart {
   reservedBy?: string;
   completedBy?: string;
   updatedAt?: Date;
+  readSurahs?: string[]; // السور المقروءة
 }
 
 export interface Khatma {
@@ -26,6 +27,40 @@ export const JUZ_NAMES = [
   "اتلُ ما أوحي", "ومن يقنت", "وما لي", "فمن أظلم", "إليه يُرد", "حم", "قال فما خطبكم", "قد سمع الله", "تبارك", "عمّ"
 ];
 
+// السور في كل جزء
+export const JUZ_SURAHS: { [key: number]: string[] } = {
+  1: ["الفاتحة", "البقرة"],
+  2: ["البقرة"],
+  3: ["البقرة", "آل عمران"],
+  4: ["آل عمران", "النساء"],
+  5: ["النساء"],
+  6: ["النساء", "المائدة"],
+  7: ["المائدة", "الأنعام"],
+  8: ["الأنعام", "الأعراف"],
+  9: ["الأعراف", "الأنفال"],
+  10: ["الأنفال", "التوبة"],
+  11: ["التوبة", "يونس", "هود"],
+  12: ["يوسف", "الرعد", "إبراهيم"],
+  13: ["الحجر", "النحل"],
+  14: ["النحل", "الإسراء"],
+  15: ["الإسراء", "الكهف", "مريم"],
+  16: ["الأنبياء", "الحج"],
+  17: ["المؤمنون", "النور", "الفرقان"],
+  18: ["الفرقان", "الشعراء", "النمل"],
+  19: ["النمل", "القصص"],
+  20: ["القصص", "العنكبوت", "الروم"],
+  21: ["لقمان", "السجدة", "الأحزاب"],
+  22: ["الأحزاب", "سبأ", "فاطر"],
+  23: ["يس", "الصافات", "ص", "الزمر"],
+  24: ["الزمر", "غافر", "فصلت"],
+  25: ["فصلت", "الشورى", "الزخرف", "الدخان", "الجاثية"],
+  26: ["الأحقاف", "محمد", "الفتح", "الحجرات", "ق", "الذاريات"],
+  27: ["الطور", "النجم", "القمر", "الرحمن", "الواقعة", "الحديد"],
+  28: ["المجادلة", "الحشر", "الممتحنة", "الصف", "الجمعة", "المنافقون", "التغابن", "الطلاق", "التحريم"],
+  29: ["الملك", "القلم", "الحاقة", "المعارج", "نوح", "الجن", "المزمل", "المدثر", "القيامة", "الإنسان", "المرسلات"],
+  30: ["النبأ", "النازعات", "عبس", "التكوير", "الانفطار", "المطففين", "الانشقاق", "البروج", "الطارق", "الأعلى", "الغاشية", "الفجر", "البلد", "الشمس", "الليل", "الضحى", "الشرح", "التين", "العلق", "القدر", "البينة", "الزلزلة", "العاديات", "القارعة", "التكاثر", "العصر", "الهمزة", "الفيل", "قريش", "الماعون", "الكوثر", "الكافرون", "النصر", "المسد", "الإخلاص", "الفلق", "الناس"]
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -43,7 +78,8 @@ export class KhatmaService {
         juzNumber: i + 1,
         status: i < 3 ? 'completed' as const : (i === 3 ? 'reserved' as const : 'available' as const),
         reservedBy: i === 3 ? 'أحمد' : undefined,
-        completedBy: i < 3 ? ['فاطمة', 'عمر', 'خالد'][i] : undefined
+        completedBy: i < 3 ? ['فاطمة', 'عمر', 'خالد'][i] : undefined,
+        readSurahs: i < 3 ? JUZ_SURAHS[i + 1] : undefined
       }))
     },
     {
@@ -58,7 +94,8 @@ export class KhatmaService {
       parts: Array.from({ length: 30 }, (_, i) => ({
         juzNumber: i + 1,
         status: i < 15 ? 'completed' as const : 'available' as const,
-        completedBy: i < 15 ? ['أحمد', 'فاطمة', 'محمد', 'علي', 'نورة', 'خالد', 'ريم', 'عمر', 'سارة', 'يوسف', 'مريم', 'حسن', 'دانة', 'سلطان', 'هدى'][i] : undefined
+        completedBy: i < 15 ? ['أحمد', 'فاطمة', 'محمد', 'علي', 'نورة', 'خالد', 'ريم', 'عمر', 'سارة', 'يوسف', 'مريم', 'حسن', 'دانة', 'سلطان', 'هدى'][i] : undefined,
+        readSurahs: i < 15 ? JUZ_SURAHS[i + 1] : undefined
       }))
     }
   ]);
@@ -71,6 +108,10 @@ export class KhatmaService {
 
   getJuzName(juzNumber: number): string {
     return JUZ_NAMES[juzNumber - 1] || `${juzNumber}`;
+  }
+
+  getJuzSurahs(juzNumber: number): string[] {
+    return JUZ_SURAHS[juzNumber] || [];
   }
 
   addKhatma(title: string, createdBy: string, deceasedName: string, description: string): string {
@@ -90,7 +131,7 @@ export class KhatmaService {
     return id;
   }
 
-  updatePartStatus(khatmaId: string, juzNumber: number, status: 'available' | 'reserved' | 'completed', userName?: string) {
+  updatePartStatus(khatmaId: string, juzNumber: number, status: 'available' | 'reserved' | 'completed', userName?: string, readSurahs?: string[]) {
     this.khatmasSignal.update(list => list.map(k => {
       if (k.id !== khatmaId) return k;
 
@@ -101,6 +142,7 @@ export class KhatmaService {
           status,
           reservedBy: status === 'reserved' ? userName : undefined,
           completedBy: status === 'completed' ? (userName || p.reservedBy || 'مجهول') : undefined,
+          readSurahs: status === 'completed' ? readSurahs : undefined,
           updatedAt: new Date()
         };
       });
