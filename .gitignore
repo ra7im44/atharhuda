@@ -20,7 +20,6 @@ Thumbs.db
 # Environment
 .env
 .env.local
-src/environments/environment.ts
 
 .vercel
 .env*.local

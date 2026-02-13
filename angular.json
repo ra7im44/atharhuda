@@ -22,8 +22,16 @@
                 "input": "public",
                 "output": "/"
               },
-              "src/manifest.webmanifest",
-              "src/sw.js",
+              {
+                "glob": "manifest.webmanifest",
+                "input": "src",
+                "output": "/"
+              },
+              {
+                "glob": "sw.js",
+                "input": "src",
+                "output": "/"
+              },
               {
                 "glob": "**/*",
                 "input": "src/assets",
