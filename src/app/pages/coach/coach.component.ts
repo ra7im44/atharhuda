@@ -1,20 +1,13 @@
 import { Component, inject, signal, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GeminiService } from '../../services/gemini.service';
+import { GeminiService, RecitationAnalysis } from '../../services/gemini.service';
 
 interface ChatMessage {
   id: number;
   role: 'user' | 'ai';
   loading?: boolean;
   error?: string;
-  result?: {
-    transcription: string;
-    surah?: string;
-    verses?: string;
-    score: number;
-    mistakes: { type: string; word: string; description: string }[];
-    feedback: string;
-  };
+  result?: RecitationAnalysis;
 }
 
 @Component({

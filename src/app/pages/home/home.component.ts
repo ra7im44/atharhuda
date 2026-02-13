@@ -1,20 +1,21 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal, computed } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { KhatmaService } from '../../services/khatma.service';
+import { CreateKhatmaModalComponent } from '../../components/create-khatma-modal/create-khatma-modal.component';
+import { KhatmaCardComponent } from '../../components/khatma-card/khatma-card.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule],
+  imports: [CommonModule, RouterLink, FormsModule, CreateKhatmaModalComponent, KhatmaCardComponent],
   template: `
     <!-- ═══ HERO ═══ -->
     <section class="relative min-h-[92vh] flex items-center overflow-hidden">
-      <!-- Ambient Blobs -->
-      <div class="absolute top-[-15%] right-[-8%] w-[550px] h-[550px] rounded-full blur-[130px] opacity-[0.07] bg-primary animate-drift pointer-events-none"></div>
-      <div class="absolute bottom-[-15%] left-[-10%] w-[450px] h-[450px] rounded-full blur-[100px] opacity-[0.05] bg-accent animate-drift pointer-events-none" style="animation-delay:-7s"></div>
-      <div class="absolute top-[40%] left-[50%] w-[300px] h-[300px] rounded-full blur-[80px] opacity-[0.04] bg-secondary animate-drift pointer-events-none" style="animation-delay:-3s"></div>
+      <!-- Ambient Blobs (Optimized) -->
+      <div class="absolute top-[-15%] right-[-8%] w-[500px] h-[500px] rounded-full blur-[100px] opacity-[0.06] bg-primary animate-drift pointer-events-none"></div>
+      <div class="absolute bottom-[-15%] left-[-10%] w-[400px] h-[400px] rounded-full blur-[80px] opacity-[0.04] bg-accent animate-drift pointer-events-none" style="animation-delay:-7s"></div>
       <div class="absolute inset-0 islamic-pattern-dense opacity-25 dark:opacity-[0.04] pointer-events-none"></div>
 
       <div class="relative z-10 max-w-6xl mx-auto px-6 w-full py-12">
@@ -47,7 +48,7 @@ import { KhatmaService } from '../../services/khatma.service';
 
             <!-- CTAs -->
             <div class="animate-fade-up delay-300 flex flex-col sm:flex-row gap-3.5 justify-center lg:justify-start">
-              <button (click)="openCreateModal()" aria-label="إنشاء ختمة جديدة" class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_100%] text-white font-bold text-[15px] shadow-xl shadow-primary/20 transition-all duration-500 hover:bg-right hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/30 overflow-hidden">
+              <button (click)="showCreateModal.set(true)" aria-label="إنشاء ختمة جديدة" class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_100%] text-white font-bold text-[15px] shadow-xl shadow-primary/20 transition-all duration-500 hover:bg-right hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/30 overflow-hidden">
                 <svg class="w-5 h-5 relative transition-transform group-hover:rotate-90 duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
                 <span class="relative">أنشئ ختمة جديدة</span>
               </button>
@@ -85,7 +86,7 @@ import { KhatmaService } from '../../services/khatma.service';
 
         <!-- Stats Row -->
         <div class="animate-fade-up delay-500 mt-16 pt-10 border-t border-brd/40 grid grid-cols-3 gap-8 max-w-md mx-auto lg:mx-0 text-center lg:text-right">
-          @for (stat of statsData; track stat.label) {
+          @for (stat of statsData(); track stat.label) {
             <div class="animate-count" [style.animation-delay]="stat.delay">
               <div class="text-2xl md:text-3xl font-black" [class]="stat.color">{{stat.value || '—'}}</div>
               <div class="text-[10px] text-txt-muted mt-1.5 font-bold uppercase tracking-wider">{{stat.label}}</div>
@@ -165,70 +166,27 @@ import { KhatmaService } from '../../services/khatma.service';
           <div class="flex items-center gap-3 w-full sm:w-auto">
             <div class="relative flex-1 sm:flex-initial">
               <svg class="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-txt-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-              <input [(ngModel)]="searchQuery" type="text" placeholder="ابحث باسم الختمة..." class="w-full sm:w-56 pr-11 pl-4 py-3 rounded-xl border border-input-brd bg-input-bg text-txt text-xs outline-none transition-all focus:border-focus focus:shadow-[0_0_0_3px_rgba(var(--focus-rgb),0.08)]"/>
+              <input [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)" type="text" placeholder="ابحث باسم الختمة..." class="w-full sm:w-56 pr-11 pl-4 py-3 rounded-xl border border-input-brd bg-input-bg text-txt text-xs outline-none transition-all focus:border-focus focus:shadow-[0_0_0_3px_rgba(var(--focus-rgb),0.08)]"/>
             </div>
             <a routerLink="/khatmat" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-link hover:text-accent transition-colors whitespace-nowrap">عرض الكل <svg class="w-3.5 h-3.5 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
           </div>
         </div>
 
-        @if (filteredKhatmas.length > 0) {
+        @if (filteredKhatmas().length > 0) {
           <div class="grid md:grid-cols-2 gap-6">
-            @for (k of filteredKhatmas; track k.id) {
-              <div class="card-lift group relative bg-surface rounded-[1.75rem] border border-brd/70 overflow-hidden">
-                <!-- Progress Bar Top -->
-                <div class="h-1 bg-surface-el"><div class="h-full bg-gradient-to-l from-primary via-secondary to-accent transition-all duration-1000" [style.width.%]="k.progress"></div></div>
-
-                  <div class="p-6 md:p-7">
-                    <div class="flex justify-between items-start mb-5">
-                      <div class="flex-1 min-w-0">
-                        @if (k.deceasedDeathDate) {
-                           @let days = getDaysToAnniversary(k.deceasedDeathDate);
-                           @if (days <= 30 && days >= 0) {
-                             <div class="px-2 py-0.5 rounded-md bg-accent/10 border border-accent/20 text-[9px] font-bold text-accent mb-2 w-fit animate-pulse-glow">
-                               {{days === 0 ? 'اليوم ذكرى الوفاة' : 'باقي ' + days + ' يوم على الذكرى'}}
-                             </div>
-                           }
-                         }
-                        <a [routerLink]="['/khatmat', k.id]" class="text-[15px] font-bold text-txt group-hover:text-primary transition-colors block truncate">{{k.title}}</a>
-                        <div class="flex items-center gap-3 mt-2">
-                          <span class="text-[10px] text-txt-muted flex items-center gap-1.5">
-                            <div class="w-5 h-5 rounded-lg bg-primary/[0.06] flex items-center justify-center"><svg class="w-3 h-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg></div>
-                            {{k.createdBy}}
-                          </span>
-                          @if (k.deceasedName) {
-                            <span class="text-[10px] text-accent flex items-center gap-1.5">
-                              <div class="w-5 h-5 rounded-lg bg-accent/[0.06] flex items-center justify-center"><svg class="w-3 h-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg></div>
-                              {{k.deceasedName}}
-                            </span>
-                          }
-                        </div>
-                      </div>
-
-                    </div>
-
-                    <div class="flex items-center gap-1.5 text-[10px] text-txt-muted mb-5"><svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg> {{getCompletedParts(k)}} / 30 جزء مكتمل</div>
-
-                    <div class="flex items-center gap-2.5">
-                      <a [routerLink]="['/khatmat', k.id]" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl text-[11px] transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:scale-[1.02]">
-                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg> احجز جزء
-                      </a>
-                      <button (click)="shareKhatmaWhatsApp(k);$event.stopPropagation()" class="w-10 h-10 flex items-center justify-center rounded-xl bg-[#25D366]/[0.08] text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all duration-300 hover:scale-110 hover:shadow-md"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button>
-                      <button (click)="copyKhatmaLink(k);$event.stopPropagation()" class="w-10 h-10 flex items-center justify-center rounded-xl bg-surface-el border border-brd text-txt-muted hover:text-primary hover:border-primary/30 transition-all duration-300 hover:scale-110"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></button>
-                    </div>
-                  </div>
-                </div>
-
+            @for (k of filteredKhatmas(); track k.id) {
+              <app-khatma-card [khatma]="k"></app-khatma-card>
             }
           </div>
-        } @else if (hasNoKhatmas) {
+        } @else if (hasNoKhatmas()) {
           <div class="text-center py-20 bg-surface rounded-3xl border-2 border-dashed border-brd">
             <div class="w-20 h-20 bg-gradient-to-br from-primary/[0.06] to-accent/[0.06] rounded-3xl flex items-center justify-center mx-auto mb-5"><svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></div>
             <h3 class="text-lg font-bold text-txt mb-2">لا توجد ختمات حالية</h3>
             <p class="text-txt-muted text-sm mb-6">ابدأ ختمة جديدة وشارك الأجر</p>
-            <button (click)="openCreateModal()" class="px-7 py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl text-sm hover:shadow-lg hover:shadow-primary/20 transition-all">إنشاء أول ختمة</button>
+            <button (click)="showCreateModal.set(true)" class="px-7 py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl text-sm hover:shadow-lg hover:shadow-primary/20 transition-all">إنشاء أول ختمة</button>
           </div>
         } @else {
-          <div class="text-center py-14"><p class="text-txt-muted text-sm">لا توجد نتائج لـ "{{searchQuery}}"</p></div>
+          <div class="text-center py-14"><p class="text-txt-muted text-sm">لا توجد نتائج لـ "{{searchQuery()}}"</p></div>
         }
         <a routerLink="/khatmat" class="sm:hidden mt-6 block text-center text-xs font-bold text-link">عرض كل الختمات</a>
       </div>
@@ -278,7 +236,7 @@ import { KhatmaService } from '../../services/khatma.service';
             </div>
             <h2 class="text-2xl md:text-4xl font-black text-white mb-4 leading-tight">اجعل لهم نصيباً<br/>من الأجر</h2>
             <p class="text-white/50 mb-10 max-w-sm mx-auto text-sm leading-relaxed">ختمة واحدة قد تكون نوراً في قبر من تحب</p>
-            <button (click)="openCreateModal()" class="group inline-flex items-center gap-3 px-10 py-4 bg-white text-primary font-bold rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-[15px] shadow-xl">
+            <button (click)="showCreateModal.set(true)" class="group inline-flex items-center gap-3 px-10 py-4 bg-white text-primary font-bold rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-[15px] shadow-xl">
               ابدأ الآن
               <svg class="w-4 h-4 transition-transform group-hover:translate-x-[-6px] duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
             </button>
@@ -293,51 +251,17 @@ import { KhatmaService } from '../../services/khatma.service';
     </footer>
 
     <!-- ═══ CREATE MODAL ═══ -->
-    @if (showCreateModal) {
-      <div class="fixed inset-0 bg-black/50 backdrop-blur-lg z-50 flex items-center justify-center p-4" (click)="showCreateModal=false">
-        <div class="animate-scale-in bg-surface rounded-[2rem] w-full max-w-md p-8 shadow-2xl border border-brd/70 relative overflow-hidden" (click)="$event.stopPropagation()">
-          <div class="absolute -top-24 -right-24 w-48 h-48 bg-primary/[0.04] rounded-full blur-3xl pointer-events-none"></div>
-          <div class="absolute -bottom-24 -left-24 w-40 h-40 bg-accent/[0.04] rounded-full blur-3xl pointer-events-none"></div>
-
-          <div class="text-center mb-8 relative z-10">
-            <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-xl shadow-primary/20 rotate-3">
-              <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
-            </div>
-            <h3 class="text-xl font-black text-txt">أنشئ ختمة جديدة</h3>
-            <p class="text-[11px] text-txt-muted mt-1.5">شارك الأجر مع أحبابك</p>
-          </div>
-
-          <div class="space-y-4 relative z-10">
-            <div><label class="block text-xs font-bold text-txt-secondary mb-1.5">اسمك <span class="text-err">*</span></label><input [(ngModel)]="newKhatma.createdBy" class="w-full rounded-xl border border-input-brd bg-input-bg text-txt focus:border-focus focus:ring-4 focus:ring-primary/10 p-3.5 text-sm outline-none transition-all" placeholder="اكتب اسمك"></div>
-            <div><label class="block text-xs font-bold text-txt-secondary mb-1.5">عنوان الختمة <span class="text-err">*</span></label><input [(ngModel)]="newKhatma.title" class="w-full rounded-xl border border-input-brd bg-input-bg text-txt focus:border-focus focus:ring-4 focus:ring-primary/10 p-3.5 text-sm outline-none transition-all" placeholder="مثال: ختمة العائلة"></div>
-            <div><label class="block text-xs font-bold text-txt-secondary mb-1.5">اسم المتوفى <span class="text-txt-muted font-normal">(اختياري)</span></label><input [(ngModel)]="newKhatma.deceasedName" class="w-full rounded-xl border border-input-brd bg-input-bg text-txt focus:border-focus focus:ring-4 focus:ring-primary/10 p-3.5 text-sm outline-none transition-all" placeholder="رحمه/ا الله"></div>
-            @if (newKhatma.deceasedName) {
-              <div><label class="block text-xs font-bold text-txt-secondary mb-1.5">تاريخ الوفاة <span class="text-txt-muted font-normal">(اختياري)</span></label><input type="date" [(ngModel)]="deceasedDeathDateStr" class="w-full rounded-xl border border-input-brd bg-input-bg text-txt focus:border-focus focus:ring-4 focus:ring-primary/10 p-3.5 text-sm outline-none transition-all"></div>
-            }
-            <div><label class="block text-xs font-bold text-txt-secondary mb-1.5">وصف <span class="text-err">*</span></label><textarea [(ngModel)]="newKhatma.description" rows="2" class="w-full rounded-xl border border-input-brd bg-input-bg text-txt focus:border-focus focus:ring-4 focus:ring-primary/10 p-3.5 text-sm outline-none transition-all resize-none" placeholder="وصف مختصر..."></textarea></div>
-          </div>
-
-          <div class="mt-8 flex gap-3 relative z-10">
-            <button (click)="showCreateModal=false" class="flex-1 py-3.5 text-txt-muted bg-surface-el border border-brd rounded-xl font-bold text-xs hover:bg-bg transition-colors">إلغاء</button>
-            <button (click)="createKhatma()" [disabled]="!canCreate" class="flex-[2] py-3.5 text-white bg-gradient-to-r from-primary to-secondary rounded-xl font-bold text-xs disabled:opacity-40 transition-all shadow-lg shadow-primary/15 hover:shadow-xl hover:shadow-primary/25 hover:scale-[1.02]">إنشاء ✨</button>
-          </div>
-        </div>
-      </div>
+    @if (showCreateModal()) {
+      <app-create-khatma-modal (close)="showCreateModal.set(false)" (created)="onKhatmaCreated($event)"></app-create-khatma-modal>
     }
-
-    <!-- Toast -->
-    @if (copiedToast) {<div class="fixed bottom-24 md:bottom-8 left-1/2 -translate-x-1/2 z-[60] px-6 py-3 bg-ok text-white text-xs font-bold rounded-2xl shadow-xl animate-fade-up">✅ تم نسخ الرابط</div>}
   `,
 })
 export class HomeComponent {
   private khatmaService = inject(KhatmaService);
   private router = inject(Router);
 
-  searchQuery = '';
-  showCreateModal = false;
-  copiedToast = false;
-  newKhatma = { title: '', createdBy: '', deceasedName: '', description: '' };
-  deceasedDeathDateStr = '';
+  searchQuery = signal('');
+  showCreateModal = signal(false);
 
   steps = [
     { num: '١', title: 'أنشئ الختمة', desc: 'اكتب اسمك واسم المتوفى وأنشئ ختمة من 30 جزء بنقرة واحدة' },
@@ -345,74 +269,31 @@ export class HomeComponent {
     { num: '٣', title: 'يصل الأجر', desc: 'كل جزء يُقرأ يصل ثوابه للمتوفى بإذن الله تعالى' },
   ];
 
-  get statsData() {
+  statsData = computed(() => {
+    const khatmas = this.khatmaService.khatmas();
+    const totalKhatmas = khatmas.length;
+    const totalCompleted = khatmas.reduce((s, k) => s + k.parts.filter(p => p.status === 'completed').length, 0);
+    const participants = new Set<string>();
+    khatmas.forEach(k => k.parts.forEach(p => { if (p.completedBy) participants.add(p.completedBy); if (p.reservedBy) participants.add(p.reservedBy); }));
+    const totalParticipants = participants.size;
+
     return [
-      { value: this.totalKhatmas, label: 'ختمة جارية', color: 'text-primary', delay: '0ms' },
-      { value: this.totalCompleted, label: 'جزء مكتمل', color: 'text-txt', delay: '100ms' },
-      { value: this.totalParticipants, label: 'مشارك', color: 'text-accent', delay: '200ms' },
+      { value: totalKhatmas, label: 'ختمة جارية', color: 'text-primary', delay: '0ms' },
+      { value: totalCompleted, label: 'جزء مكتمل', color: 'text-txt', delay: '100ms' },
+      { value: totalParticipants, label: 'مشارك', color: 'text-accent', delay: '200ms' },
     ];
-  }
+  });
 
-  get hasNoKhatmas() { return this.khatmaService.khatmas().length === 0; }
-  get totalKhatmas() { return this.khatmaService.khatmas().length; }
-  get totalCompleted() { return this.khatmaService.khatmas().reduce((s, k) => s + k.parts.filter(p => p.status === 'completed').length, 0); }
-  get totalParticipants() {
-    const n = new Set<string>();
-    this.khatmaService.khatmas().forEach(k => k.parts.forEach(p => { if (p.completedBy) n.add(p.completedBy); if (p.reservedBy) n.add(p.reservedBy); }));
-    return n.size;
-  }
-  get filteredKhatmas() {
+  hasNoKhatmas = computed(() => this.khatmaService.khatmas().length === 0);
+
+  filteredKhatmas = computed(() => {
     const all = this.khatmaService.khatmas();
-    if (!this.searchQuery.trim()) return all;
-    const q = this.searchQuery.trim().toLowerCase();
-    return all.filter(k => k.title.toLowerCase().includes(q) || (k.deceasedName && k.deceasedName.toLowerCase().includes(q)) || k.createdBy.toLowerCase().includes(q));
-  }
-  get canCreate() { return this.newKhatma.title.trim() && this.newKhatma.createdBy.trim() && this.newKhatma.description.trim(); }
-  getCompletedParts(k: any) { return k.parts.filter((p: any) => p.status === 'completed').length; }
+    const query = this.searchQuery().trim().toLowerCase();
+    if (!query) return all;
+    return all.filter(k => k.title.toLowerCase().includes(query) || (k.deceasedName && k.deceasedName.toLowerCase().includes(query)) || k.createdBy.toLowerCase().includes(query));
+  });
 
-  openCreateModal() {
-    this.newKhatma = { title: '', createdBy: '', deceasedName: '', description: '' };
-    this.deceasedDeathDateStr = '';
-    this.showCreateModal = true;
-  }
-  createKhatma() {
-    if (!this.canCreate) return;
-    const deathDate = this.deceasedDeathDateStr ? new Date(this.deceasedDeathDateStr) : undefined;
-    const id = this.khatmaService.addKhatma(
-      this.newKhatma.title,
-      this.newKhatma.createdBy,
-      this.newKhatma.deceasedName,
-      this.newKhatma.description,
-      deathDate
-    );
-    this.showCreateModal = false;
+  onKhatmaCreated(id: string) {
     this.router.navigate(['/khatmat', id]);
   }
-  shareKhatmaWhatsApp(k: any) {
-    let t = `📖 شارك معنا في ختمة "${k.title}"`;
-    if (k.deceasedName) t += `\n🕊️ عن: ${k.deceasedName}`;
-    t += `\n📊 التقدم: ${k.progress}%\n\nاحجز جزء:\n${location.origin}/#/khatmat/${k.id}`;
-    window.open(`https://wa.me/?text=${encodeURIComponent(t)}`, '_blank');
-  }
-  copyKhatmaLink(k: any) {
-    navigator.clipboard.writeText(`${location.origin}/#/khatmat/${k.id}`).then(() => { this.copiedToast = true; setTimeout(() => this.copiedToast = false, 2000); });
-  }
-
-  getDaysToAnniversary(date: Date): number {
-    const deathDate = new Date(date);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const nextAnniversary = new Date(deathDate);
-    nextAnniversary.setFullYear(today.getFullYear());
-    nextAnniversary.setHours(0, 0, 0, 0);
-
-    if (nextAnniversary < today) {
-      nextAnniversary.setFullYear(today.getFullYear() + 1);
-    }
-
-    const diffTime = nextAnniversary.getTime() - today.getTime();
-    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  }
 }
-

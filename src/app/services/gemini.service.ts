@@ -2,13 +2,28 @@ import { Injectable } from '@angular/core';
 import { GoogleGenAI } from '@google/genai';
 import { environment } from '../../environments/environment';
 
+export interface RecitationMistake {
+  type: 'tajweed' | 'pronunciation' | 'missing' | 'extra';
+  word: string;
+  description: string;
+}
+
+export interface RecitationAnalysis {
+  transcription: string;
+  surah: string;
+  verses: string;
+  score: number;
+  mistakes: RecitationMistake[];
+  feedback: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class GeminiService {
   private ai = new GoogleGenAI({ apiKey: environment.geminiApiKey });
 
-  async analyzeRecitation(audioBlob: Blob): Promise<any> {
+  async analyzeRecitation(audioBlob: Blob): Promise<RecitationAnalysis> {
     try {
       const base64 = await this.blobToBase64(audioBlob);
 
@@ -48,7 +63,7 @@ export class GeminiService {
       });
 
       const text = response.text || '{}';
-      return JSON.parse(text);
+      return JSON.parse(text) as RecitationAnalysis;
 
     } catch (error) {
       console.warn('Gemini API Error, switching to simulation:', error);
@@ -56,12 +71,12 @@ export class GeminiService {
     }
   }
 
-  private async simulateResponse(): Promise<any> {
+  private async simulateResponse(): Promise<RecitationAnalysis> {
     // محاكاة تأخير الشبكة
     await new Promise(resolve => setTimeout(resolve, 2000));
 
     // سيناريوهات أخطاء شائعة (Fallback)
-    const scenarios = [
+    const scenarios: RecitationAnalysis[] = [
       {
         transcription: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ الرَّحْمَٰنِ الرَّحِيمِ مَالِكِ يَوْمِ الدِّينِ",
         surah: "الفاتحة",
