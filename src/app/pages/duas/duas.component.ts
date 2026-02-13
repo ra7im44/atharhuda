@@ -8,181 +8,132 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <div class="min-h-screen pb-20 relative overflow-hidden">
-      <!-- Background Decor -->
+      <!-- Ambient -->
       <div class="fixed inset-0 pointer-events-none">
-        <div class="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl animate-drift"></div>
-        <div class="absolute bottom-[20%] right-[-10%] w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl animate-drift" style="animation-delay: -5s;"></div>
-        <div class="absolute inset-0 dot-grid opacity-[0.1] dark:opacity-[0.03]"></div>
+        <div class="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-accent/[0.04] rounded-full blur-[120px] animate-drift"></div>
+        <div class="absolute bottom-[10%] right-[-8%] w-[400px] h-[400px] bg-secondary/[0.04] rounded-full blur-[100px] animate-drift" style="animation-delay:-7s"></div>
       </div>
+      <div class="absolute inset-0 islamic-pattern-dense opacity-15 dark:opacity-[0.02] pointer-events-none"></div>
 
-      <div class="max-w-7xl mx-auto px-6 py-10 relative z-10">
-
+      <div class="relative max-w-3xl mx-auto px-6 py-10">
         <!-- Header -->
-        <div class="animate-fade-up text-center mb-16 relative">
-          <div class="w-16 h-16 bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/5 animate-float-slow rotate-3">
-            <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+        <div class="text-center mb-12 animate-fade-down">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/[0.06] border border-accent/10 text-accent text-[11px] font-bold mb-4 uppercase tracking-wider">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342"/></svg>
+            من السنة النبوية
           </div>
-          <h1 class="text-4xl md:text-5xl font-black text-txt mb-4 font-quran">جوامع الدعاء</h1>
-          <p class="text-txt-muted text-lg max-w-lg mx-auto leading-relaxed">أدعية مختارة من الكتاب والسنة للميت، وللوالدين، ولتفريج الكرب.</p>
+          <h1 class="text-2xl md:text-3xl font-black text-txt mb-2">أدعية <span class="gradient-text">للمتوفى</span></h1>
+          <p class="text-sm text-txt-muted">ادعُ لمن فقدت بأدعية صحيحة من السنة</p>
         </div>
 
-        <!-- Filter Tabs -->
-        <div class="animate-fade-up delay-100 flex flex-wrap gap-3 mb-12 justify-center sticky top-24 z-20 py-4 glass-panel rounded-2xl md:rounded-full bg-surface/80 backdrop-blur-md shadow-sm border border-brd/50 max-w-4xl mx-auto px-4">
-          @for (cat of categories; track cat) {
-            <button (click)="selectedCategory = cat" 
-              class="px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 relative overflow-hidden group"
-              [class]="selectedCategory === cat ? 'bg-primary text-primary-text shadow-lg shadow-primary/25' : 'bg-transparent text-txt-muted hover:text-primary hover:bg-primary/5'">
-              <span class="relative z-10">{{cat}}</span>
-              @if (selectedCategory === cat) { <div class="absolute inset-0 bg-gradient-to-r from-primary via-accent to-primary animate-shimmer opacity-20"></div> }
+        <!-- Categories -->
+        <div class="flex flex-wrap justify-center gap-2 mb-10 animate-fade-up delay-200">
+          @for (cat of categories; track cat.id) {
+            <button (click)="selectedCategory = cat.id"
+                    class="px-5 py-2 rounded-xl text-[11px] font-bold transition-all duration-300"
+                    [ngClass]="{
+                      'bg-gradient-to-r from-primary to-secondary text-white shadow-md shadow-primary/15': selectedCategory === cat.id,
+                      'bg-surface border border-brd text-txt-muted hover:text-txt hover:border-primary/30': selectedCategory !== cat.id
+                    }">
+              {{cat.label}}
             </button>
           }
         </div>
 
-        <!-- Masonry Grid -->
-        <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6 animate-stagger">
-          @for (dua of filteredDuas; track dua.id) {
-            <div class="break-inside-avoid group relative bg-surface-el rounded-[2rem] border border-brd p-1 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/30">
-              <div class="bg-surface rounded-[1.7rem] p-6 relative overflow-hidden h-full">
-                <!-- Decorative Quotes -->
-                <div class="absolute top-4 right-4 text-4xl text-primary/5 font-quran leading-none select-none">❝</div>
-                
-                <!-- Category Badge -->
-                <div class="flex justify-between items-start mb-4">
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-el border border-brd text-txt-muted text-[10px] font-bold rounded-full uppercase tracking-wider group-hover:bg-primary/10 group-hover:text-primary transition-colors">
-                    {{dua.category}}
-                  </span>
-                  
-                  <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-2 group-hover:translate-x-0">
-                    <button (click)="copyDua(dua.id, dua.text)" 
-                      class="w-8 h-8 rounded-full flex items-center justify-center bg-surface-el hover:bg-primary hover:text-primary-text transition-colors shadow-sm"
-                      [title]="copiedId === dua.id ? 'تم النسخ' : 'نسخ النص'">
+        <!-- Duas List -->
+        <div class="space-y-5">
+          @for (dua of filteredDuas; track dua.id; let i = $index) {
+            <div class="card-lift animate-fade-up" [style.animation-delay]="(i * 80) + 'ms'">
+              <div class="group relative bg-surface rounded-[1.75rem] border border-brd/70 overflow-hidden">
+                <!-- Top accent -->
+                <div class="h-[2px] bg-gradient-to-l from-accent via-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+                <div class="p-6 md:p-7">
+                  <!-- Dua Number & Source -->
+                  <div class="flex items-center justify-between mb-5">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/[0.08] to-accent/[0.08] flex items-center justify-center text-sm font-black text-primary group-hover:from-primary group-hover:to-secondary group-hover:text-white transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/20">{{dua.id}}</div>
+                      <div>
+                        <span class="text-xs font-bold text-txt">{{dua.title}}</span>
+                        <span class="block text-[9px] text-txt-muted mt-0.5">{{dua.source}}</span>
+                      </div>
+                    </div>
+                    <button (click)="copyDua(dua)" class="w-9 h-9 rounded-xl bg-surface-el border border-brd text-txt-muted hover:text-primary hover:border-primary/30 flex items-center justify-center transition-all hover:scale-110">
                       @if (copiedId === dua.id) {
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        <svg class="w-4 h-4 text-ok" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
                       } @else {
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9.75a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/></svg>
                       }
                     </button>
-                    <!-- Share Button could be added here -->
                   </div>
+
+                  <!-- Arabic -->
+                  <div class="mb-5 p-5 bg-gradient-to-l from-primary/[0.03] to-accent/[0.02] rounded-2xl border border-primary/[0.06]">
+                    <p class="text-lg md:text-xl font-quran leading-[2.6] text-txt text-center">{{dua.arabic}}</p>
+                  </div>
+
+                  <!-- Translation -->
+                  <div class="text-sm text-txt-secondary leading-relaxed border-r-3 border-accent/20 pr-4">
+                    {{dua.translation}}
+                  </div>
+
+                  @if (dua.note) {
+                    <div class="mt-4 flex items-start gap-2 p-3 bg-info/[0.04] border border-info/10 rounded-xl">
+                      <svg class="w-4 h-4 text-info flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
+                      <span class="text-[11px] text-info leading-relaxed">{{dua.note}}</span>
+                    </div>
+                  }
                 </div>
-
-                <!-- Text -->
-                <p class="text-xl md:text-2xl font-quran text-txt leading-[2] text-center mb-6 relative z-10 px-2" [class.text-2xl]="dua.text.length < 100">
-                  {{dua.text}}
-                </p>
-
-                <!-- Footer -->
-                @if (dua.source) {
-                  <div class="pt-4 border-t border-brd/50 flex items-center justify-center">
-                    <span class="inline-flex items-center gap-1.5 text-xs text-txt-muted font-bold bg-surface-el px-3 py-1 rounded-lg">
-                      <svg class="w-3 h-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-                      {{dua.source}}
-                    </span>
-                  </div>
-                }
-                
-                <div class="absolute bottom-4 left-4 text-4xl text-primary/5 font-quran leading-none select-none rotate-180">❝</div>
               </div>
             </div>
           }
         </div>
 
-        @if (filteredDuas.length === 0) {
-          <div class="flex flex-col items-center justify-center py-20 text-center animate-fade-up">
-            <div class="w-20 h-20 bg-surface-el border border-brd rounded-[2rem] flex items-center justify-center mb-4 rotate-6 shadow-lg">
-              <svg class="w-10 h-10 text-txt-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
-            </div>
-            <h3 class="text-xl font-black text-txt mb-2">لا توجد أدعية</h3>
-            <p class="text-txt-muted">حاول اختيار تصنيف آخر</p>
+        <!-- Hadith Footer -->
+        <div class="mt-16 text-center animate-fade-up">
+          <div class="inline-flex items-center gap-3 mb-5">
+            <div class="w-10 h-[1.5px] bg-accent/30 rounded-full"></div>
+            <div class="w-7 h-7 rounded-lg bg-accent/[0.07] flex items-center justify-center"><span class="text-xs">🤲</span></div>
+            <div class="w-10 h-[1.5px] bg-accent/30 rounded-full"></div>
           </div>
-        }
+          <p class="text-sm text-txt-muted leading-relaxed max-w-md mx-auto">"اللهم اغفر لأمواتنا وأموات المسلمين أجمعين"</p>
+        </div>
       </div>
     </div>
   `,
-  styles: [`
-    .glass-panel { background: rgba(var(--surface-rgb), 0.8); backdrop-filter: blur(12px); }
-  `]
 })
 export class DuasComponent {
+  selectedCategory = 'all';
   copiedId: number | null = null;
-  categories = ['الكل', 'للميت', 'من القرآن', 'للوالدين', 'تفريج الهم', 'استغفار', 'أذكار الصباح', 'أذكار المساء', 'قبل النوم'];
-  selectedCategory = 'الكل';
 
-  allDuas = [
-    // --- للميت (25 دعاء) ---
-    { id: 1, category: 'للميت', text: 'اللهم اغفر له وارحمه وعافه واعف عنه وأكرم نزله ووسع مدخله واغسله بالماء والثلج والبرد ونقه من الخطايا كما ينقى الثوب الأبيض من الدنس.', source: 'رواه مسلم' },
-    { id: 2, category: 'للميت', text: 'اللهم أبدله داراً خيراً من داره وأهلاً خيراً من أهله وزوجاً خيراً من زوجه وأدخله الجنة وأعذه من عذاب القبر ومن عذاب النار.', source: 'رواه مسلم' },
-    { id: 3, category: 'للميت', text: 'اللهم اغفر لحينا وميتنا وشاهدنا وغائبنا وصغيرنا وكبيرنا وذكرنا وأنثانا.', source: 'أبو داود' },
-    { id: 4, category: 'للميت', text: 'اللهم إن كان محسناً فزد في حسناته وإن كان مسيئاً فتجاوز عن سيئاته.', source: 'دعاء مأثور' },
-    { id: 5, category: 'للميت', text: 'اللهم إنه في ذمتك وحبل جوارك فقه فتنة القبر وعذاب النار وأنت أهل الوفاء والحق فاغفر له وارحمه إنك أنت الغفور الرحيم.', source: 'أبو داود' },
-    { id: 6, category: 'للميت', text: 'اللهم ادخله الجنة من غير مناقشة حساب ولا سابقة عذاب.', source: 'دعاء عام' },
-    { id: 7, category: 'للميت', text: 'اللهم شفع فيه نبينا ومصطفاك، واحشره تحت لوائه، واسقه من يده الشريفة شربة هنيئة لا يظمأ بعدها أبداً.', source: 'دعاء عام' },
-    { id: 8, category: 'للميت', text: 'اللهم إنه عبدك وابن عبدك خرج من الدنيا وسعتها ومحبوبها وأحبائه فيها إلى ظلمة القبر وما هو لاقيه.', source: 'دعاء عام' },
-    { id: 9, category: 'للميت', text: 'اللهم انظر إليه نظرة رضا، فإن من تنظر إليه نظرة رضا لا تعذبه أبداً.', source: 'دعاء عام' },
-    { id: 10, category: 'للميت', text: 'اللهم اسكنه فسيح الجنان، واغفر له يا رحمن، وارحمه يا رحيم، وتجاوز عما تعلم يا عليم.', source: 'دعاء عام' },
-    { id: 11, category: 'للميت', text: 'اللهم احشره مع المتقين إلى الرحمن وفداً.', source: 'دعاء عام' },
-    { id: 12, category: 'للميت', text: 'اللهم احشره مع أصحاب اليمين، واجعل تحيته سلام لك من أصحاب اليمين.', source: 'دعاء عام' },
-    { id: 13, category: 'للميت', text: 'اللهم بشره بقولك: كلوا واشربوا هنيئاً بما أسلفتم في الأيام الخالية.', source: 'دعاء عام' },
-    { id: 14, category: 'للميت', text: 'اللهم اجعل قبره روضة من رياض الجنة، ولا تجعله حفرة من حفر النار.', source: 'الترمذي' },
-    { id: 15, category: 'للميت', text: 'اللهم أفسح له في قبره مد بصره، وافرش قبره من فراش الجنة.', source: 'دعاء عام' },
-    { id: 16, category: 'للميت', text: 'اللهم أعذه من عذاب القبر، وجاف الأرض عن جنبيه.', source: 'دعاء عام' },
-    { id: 17, category: 'للميت', text: 'اللهم املأ قبره بالرضا والنور والفسحة والسرور.', source: 'دعاء عام' },
-    { id: 18, category: 'للميت', text: 'اللهم إنه نزل بك وأنت خير منزول به، وأصبح فقيراً إلى رحمتك وأنت غني عن عذابه.', source: 'دعاء عام' },
-    { id: 19, category: 'للميت', text: 'اللهم آته برحمتك ورضاك، وقه فتنة القبر وعذابه، وآته برحمتك الأمن من عذابك حتى تبعثه إلى جنتك يا أرحم الراحمين.', source: 'دعاء عام' },
-    { id: 20, category: 'للميت', text: 'اللهم يمن كتابة، ويسر حسابه، وثقل بالحسنات ميزانه، وثبت على الصراط أقدامه.', source: 'دعاء عام' },
-    { id: 21, category: 'للميت', text: 'اللهم اجعله في بطن القبر مطمئناً، وعند قيام الأشهاد آمناً، وبجود رضوانك واثقاً.', source: 'دعاء عام' },
-    { id: 22, category: 'للميت', text: 'اللهم احمه تحت الأرض، واستره يوم العرض، ولا تخزه يوم يبعثون، يوم لا ينفع مال ولا بنون إلا من أتى الله بقلب سليم.', source: 'دعاء عام' },
-    { id: 23, category: 'للميت', text: 'اللهم استقبله عندك خالياً من الذنوب والخطايا، واستقبله بمحض إرادتك وعفوك وأنت راض عن غير غضبان عليه.', source: 'دعاء عام' },
-    { id: 24, category: 'للميت', text: 'اللهم إني أسألك الفردوس الأعلى نزلاً له.', source: 'دعاء عام' },
-    { id: 25, category: 'للميت', text: 'اللهم ارحم جميع موتى المسلمين الذين شهدوا لك بالوحدانية ولنبيك بالرسالة وماتوا على ذلك.', source: 'دعاء عام' },
+  categories = [
+    { id: 'all', label: 'الكل' },
+    { id: 'mercy', label: 'رحمة' },
+    { id: 'forgiveness', label: 'مغفرة' },
+    { id: 'grave', label: 'القبر' },
+    { id: 'general', label: 'عام' },
+  ];
 
-    // --- للوالدين (10 دعاء) ---
-    { id: 26, category: 'للوالدين', text: 'رَّبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا.', source: 'الإسراء: 24' },
-    { id: 27, category: 'للوالدين', text: 'رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ.', source: 'إبراهيم: 41' },
-    { id: 28, category: 'للوالدين', text: 'رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ الَّتِي أَنْعَمْتَ عَلَيَّ وَعَلَىٰ وَالِدَيَّ وَأَنْ أَعْمَلَ صَالِحًا تَرْضَاهُ.', source: 'الأحقاف: 15' },
-    { id: 29, category: 'للوالدين', text: 'اللهم اغفر لوالدي وارحمهما وعافهما واعف عنهما وأكرم نزلهما.', source: 'دعاء عام' },
-    { id: 30, category: 'للوالدين', text: 'اللهم يا ذا الجلال والإكرام يا حي يا قيوم، ندعوك باسمك الأعظم أن تبسط على والدي من بركاتك ورحمتك ورزقك.', source: 'دعاء عام' },
-    { id: 31, category: 'للوالدين', text: 'اللهم لا تجعل لهما ذنباً إلا غفرته، ولا هماً إلا فرجته، ولا حاجة من حوائج الدنيا هي لك رضا ولهما فيها صلاح إلا قضيتها.', source: 'دعاء عام' },
-    { id: 32, category: 'للوالدين', text: 'اللهم اجعل أوقاتهما بذكرك معمورة، وقربهما برحمتك من الطاعات.', source: 'دعاء عام' },
-    { id: 33, category: 'للوالدين', text: 'اللهم ارزقهما عيشاً قاراً، ورزقاً داراً، وعملاً باراً.', source: 'دعاء عام' },
-    { id: 34, category: 'للوالدين', text: 'اللهم اجعلنا ذخرًا لوالدينا يا رب العالمين بعد وفاتهم بصلاحنا وصلاح أعمالنا.', source: 'دعاء عام' },
-    { id: 35, category: 'للوالدين', text: 'اللهم أقر أعينهما بما يتمنياه لنا في الدنيا، واجعلنا لهما قرة عين يوم يقوم الأشهاد.', source: 'دعاء عام' },
-
-    // --- من القرآن (10 دعاء) ---
-    { id: 36, category: 'من القرآن', text: 'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ.', source: 'البقرة: 201' },
-    { id: 37, category: 'من القرآن', text: 'رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِن لَّدُنكَ رَحْمَةً ۚ إِنَّكَ أَنتَ الْوَهَّابُ.', source: 'آل عمران: 8' },
-    { id: 38, category: 'من القرآن', text: 'رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا.', source: 'الفرقان: 74' },
-    { id: 39, category: 'من القرآن', text: 'رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِن ذُرِّيَّتِي ۚ رَبَّنَا وَتَقَبَّلْ دُعَاءِ.', source: 'إبراهيم: 40' },
-    { id: 40, category: 'من القرآن', text: 'رَبِّ إِنِّي لِمَا أَنزَلْتَ إِلَيَّ مِنْ خَيْرٍ فَقِيرٌ.', source: 'القصص: 24' },
-    { id: 41, category: 'من القرآن', text: 'رَّبِّ أَدْخِلْنِي مُدْخَلَ صِدْقٍ وَأَخْرِجْنِي مُخْرَجَ صِدْقٍ وَاجْعَل لِّي مِن لَّدُنكَ سُلْطَانًا نَّصِيرًا.', source: 'الإسراء: 80' },
-    { id: 42, category: 'من القرآن', text: 'رَبَّنَا أَفْرِغْ عَلَيْنَا صَبْرًا وَثَبِّتْ أَقْدَامَنَا وَانصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ.', source: 'البقرة: 250' },
-    { id: 43, category: 'من القرآن', text: 'رَبَّنَا ظَلَمْنَا أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ.', source: 'الأعراف: 23' },
-    { id: 44, category: 'من القرآن', text: 'حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ.', source: 'آل عمران: 173' },
-    { id: 45, category: 'من القرآن', text: 'لَّا إِلَٰهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ.', source: 'الأنبياء: 87' },
-
-    // --- متنوع (أكثر من 15 دعاء) ---
-    { id: 46, category: 'تفريج الهم', text: 'اللهم إني أعوذ بك من الهم والحزن، والعجز والكسل، والبخل والجبن، وضلع الدين، وغلبة الرجال.', source: 'البخاري' },
-    { id: 47, category: 'تفريج الهم', text: 'يا حي يا قيوم برحمتك أستغيث، أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين.', source: 'الترمذي' },
-    { id: 48, category: 'تفريج الهم', text: 'اللهم لا سهل إلا ما جعلته سهلاً، وأنت تجعل الحزن إذا شئت سهلاً.', source: 'ابن حبان' },
-    { id: 49, category: 'أذكار الصباح', text: 'اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك النشور.', source: 'الترمذي' },
-    { id: 50, category: 'أذكار الصباح', text: 'أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له.', source: 'مسلم' },
-    { id: 51, category: 'أذكار المساء', text: 'اللهم بك أمسينا وبك أصبحنا وبك نحيا وبك نموت وإليك المصير.', source: 'الترمذي' },
-    { id: 52, category: 'أذكار المساء', text: 'أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له.', source: 'مسلم' },
-    { id: 53, category: 'استغفار', text: 'أستغفر الله العظيم الذي لا إله إلا هو الحي القيوم وأتوب إليه.', source: 'الترمذي' },
-    { id: 54, category: 'استغفار', text: 'اللهم أنت ربي لا إله إلا أنت خلقتني وأنا عبدك وأنا على عهدك ووعدك ما استطعت... سيد الاستغفار.', source: 'البخاري' },
-    { id: 55, category: 'قبل النوم', text: 'باسمك اللهم أموت وأحيا.', source: 'البخاري' },
-    { id: 56, category: 'قبل النوم', text: 'اللهم قني عذابك يوم تبعث عبادك.', source: 'أبو داود' },
-    { id: 57, category: 'استغفار', text: 'رب اغفر لي وتب علي إنك أنت التواب الرحيم.', source: 'أبو داود' },
+  duas = [
+    { id: 1, title: 'دعاء المغفرة', category: 'forgiveness', arabic: 'اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ وَعَافِهِ وَاعْفُ عَنْهُ، وَأَكْرِمْ نُزُلَهُ، وَوَسِّعْ مُدْخَلَهُ، وَاغْسِلْهُ بِالْمَاءِ وَالثَّلْجِ وَالْبَرَدِ، وَنَقِّهِ مِنَ الْخَطَايَا كَمَا نَقَّيْتَ الثَّوْبَ الْأَبْيَضَ مِنَ الدَّنَسِ', translation: 'اللهم اغفر له وارحمه وعافه واعف عنه، وأكرم مكان نزوله، ووسّع مدخله في القبر، واغسله من ذنوبه بالماء والثلج والبرد، ونقّه من الخطايا كما يُنقّى الثوب الأبيض من الوسخ.', source: 'رواه مسلم', note: 'من أشمل أدعية الميت — ورد في صلاة الجنازة' },
+    { id: 2, title: 'دعاء الرحمة الواسعة', category: 'mercy', arabic: 'اللَّهُمَّ أَبْدِلْهُ دَارًا خَيْرًا مِنْ دَارِهِ، وَأَهْلًا خَيْرًا مِنْ أَهْلِهِ، وَأَدْخِلْهُ الْجَنَّةَ وَأَعِذْهُ مِنْ عَذَابِ الْقَبْرِ وَعَذَابِ النَّارِ', translation: 'اللهم بدّله داراً أحسن من داره في الدنيا، وأهلاً أفضل من أهله، وأدخله الجنة واحمه من عذاب القبر ومن عذاب النار.', source: 'رواه مسلم', note: null },
+    { id: 3, title: 'دعاء التثبيت', category: 'grave', arabic: 'اللَّهُمَّ ثَبِّتْهُ عِنْدَ السُّؤَالِ', translation: 'اللهم ثبته حين يُسأل في القبر.', source: 'رواه أبو داود', note: 'يُستحب الدعاء بالتثبيت بعد الدفن مباشرة' },
+    { id: 4, title: 'دعاء النور', category: 'grave', arabic: 'اللَّهُمَّ نَوِّرْ لَهُ فِي قَبْرِهِ، وَوَسِّعْ عَلَيْهِ فِيهِ', translation: 'اللهم اجعل في قبره نوراً واجعل قبره واسعاً عليه.', source: 'من المأثورات', note: null },
+    { id: 5, title: 'دعاء الأحياء والأموات', category: 'general', arabic: 'اللَّهُمَّ اغْفِرْ لِحَيِّنَا وَمَيِّتِنَا، وَصَغِيرِنَا وَكَبِيرِنَا، وَذَكَرِنَا وَأُنْثَانَا، وَشَاهِدِنَا وَغَائِبِنَا', translation: 'اللهم اغفر لأحيائنا وأمواتنا، ولصغارنا وكبارنا، ولذكورنا وإناثنا، ولحاضرنا وغائبنا.', source: 'رواه الترمذي', note: 'دعاء جامع لكل المسلمين أحياءً وأمواتاً' },
+    { id: 6, title: 'دعاء الرفعة', category: 'mercy', arabic: 'اللَّهُمَّ ارْفَعْ دَرَجَتَهُ فِي الْمَهْدِيِّينَ، وَاخْلُفْهُ فِي عَقِبِهِ فِي الْغَابِرِينَ، وَاغْفِرْ لَنَا وَلَهُ يَا رَبَّ الْعَالَمِينَ', translation: 'اللهم ارفع منزلته بين المهديين، واخلفه في ذريته في الباقين، واغفر لنا وله يا رب العالمين.', source: 'رواه مسلم', note: null },
+    { id: 7, title: 'دعاء الفسحة', category: 'grave', arabic: 'اللَّهُمَّ افْسَحْ لَهُ فِي قَبْرِهِ مَدَّ بَصَرِهِ، وَافْرِشْ لَهُ مِنَ الْجَنَّةِ', translation: 'اللهم اجعل قبره واسعاً قدر ما يرى بصره، وافرش له فراشاً من الجنة.', source: 'من المأثورات', note: null },
+    { id: 8, title: 'دعاء الصدقة الجارية', category: 'general', arabic: 'اللَّهُمَّ تَقَبَّلْ مِنَّا هَذِهِ الْخَتْمَةَ وَاجْعَلْهَا فِي مِيزَانِ حَسَنَاتِهِ، وَأَوْصِلْ ثَوَابَهَا إِلَيْهِ', translation: 'اللهم تقبل منا هذه الختمة واجعلها في ميزان حسناته، وأوصل أجرها إليه.', source: 'من أدعية المسلمين', note: 'دعاء مناسب عند إتمام ختمة القرآن لروح المتوفى' },
   ];
 
   get filteredDuas() {
-    if (this.selectedCategory === 'الكل') return this.allDuas;
-    return this.allDuas.filter(d => d.category === this.selectedCategory);
+    if (this.selectedCategory === 'all') return this.duas;
+    return this.duas.filter(d => d.category === this.selectedCategory);
   }
 
-  copyDua(id: number, text: string) {
+  copyDua(dua: any) {
+    const text = `${dua.arabic}\n\n${dua.translation}\n\n📖 ${dua.source}`;
     navigator.clipboard.writeText(text).then(() => {
-      this.copiedId = id;
+      this.copiedId = dua.id;
       setTimeout(() => this.copiedId = null, 2000);
     });
   }

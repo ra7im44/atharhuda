@@ -22,330 +22,222 @@ interface ChatMessage {
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="flex flex-col h-[calc(100vh-72px)] bg-bg relative overflow-hidden">
-
-      <!-- BG -->
-      <div class="absolute inset-0 pointer-events-none overflow-hidden">
-        <div class="absolute w-[600px] h-[600px] -top-40 -right-40 bg-primary/[0.04] rounded-full blur-3xl"></div>
-        <div class="absolute w-[500px] h-[500px] -bottom-40 -left-40 bg-accent/[0.04] rounded-full blur-3xl"></div>
+    <div class="min-h-screen pb-20 relative overflow-hidden">
+      <!-- Ambient -->
+      <div class="fixed inset-0 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-8%] w-[500px] h-[500px] bg-info/[0.04] rounded-full blur-[120px] animate-drift"></div>
+        <div class="absolute bottom-[-10%] right-[-8%] w-[400px] h-[400px] bg-primary/[0.04] rounded-full blur-[100px] animate-drift" style="animation-delay:-5s"></div>
       </div>
+      <div class="absolute inset-0 islamic-pattern-dense opacity-15 dark:opacity-[0.02] pointer-events-none"></div>
 
-      <!-- Header -->
-      <header class="relative z-10 px-6 py-4 border-b border-brd bg-surface/80 backdrop-blur-xl flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20">
-            <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+      <div class="relative max-w-3xl mx-auto px-6 py-10">
+        <!-- Header -->
+        <div class="text-center mb-10 animate-fade-down">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-info/[0.06] border border-info/10 text-info text-[11px] font-bold mb-4 uppercase tracking-wider">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg>
+            مدعوم بالذكاء الاصطناعي
           </div>
-          <div>
-            <h1 class="text-lg font-black text-txt">المصحّح القرآني</h1>
-            <p class="text-[10px] font-bold text-emerald-500 flex items-center gap-1"><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span> متصل</p>
-          </div>
+          <h1 class="text-2xl md:text-3xl font-black text-txt mb-2">المصحّح الذكي</h1>
+          <p class="text-sm text-txt-muted">سجّل تلاوتك واحصل على تقييم فوري</p>
         </div>
-        <button (click)="messages.set([])" class="w-9 h-9 rounded-xl hover:bg-surface-el flex items-center justify-center text-txt-muted transition-colors" title="مسح">
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-        </button>
-      </header>
 
-      <!-- Chat -->
-      <main #chatArea class="flex-1 overflow-y-auto px-4 md:px-8 py-6 space-y-6 relative z-10">
-
-        <!-- Empty State -->
-        @if (messages().length === 0) {
-          <div class="flex flex-col items-center justify-center h-full animate-fade-up text-center max-w-md mx-auto">
-            <div class="relative mb-8">
-              <div class="w-28 h-28 rounded-full bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center border border-primary/10">
-                <svg class="w-14 h-14 text-primary/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg>
+        <!-- Chat Area -->
+        <div class="space-y-5 mb-8" #chatContainer>
+          @if (messages().length === 0) {
+            <!-- Welcome State -->
+            <div class="text-center py-16 animate-scale-in">
+              <div class="w-24 h-24 rounded-[2rem] bg-gradient-to-br from-info/10 to-primary/10 flex items-center justify-center mx-auto mb-6 animate-float-slow">
+                <svg class="w-10 h-10 text-info" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg>
               </div>
-              <div class="absolute -inset-3 bg-gradient-to-br from-primary/5 to-accent/5 rounded-full blur-xl -z-10"></div>
-            </div>
-
-            <h2 class="text-2xl font-black text-txt mb-3">ابدأ التلاوة</h2>
-            <p class="text-txt-muted leading-relaxed mb-8">اضغط على زر الميكروفون، اقرأ أي آية، ثم اضغط مرة أخرى لإيقاف التسجيل. سيقوم الذكاء الاصطناعي بتحليل تلاوتك فوراً.</p>
-
-            <div class="grid grid-cols-3 gap-3 w-full text-center">
-              <div class="bg-surface-el rounded-2xl p-4 border border-brd">
-                <div class="text-2xl mb-2">🎤</div>
-                <div class="text-[10px] font-bold text-txt-muted uppercase">سجّل</div>
-              </div>
-              <div class="bg-surface-el rounded-2xl p-4 border border-brd">
-                <div class="text-2xl mb-2">🤖</div>
-                <div class="text-[10px] font-bold text-txt-muted uppercase">تحليل AI</div>
-              </div>
-              <div class="bg-surface-el rounded-2xl p-4 border border-brd">
-                <div class="text-2xl mb-2">✅</div>
-                <div class="text-[10px] font-bold text-txt-muted uppercase">تصحيح</div>
-              </div>
-            </div>
-          </div>
-        }
-
-        <!-- Messages -->
-        @for (msg of messages(); track msg.id) {
-
-          <!-- User bubble -->
-          @if (msg.role === 'user') {
-            <div class="flex justify-end animate-scale-in">
-              <div class="bg-gradient-to-br from-primary to-accent text-white rounded-2xl rounded-br-md px-5 py-3 max-w-xs shadow-lg shadow-primary/20 flex items-center gap-3">
-                <div class="flex-1">
-                  <div class="flex items-center gap-2 mb-1">
-                    <div class="flex gap-0.5">
-                      @for (i of [1,2,3,4,5]; track i) {
-                        <div class="w-1 rounded-full bg-white/60" [style.height.px]="4 + (i % 3) * 6" [style.animation]="'wave 0.8s ease-in-out ' + (i * 0.1) + 's infinite alternate'"></div>
-                      }
-                    </div>
-                    <span class="text-xs font-bold opacity-80">تسجيل صوتي</span>
-                  </div>
+              <h3 class="text-lg font-bold text-txt mb-2">ابدأ التلاوة</h3>
+              <p class="text-sm text-txt-muted max-w-sm mx-auto leading-relaxed">اضغط على زر التسجيل وابدأ بقراءة ما تيسر من القرآن الكريم</p>
+              <div class="mt-8 grid grid-cols-3 gap-4 max-w-xs mx-auto">
+                <div class="p-3 bg-surface rounded-xl border border-brd/50 text-center">
+                  <div class="text-lg mb-1">🎤</div>
+                  <span class="text-[9px] text-txt-muted font-bold">سجّل</span>
                 </div>
-                <svg class="w-5 h-5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                <div class="p-3 bg-surface rounded-xl border border-brd/50 text-center">
+                  <div class="text-lg mb-1">🤖</div>
+                  <span class="text-[9px] text-txt-muted font-bold">تحليل</span>
+                </div>
+                <div class="p-3 bg-surface rounded-xl border border-brd/50 text-center">
+                  <div class="text-lg mb-1">📊</div>
+                  <span class="text-[9px] text-txt-muted font-bold">تقييم</span>
+                </div>
               </div>
             </div>
           }
 
-          <!-- AI bubble -->
-          @if (msg.role === 'ai') {
-            <div class="flex justify-start animate-scale-in">
-              <div class="w-full max-w-lg">
-
-                <!-- Loading -->
-                @if (msg.loading) {
-                  <div class="bg-surface border border-brd rounded-2xl rounded-bl-md p-5 shadow-sm">
-                    <div class="flex items-center gap-3">
-                      <div class="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center">
-                        <div class="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
-                      </div>
-                      <div>
-                        <div class="text-sm font-bold text-txt">جاري التحليل...</div>
-                        <div class="text-[10px] text-txt-muted">الذكاء الاصطناعي يستمع لتلاوتك</div>
-                      </div>
-                    </div>
+          @for (msg of messages(); track msg.id) {
+            @if (msg.role === 'user') {
+              <!-- User Message -->
+              <div class="flex justify-start animate-slide-in-right">
+                <div class="max-w-[85%] bg-gradient-to-r from-primary to-secondary text-white rounded-[1.5rem] rounded-tr-lg p-5 shadow-lg shadow-primary/15">
+                  <div class="flex items-center gap-2 mb-1.5">
+                    <div class="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center"><svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg></div>
+                    <span class="text-[10px] font-bold text-white/70">تسجيل صوتي</span>
                   </div>
-                }
-
-                <!-- Error -->
-                @if (msg.error) {
-                  <div class="bg-err/5 border border-err/20 rounded-2xl rounded-bl-md p-5">
-                    <div class="flex items-start gap-3">
-                      <div class="w-8 h-8 rounded-xl bg-err/10 flex items-center justify-center flex-shrink-0">
-                        <svg class="w-4 h-4 text-err" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg>
-                      </div>
-                      <div>
-                        <div class="text-sm font-bold text-err mb-1">حدث خطأ</div>
-                        <div class="text-xs text-txt-muted">{{msg.error}}</div>
-                      </div>
-                    </div>
-                  </div>
-                }
-
-                <!-- Result -->
-                @if (msg.result) {
-                  <div class="bg-surface border border-brd rounded-2xl rounded-bl-md overflow-hidden shadow-sm">
-
-                    <!-- Score Header -->
-                    <div class="p-4 flex items-center justify-between border-b border-brd bg-surface-el/50">
-                      <div class="flex items-center gap-2">
-                        <div class="w-8 h-8 rounded-xl flex items-center justify-center"
-                          [class]="msg.result.score >= 85 ? 'bg-ok/10' : msg.result.score >= 60 ? 'bg-warn/10' : 'bg-err/10'">
-                          <span class="text-sm font-black" [class]="msg.result.score >= 85 ? 'text-ok' : msg.result.score >= 60 ? 'text-warn' : 'text-err'">{{msg.result.score}}</span>
-                        </div>
-                        <div>
-                          <div class="text-xs font-black" [class]="msg.result.score >= 85 ? 'text-ok' : msg.result.score >= 60 ? 'text-warn' : 'text-err'">
-                            {{msg.result.score >= 85 ? 'ممتاز' : msg.result.score >= 60 ? 'جيد' : 'يحتاج تحسين'}}
-                          </div>
-                          @if (msg.result.surah) {
-                            <div class="text-[10px] text-txt-muted">سورة {{msg.result.surah}} {{msg.result.verses ? '• آية ' + msg.result.verses : ''}}</div>
-                          }
-                        </div>
-                      </div>
-                      <!-- Score Bar -->
-                      <div class="w-24 h-2 bg-surface rounded-full overflow-hidden">
-                        <div class="h-full rounded-full transition-all duration-1000"
-                          [class]="msg.result.score >= 85 ? 'bg-ok' : msg.result.score >= 60 ? 'bg-warn' : 'bg-err'"
-                          [style.width.%]="msg.result.score"></div>
-                      </div>
-                    </div>
-
-                    <!-- Transcription -->
-                    <div class="p-5 border-b border-brd">
-                      <div class="text-[10px] font-bold text-txt-muted uppercase tracking-wider mb-3">ما سمعه المصحّح</div>
-                      <p class="text-xl font-quran text-txt leading-[2.2] text-center" style="direction:rtl">
-                        {{msg.result.transcription}}
-                      </p>
-                    </div>
-
-                    <!-- Mistakes -->
-                    @if (msg.result.mistakes && msg.result.mistakes.length > 0) {
-                      <div class="p-5 border-b border-brd">
-                        <div class="text-[10px] font-bold text-err uppercase tracking-wider mb-3 flex items-center gap-1.5">
-                          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
-                          الأخطاء ({{msg.result.mistakes.length}})
-                        </div>
-                        <div class="space-y-2">
-                          @for (m of msg.result.mistakes; track m.word) {
-                            <div class="flex items-start gap-3 p-3 rounded-xl bg-err/[0.03] border border-err/10">
-                              <div class="px-2 py-0.5 rounded-lg bg-err/10 text-err text-xs font-black whitespace-nowrap mt-0.5">
-                                {{m.type === 'tajweed' ? 'تجويد' : m.type === 'pronunciation' ? 'نطق' : m.type === 'missing' ? 'ناقص' : 'زائد'}}
-                              </div>
-                              <div class="flex-1 min-w-0">
-                                <span class="font-black text-err text-sm">{{m.word}}</span>
-                                <p class="text-xs text-txt-muted mt-0.5 leading-relaxed">{{m.description}}</p>
-                              </div>
-                            </div>
-                          }
-                        </div>
-                      </div>
-                    }
-
-                    <!-- Feedback -->
-                    <div class="p-5 bg-surface-el/30">
-                      <div class="flex items-start gap-3">
-                        <div class="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                          <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg>
-                        </div>
-                        <div>
-                          <div class="text-[10px] font-bold text-primary uppercase tracking-wider mb-1">نصيحة المصحّح</div>
-                          <p class="text-sm text-txt leading-relaxed">{{msg.result.feedback}}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                }
+                  <div class="flex items-center gap-3"><div class="flex gap-0.5">@for(b of [1,2,3,4,5,6,7,8]; track b) {<div class="w-1 bg-white/40 rounded-full" [style.height.px]="6 + (b % 3) * 6"></div>}</div><span class="text-[10px] text-white/50">تم الإرسال</span></div>
+                </div>
               </div>
-            </div>
-          }
-        }
-        <div class="h-28"></div>
-      </main>
-
-      <!-- Bottom Bar -->
-      <div class="absolute bottom-0 left-0 right-0 z-20 pb-6 pt-10 bg-gradient-to-t from-bg via-bg/90 to-transparent pointer-events-none">
-        <div class="flex flex-col items-center gap-3 pointer-events-auto">
-
-          @if (recording()) {
-            <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-err/10 border border-err/20 text-err text-xs font-bold animate-pulse">
-              <span class="w-2 h-2 rounded-full bg-err"></span>
-              جاري التسجيل... اضغط لإيقاف
-            </div>
-          }
-
-          <button (click)="toggleRecording()" [disabled]="processing()"
-            class="w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 active:scale-90 disabled:opacity-50 disabled:cursor-not-allowed"
-            [class]="recording() ? 'bg-err hover:bg-err/90 shadow-err/30 scale-110' : 'bg-gradient-to-br from-primary to-accent hover:shadow-primary/40 shadow-primary/20'">
-
-            @if (processing()) {
-              <div class="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-            } @else if (recording()) {
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
-            } @else {
-              <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
             }
-          </button>
+
+            @if (msg.role === 'ai') {
+              <div class="flex justify-end animate-fade-up">
+                <div class="max-w-[90%] md:max-w-[85%]">
+                  @if (msg.loading) {
+                    <div class="bg-surface rounded-[1.5rem] rounded-tl-lg p-6 border border-brd/70 shadow-md">
+                      <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-xl bg-info/10 flex items-center justify-center"><svg class="w-4 h-4 text-info animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg></div>
+                        <div>
+                          <span class="text-xs font-bold text-txt">يتم التحليل...</span>
+                          <div class="flex gap-1 mt-1">@for(d of [1,2,3]; track d) {<div class="w-1.5 h-1.5 rounded-full bg-info animate-bounce-slow" [style.animation-delay]="(d * 200) + 'ms'"></div>}</div>
+                        </div>
+                      </div>
+                    </div>
+                  } @else if (msg.error) {
+                    <div class="bg-err/[0.06] border border-err/20 rounded-[1.5rem] rounded-tl-lg p-5">
+                      <div class="flex items-center gap-2 text-err text-xs font-bold"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg> {{msg.error}}</div>
+                    </div>
+                  } @else if (msg.result) {
+                    <div class="bg-surface rounded-[1.5rem] rounded-tl-lg border border-brd/70 overflow-hidden shadow-lg">
+                      <!-- Score Header -->
+                      <div class="p-5 bg-gradient-to-l from-primary/[0.04] to-accent/[0.04] border-b border-brd/40">
+                        <div class="flex items-center justify-between">
+                          <div>
+                            <span class="text-[10px] text-txt-muted font-bold uppercase tracking-wider">التقييم</span>
+                            @if (msg.result.surah) {<p class="text-xs text-primary font-bold mt-0.5">{{msg.result.surah}} {{msg.result.verses ? '(' + msg.result.verses + ')' : ''}}</p>}
+                          </div>
+                          <div class="w-16 h-16 rounded-2xl flex flex-col items-center justify-center border-2 transition-colors"
+                               [ngClass]="{
+                                 'bg-ok/[0.08] border-ok/20 text-ok': msg.result.score >= 80,
+                                 'bg-warn/[0.08] border-warn/20 text-warn': msg.result.score >= 50 && msg.result.score < 80,
+                                 'bg-err/[0.08] border-err/20 text-err': msg.result.score < 50
+                               }">
+                            <span class="text-xl font-black leading-none">{{msg.result.score}}</span>
+                            <span class="text-[7px] font-bold mt-0.5">/ 100</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="p-5 space-y-4">
+                        <!-- Transcription -->
+                        <div><p class="text-[10px] text-txt-muted font-bold mb-1.5 uppercase tracking-wider">ما سمعناه</p><p class="text-base font-quran leading-[2.4] text-txt bg-surface-el/50 rounded-xl p-3 border border-brd/40">{{msg.result.transcription}}</p></div>
+
+                        <!-- Mistakes -->
+                        @if (msg.result.mistakes.length > 0) {
+                          <div>
+                            <p class="text-[10px] text-txt-muted font-bold mb-2 uppercase tracking-wider">ملاحظات ({{msg.result.mistakes.length}})</p>
+                            <div class="space-y-2">
+                              @for (m of msg.result.mistakes; track m.word) {
+                                <div class="flex items-start gap-3 p-3 bg-warn/[0.04] border border-warn/10 rounded-xl text-xs">
+                                  <div class="w-6 h-6 rounded-lg bg-warn/10 flex items-center justify-center flex-shrink-0 mt-0.5"><svg class="w-3 h-3 text-warn" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg></div>
+                                  <div><span class="font-bold text-warn">{{m.word}}</span><span class="text-txt-muted"> — {{m.description}}</span><span class="inline-block mr-2 px-2 py-0.5 rounded-md bg-warn/10 text-warn text-[9px] font-bold">{{m.type}}</span></div>
+                                </div>
+                              }
+                            </div>
+                          </div>
+                        }
+
+                        <!-- Feedback -->
+                        <div class="p-4 bg-gradient-to-l from-primary/[0.04] to-accent/[0.03] rounded-xl border border-primary/10">
+                          <p class="text-[10px] text-primary font-bold mb-1 uppercase tracking-wider">💡 نصيحة</p>
+                          <p class="text-xs text-txt leading-relaxed">{{msg.result.feedback}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+          }
+        </div>
+
+        <!-- Recording Controls -->
+        <div class="fixed bottom-24 md:bottom-8 left-1/2 -translate-x-1/2 z-40">
+          <div class="bg-surface/90 backdrop-blur-2xl border border-brd/60 rounded-2xl shadow-2xl p-4 flex items-center gap-4">
+            @if (!isRecording()) {
+              <button (click)="startRecording()" class="group w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/35 hover:scale-110 transition-all duration-300">
+                <svg class="w-7 h-7 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg>
+              </button>
+              <span class="text-xs text-txt-muted font-bold">اضغط لبدء التسجيل</span>
+            } @else {
+              <button (click)="stopRecording()" class="w-16 h-16 rounded-2xl bg-gradient-to-br from-err to-err/80 text-white flex items-center justify-center shadow-xl shadow-err/25 animate-pulse-glow hover:scale-110 transition-all">
+                <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 7.5A2.25 2.25 0 017.5 5.25h9a2.25 2.25 0 012.25 2.25v9a2.25 2.25 0 01-2.25 2.25h-9a2.25 2.25 0 01-2.25-2.25v-9z"/></svg>
+              </button>
+              <div class="flex items-center gap-3">
+                <div class="flex gap-0.5">@for(b of [1,2,3,4,5,6,7,8,9,10]; track b) {<div class="w-1 bg-err rounded-full animate-bounce-slow" [style.height.px]="4 + (b % 4) * 5" [style.animation-delay]="(b * 80) + 'ms'"></div>}</div>
+                <span class="text-xs font-bold text-err">جارٍ التسجيل...</span>
+              </div>
+            }
+          </div>
         </div>
       </div>
     </div>
   `,
-  styles: [`
-    @keyframes wave {
-      from { transform: scaleY(0.5); }
-      to { transform: scaleY(1.5); }
-    }
-  `]
 })
 export class CoachComponent implements OnDestroy {
-  @ViewChild('chatArea') chatArea!: ElementRef;
-
-  private gemini = inject(GeminiService);
-  private recorder: MediaRecorder | null = null;
-  private chunks: Blob[] = [];
-  private msgId = 0;
+  @ViewChild('chatContainer') chatContainer!: ElementRef;
+  private geminiService = inject(GeminiService);
 
   messages = signal<ChatMessage[]>([]);
-  recording = signal(false);
-  processing = signal(false);
+  isRecording = signal(false);
+  private mediaRecorder: MediaRecorder | null = null;
+  private audioChunks: Blob[] = [];
+  private msgId = 0;
 
-  ngOnDestroy() {
-    this.stopStream();
-  }
-
-  async toggleRecording() {
-    if (this.processing()) return;
-
-    if (this.recording()) {
-      this.stopRecording();
-    } else {
-      await this.startRecording();
-    }
-  }
-
-  private async startRecording() {
+  async startRecording() {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      this.recorder = new MediaRecorder(stream);
-      this.chunks = [];
-
-      this.recorder.ondataavailable = (e) => {
-        if (e.data.size > 0) this.chunks.push(e.data);
+      this.mediaRecorder = new MediaRecorder(stream);
+      this.audioChunks = [];
+      this.mediaRecorder.ondataavailable = e => { if (e.data.size > 0) this.audioChunks.push(e.data); };
+      this.mediaRecorder.onstop = () => {
+        stream.getTracks().forEach(t => t.stop());
+        const blob = new Blob(this.audioChunks, { type: 'audio/webm' });
+        this.analyzeAudio(blob);
       };
-
-      this.recorder.onstop = () => this.processAudio();
-
-      this.recorder.start();
-      this.recording.set(true);
+      this.mediaRecorder.start();
+      this.isRecording.set(true);
     } catch {
-      this.pushMessage({ id: ++this.msgId, role: 'ai', error: 'يرجى السماح بالوصول للميكروفون من إعدادات المتصفح.' });
+      this.addAiMessage({ id: ++this.msgId, role: 'ai', error: 'لم نتمكن من الوصول للميكروفون. تأكد من إعطاء الإذن.' });
     }
   }
 
-  private stopRecording() {
-    if (this.recorder && this.recorder.state !== 'inactive') {
-      this.recorder.stop();
-      this.stopStream();
+  stopRecording() {
+    if (this.mediaRecorder && this.isRecording()) {
+      this.mediaRecorder.stop();
+      this.isRecording.set(false);
     }
-    this.recording.set(false);
   }
 
-  private stopStream() {
-    this.recorder?.stream?.getTracks().forEach(t => t.stop());
-  }
-
-  private async processAudio() {
-    const blob = new Blob(this.chunks, { type: 'audio/webm' });
-    if (blob.size < 1000) {
-      this.pushMessage({ id: ++this.msgId, role: 'ai', error: 'التسجيل قصير جداً. حاول مرة أخرى واقرأ آية كاملة.' });
-      return;
-    }
-
-    // Add user message
-    this.pushMessage({ id: ++this.msgId, role: 'user' });
-    this.scroll();
-
-    // Add loading
-    const loadingId = ++this.msgId;
-    this.pushMessage({ id: loadingId, role: 'ai', loading: true });
-    this.scroll();
-    this.processing.set(true);
+  private async analyzeAudio(blob: Blob) {
+    const userMsg: ChatMessage = { id: ++this.msgId, role: 'user' };
+    const aiMsg: ChatMessage = { id: ++this.msgId, role: 'ai', loading: true };
+    this.messages.update(m => [...m, userMsg, aiMsg]);
+    this.scrollToBottom();
 
     try {
-      const result = await this.gemini.analyzeRecitation(blob);
-      // Remove loading, add result
-      this.messages.update(msgs => msgs.filter(m => m.id !== loadingId));
-      this.pushMessage({ id: ++this.msgId, role: 'ai', result });
-    } catch (err: any) {
-      this.messages.update(msgs => msgs.filter(m => m.id !== loadingId));
-      this.pushMessage({ id: ++this.msgId, role: 'ai', error: 'فشل التحليل. تأكد من اتصال الإنترنت وحاول مرة أخرى.\n' + (err?.message || '') });
-    } finally {
-      this.processing.set(false);
-      this.scroll();
+      const result = await this.geminiService.analyzeRecitation(blob);
+      this.messages.update(m => m.map(msg => msg.id === aiMsg.id ? { ...msg, loading: false, result } : msg));
+    } catch {
+      this.messages.update(m => m.map(msg => msg.id === aiMsg.id ? { ...msg, loading: false, error: 'حدث خطأ أثناء التحليل. حاول مرة أخرى.' } : msg));
     }
+    this.scrollToBottom();
   }
 
-  private pushMessage(msg: ChatMessage) {
-    this.messages.update(list => [...list, msg]);
+  private addAiMessage(msg: ChatMessage) {
+    this.messages.update(m => [...m, msg]);
+    this.scrollToBottom();
   }
 
-  private scroll() {
-    setTimeout(() => {
-      const el = this.chatArea?.nativeElement;
-      if (el) el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
-    }, 50);
+  private scrollToBottom() {
+    setTimeout(() => this.chatContainer?.nativeElement?.scrollIntoView({ behavior: 'smooth', block: 'end' }), 100);
+  }
+
+  ngOnDestroy() {
+    if (this.mediaRecorder && this.isRecording()) {
+      this.mediaRecorder.stop();
+    }
   }
 }

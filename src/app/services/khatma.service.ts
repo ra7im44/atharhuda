@@ -14,6 +14,7 @@ export interface Khatma {
   title: string;
   createdBy: string;
   deceasedName?: string;
+  deceasedDeathDate?: Date;
   description: string;
   createdAt: Date;
   status: 'active' | 'completed';
@@ -87,6 +88,7 @@ export class KhatmaService {
       title: 'ختمة للمرحوم الوالد',
       createdBy: 'سارة عبدالله',
       deceasedName: 'عبدالله بن محمد',
+      deceasedDeathDate: new Date('2023-05-15'),
       description: 'اللهم اغفر له وارحمه.',
       createdAt: new Date(),
       status: 'active',
@@ -114,13 +116,14 @@ export class KhatmaService {
     return JUZ_SURAHS[juzNumber] || [];
   }
 
-  addKhatma(title: string, createdBy: string, deceasedName: string, description: string): string {
+  addKhatma(title: string, createdBy: string, deceasedName: string, description: string, deceasedDeathDate?: Date): string {
     const id = Math.random().toString(36).substr(2, 9);
     const newKhatma: Khatma = {
       id,
       title,
       createdBy,
       deceasedName,
+      deceasedDeathDate,
       description,
       createdAt: new Date(),
       status: 'active',

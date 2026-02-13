@@ -12,234 +12,184 @@ import { KhatmaService } from '../../../services/khatma.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="min-h-screen pb-20 relative overflow-hidden">
-      <!-- Background Decor -->
+      <!-- Ambient -->
       <div class="fixed inset-0 pointer-events-none">
-        <div class="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl animate-drift"></div>
-        <div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl animate-drift" style="animation-delay: -5s;"></div>
-        <div class="absolute inset-0 dot-grid opacity-[0.2] dark:opacity-[0.05]"></div>
+        <div class="absolute top-[-15%] right-[-10%] w-[500px] h-[500px] bg-primary/[0.05] rounded-full blur-[120px] animate-drift"></div>
+        <div class="absolute bottom-[-10%] left-[-8%] w-[400px] h-[400px] bg-accent/[0.04] rounded-full blur-[100px] animate-drift" style="animation-delay:-6s"></div>
       </div>
+      <div class="absolute inset-0 islamic-pattern-dense opacity-15 dark:opacity-[0.02] pointer-events-none"></div>
 
-      <div class="max-w-7xl mx-auto px-6 relative z-10 pt-10">
+      <div class="relative max-w-5xl mx-auto px-6 py-10">
 
-        <!-- HEADER SECTION -->
-        <div class="flex flex-col md:flex-row items-end md:items-center justify-between gap-8 mb-16 animate-fade-up">
-          <div class="relative">
-            <h1 class="text-4xl md:text-6xl font-black text-txt mb-4 font-quran leading-tight">
-              الختمات <span class="text-primary relative inline-block">
-                القرآنية
-                <svg class="absolute -bottom-2 left-0 w-full h-3 text-primary/20" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="3" fill="none"/></svg>
-              </span>
-            </h1>
-            <p class="text-txt-muted text-lg max-w-md leading-relaxed">
-              شارك في الخير، واختر ختمة لتساهم في إتمامها، أو ابدأ ختمة جديدة لمن تحب.
-            </p>
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-10 animate-fade-down">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/[0.05] border border-primary/10 text-primary text-[10px] font-bold mb-3 uppercase tracking-wider">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+              الختمات الجارية
+            </div>
+            <h1 class="text-2xl md:text-3xl font-black text-txt">جميع الختمات</h1>
+            <p class="text-xs text-txt-muted mt-1.5">{{khatmaService.khatmas().length}} ختمة مسجلة</p>
           </div>
-
-          <button (click)="openCreateModal()" class="group relative px-8 py-4 bg-primary text-primary-text rounded-2xl font-bold text-lg shadow-xl shadow-primary/20 transition-all hover:scale-105 hover:shadow-2xl overflow-hidden">
-            <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-            <span class="relative flex items-center gap-3">
-              <span class="text-2xl">+</span> إنشاء ختمة جديدة
-            </span>
+          <button (click)="isCreating.set(true)" class="group inline-flex items-center gap-2.5 px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl text-xs shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:scale-[1.03] transition-all">
+            <svg class="w-4 h-4 transition-transform group-hover:rotate-90 duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            ختمة جديدة
           </button>
         </div>
 
-        <!-- SEARCH & FILTER -->
-        <div class="sticky top-20 z-30 mb-12 animate-fade-up delay-100">
-          <div class="bg-surface/80 backdrop-blur-xl border border-brd p-2 rounded-2xl shadow-lg flex flex-col md:flex-row gap-2 max-w-3xl mx-auto">
-            <div class="relative flex-1">
-              <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-txt-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
-              <input [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)" placeholder="ابحث عن ختمة، اسم المتوفى، أو المنشئ..." class="w-full h-12 pr-12 pl-4 bg-transparent text-txt placeholder:text-txt-muted/70 outline-none rounded-xl focus:bg-surface-el transition-colors font-medium"/>
-            </div>
-            <div class="flex gap-1 overflow-x-auto pb-1 md:pb-0 no-scrollbar">
-              @for (filter of filters(); track filter.id) {
-                <button (click)="activeFilter.set(filter.id)"
-                  [class]="activeFilter() === filter.id ? 'bg-txt text-bg shadow-md' : 'bg-surface-el text-txt-muted hover:text-txt hover:bg-surface-el/80'"
-                  class="px-5 h-12 rounded-xl text-sm font-bold whitespace-nowrap transition-all duration-300 flex items-center gap-2">
-                  {{filter.label}}
-                  @if (filter.count > 0) { <span class="px-1.5 py-0.5 rounded-md bg-white/20 text-[10px]">{{filter.count}}</span> }
-                </button>
-              }
-            </div>
-          </div>
+        <!-- Search -->
+        <div class="relative mb-8 animate-fade-up delay-200">
+          <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-txt-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input [(ngModel)]="searchQuery" type="text" placeholder="ابحث باسم الختمة أو المنشئ..." class="w-full md:w-96 pr-12 pl-4 py-3.5 rounded-xl border border-input-brd bg-input-bg text-txt text-sm outline-none transition-all focus:border-focus focus:shadow-[0_0_0_3px_rgba(var(--focus-rgb),0.08)]" />
         </div>
 
-        <!-- LIST -->
+        <!-- Khatma Grid -->
         @if (filteredKhatmas().length > 0) {
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-stagger h-full">
-            @for (k of filteredKhatmas(); track k.id) {
-              <div class="group relative bg-surface-el rounded-[2rem] border border-brd p-2 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:border-primary/30 flex flex-col">
-                <!-- Progress Background -->
-                <div class="absolute inset-0 rounded-[2rem] overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                  <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent"></div>
-                </div>
-
-                <div class="relative bg-surface rounded-[1.5rem] p-6 flex-1 flex flex-col border border-brd/50 group-hover:border-transparent transition-colors">
-                  <!-- Top Row -->
-                  <div class="flex justify-end items-start mb-4">
-                    @if (k.deceasedName) {
-                      <div class="px-3 py-1.5 rounded-full bg-surface-el border border-brd text-[11px] font-bold text-txt-secondary flex items-center gap-1.5 shadow-sm">
-                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
-                        عن: {{k.deceasedName}}
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            @for (k of filteredKhatmas(); track k.id; let i = $index) {
+              <div class="card-lift group animate-fade-up" [style.animation-delay]="(i * 60) + 'ms'">
+                <div class="relative bg-surface rounded-[1.75rem] border border-brd/70 overflow-hidden h-full">
+                  <div class="h-1 bg-surface-el"><div class="h-full bg-gradient-to-l from-primary via-secondary to-accent transition-all duration-1000" [style.width.%]="k.progress"></div></div>
+                  <div class="p-5">
+                    <div class="flex justify-between items-start mb-3">
+                      <div class="flex-1 min-w-0">
+                         @if (k.deceasedDeathDate) {
+                           @let days = getDaysToAnniversary(k.deceasedDeathDate);
+                           @if (days <= 30 && days >= 0) {
+                             <div class="px-2 py-0.5 rounded-md bg-accent/10 border border-accent/20 text-[9px] font-bold text-accent mb-2 w-fit animate-pulse-glow">
+                               {{days === 0 ? 'اليوم ذكرى الوفاة' : 'باقي ' + days + ' يوم على الذكرى'}}
+                             </div>
+                           }
+                         }
+                        <a [routerLink]="['/khatmat', k.id]" class="text-sm font-bold text-txt group-hover:text-primary transition-colors truncate block mb-1">{{k.title}}</a>
+                        <div class="flex flex-col gap-1">
+                          <span class="text-[10px] text-txt-muted flex items-center gap-1"><svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg> {{k.createdBy}}</span>
+                          @if (k.deceasedName) {
+                            <span class="text-[10px] text-accent font-medium flex items-center gap-1">🕊️ {{k.deceasedName}}</span>
+                          }
+                        </div>
                       </div>
-                    }
-                  </div>
 
-                  <!-- Content -->
-                  <h3 class="text-xl font-bold text-txt mb-2 font-quran leading-relaxed group-hover:text-primary transition-colors line-clamp-2">
-                    <a [routerLink]="['/khatmat', k.id]" class="before:absolute before:inset-0">{{k.title}}</a>
-                  </h3>
-                  <p class="text-sm text-txt-muted mb-6 line-clamp-2">{{k.description}}</p>
-
-                  <!-- Meta -->
-                  <div class="mt-auto pt-6 border-t border-brd/50 flex items-center justify-between text-xs text-txt-muted">
+                    </div>
+                    
+                    <p class="text-[11px] text-txt-muted line-clamp-2 mb-4 leading-relaxed bg-surface-el/50 p-2 rounded-lg border border-brd/30 italic">"{{k.description}}"</p>
+                    
                     <div class="flex items-center gap-2">
-                      <div class="w-6 h-6 rounded-full bg-primary text-primary-text flex items-center justify-center font-bold text-[10px]">{{k.createdBy.charAt(0)}}</div>
-                      <span>{{k.createdBy}}</span>
-                    </div>
-                    <div class="flex items-center gap-1">
-                      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                      {{getRelativeTime(k.createdAt)}}
+                      <a [routerLink]="['/khatmat', k.id]" class="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-lg text-[10px] hover:shadow-lg hover:shadow-primary/20 transition-all hover:scale-[1.02]">
+                        <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+                        ادخل الختمة
+                      </a>
+                      <button (click)="shareWhatsApp(k);$event.stopPropagation()" class="w-9 h-9 flex items-center justify-center rounded-lg bg-[#25D366]/[0.06] text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all"><svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></button>
                     </div>
                   </div>
-                </div>
-
-                <!-- Action Footer -->
-                <div class="px-6 py-4 flex items-center justify-between">
-                  <div class="flex flex-col">
-                    <span class="text-[10px] text-txt-muted font-bold uppercase tracking-wider mb-1">المتبقي</span>
-                    <span class="text-lg font-black text-txt leading-none">{{getRemainingCount(k)}} <span class="text-[10px] font-medium text-txt-muted">جزء</span></span>
-                  </div>
-                  <button class="w-10 h-10 rounded-full bg-txt text-bg flex items-center justify-center group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-text transition-all duration-300 shadow-md">
-                    <svg class="w-5 h-5 -rotate-45 group-hover:rotate-0 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                  </button>
                 </div>
               </div>
             }
           </div>
         } @else {
-          <div class="flex flex-col items-center justify-center py-32 text-center animate-fade-up">
-            <div class="w-24 h-24 bg-surface-el rounded-[2rem] flex items-center justify-center mb-6 shadow-xl border border-brd rotate-3">
-              <svg class="w-10 h-10 text-txt-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+          <div class="text-center py-20 bg-surface rounded-3xl border-2 border-dashed border-brd animate-scale-in">
+            <div class="w-20 h-20 bg-gradient-to-br from-primary/[0.06] to-accent/[0.06] rounded-3xl flex items-center justify-center mx-auto mb-5">
+              <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
             </div>
-            <h3 class="text-2xl font-black text-txt mb-2">لم يتم العثور على ختمات</h3>
-            <p class="text-txt-muted max-w-xs mx-auto mb-8">جرب البحث بكلمات مختلفة أو قم بإنشاء ختمة جديدة</p>
-            <button (click)="searchQuery.set(''); activeFilter.set('all')" class="text-link font-bold hover:underline">مسح البحث</button>
+            <h3 class="text-lg font-bold text-txt mb-2">لا توجد ختمات بعد</h3>
+            <p class="text-txt-muted text-sm mb-6">ابدأ أول ختمة واكسب الأجر</p>
+            <button (click)="isCreating.set(true)" class="px-7 py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl text-sm hover:shadow-lg hover:shadow-primary/20 transition-all">إنشاء أول ختمة</button>
           </div>
         }
-
       </div>
 
-      <!-- CREATE MODAL -->
-      @if (showCreateModal) {
-        <div class="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4 transition-opacity duration-300" (click)="showCreateModal=false">
-          <div class="bg-surface rounded-[2.5rem] w-full max-w-lg p-8 shadow-2xl border border-brd relative overflow-hidden animate-scale-in" (click)="$event.stopPropagation()">
-            <!-- Decor -->
-            <div class="absolute -top-20 -right-20 w-60 h-60 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+      <!-- Create Modal -->
+      @if (isCreating()) {
+        <div class="fixed inset-0 bg-black/50 backdrop-blur-lg z-50 flex items-center justify-center p-4" (click)="isCreating.set(false)">
+          <div class="animate-scale-in bg-surface rounded-[2rem] w-full max-w-md p-8 shadow-2xl border border-brd/70 relative overflow-hidden" (click)="$event.stopPropagation()">
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-primary/[0.04] rounded-full blur-3xl pointer-events-none"></div>
 
-            <div class="text-center mb-10 relative">
-              <div class="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/20 rotate-3">
-                <svg class="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+            <div class="text-center mb-8 relative z-10">
+              <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-xl shadow-primary/20 rotate-3">
+                <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
               </div>
-              <h2 class="text-3xl font-black text-txt font-quran">ختمة جديدة</h2>
-              <p class="text-txt-muted mt-2">ابدأ رحلة الأجر والثواب</p>
+              <h3 class="text-xl font-black text-txt">ختمة جديدة</h3>
+              <p class="text-[11px] text-txt-muted mt-1.5">اختم القرآن لمن تحب</p>
             </div>
 
-            <div class="space-y-6">
-              <div class="group">
-                <label class="block text-xs font-bold text-txt-secondary mb-2 uppercase tracking-wide">عنوان الختمة <span class="text-err">*</span></label>
-                <input [formControl]="createForm.controls.title" class="w-full h-14 px-5 rounded-2xl bg-surface-el border border-brd focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all font-bold text-txt placeholder:font-normal" placeholder="مثال: ختمة رمضان"/>
+            <form [formGroup]="createForm" (ngSubmit)="onSubmit()" class="space-y-4 relative z-10">
+              <div><label class="block text-xs font-bold text-txt-secondary mb-1.5">اسمك <span class="text-err">*</span></label><input formControlName="createdBy" class="w-full rounded-xl border border-input-brd bg-input-bg text-txt focus:border-focus focus:ring-4 focus:ring-primary/10 p-3.5 text-sm outline-none transition-all" placeholder="اكتب اسمك"></div>
+              <div><label class="block text-xs font-bold text-txt-secondary mb-1.5">عنوان الختمة <span class="text-err">*</span></label><input formControlName="title" class="w-full rounded-xl border border-input-brd bg-input-bg text-txt focus:border-focus focus:ring-4 focus:ring-primary/10 p-3.5 text-sm outline-none transition-all" placeholder="مثال: ختمة رمضان"></div>
+              <div><label class="block text-xs font-bold text-txt-secondary mb-1.5">اسم المتوفى <span class="text-txt-muted font-normal">(اختياري)</span></label><input formControlName="deceasedName" class="w-full rounded-xl border border-input-brd bg-input-bg text-txt focus:border-focus focus:ring-4 focus:ring-primary/10 p-3.5 text-sm outline-none transition-all" placeholder="رحمه/ا الله"></div>
+              @if (createForm.get('deceasedName')?.value) {
+                <div><label class="block text-xs font-bold text-txt-secondary mb-1.5">تاريخ الوفاة <span class="text-txt-muted font-normal">(اختياري)</span></label><input type="date" formControlName="deceasedDeathDate" class="w-full rounded-xl border border-input-brd bg-input-bg text-txt focus:border-focus focus:ring-4 focus:ring-primary/10 p-3.5 text-sm outline-none transition-all"></div>
+              }
+              <div><label class="block text-xs font-bold text-txt-secondary mb-1.5">وصف <span class="text-err">*</span></label><textarea formControlName="description" rows="2" class="w-full rounded-xl border border-input-brd bg-input-bg text-txt focus:border-focus focus:ring-4 focus:ring-primary/10 p-3.5 text-sm outline-none transition-all resize-none" placeholder="ختمة لأجل روح..."></textarea></div>
+              <div class="mt-8 flex gap-3">
+                <button type="button" (click)="isCreating.set(false)" class="flex-1 py-3.5 text-txt-muted bg-surface-el border border-brd rounded-xl font-bold text-xs hover:bg-bg transition-colors">إلغاء</button>
+                <button type="submit" [disabled]="createForm.invalid" class="flex-[2] py-3.5 text-white bg-gradient-to-r from-primary to-secondary rounded-xl font-bold text-xs disabled:opacity-40 transition-all shadow-lg shadow-primary/15 hover:shadow-xl hover:shadow-primary/25 hover:scale-[1.02]">إنشاء ✨</button>
               </div>
-
-              <div class="grid grid-cols-2 gap-5">
-                <div>
-                  <label class="block text-xs font-bold text-txt-secondary mb-2 uppercase tracking-wide">المنشئ <span class="text-err">*</span></label>
-                  <input [formControl]="createForm.controls.createdBy" class="w-full h-14 px-5 rounded-2xl bg-surface-el border border-brd focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all text-txt" placeholder="اسمك"/>
-                </div>
-                <div>
-                  <label class="block text-xs font-bold text-txt-secondary mb-2 uppercase tracking-wide">عن (اختياري)</label>
-                  <input [formControl]="createForm.controls.deceasedName" class="w-full h-14 px-5 rounded-2xl bg-surface-el border border-brd focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all text-txt" placeholder="المرحوم..."/>
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-txt-secondary mb-2 uppercase tracking-wide">رسالة / دعاء <span class="text-err">*</span></label>
-                <textarea [formControl]="createForm.controls.description" rows="3" class="w-full p-5 rounded-2xl bg-surface-el border border-brd focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all text-txt resize-none" placeholder="اللهم اجعلها نوراً له..."></textarea>
-              </div>
-            </div>
-
-            <div class="mt-10 flex gap-4">
-              <button (click)="showCreateModal=false" class="flex-1 h-14 rounded-2xl border border-brd text-txt font-bold hover:bg-surface-el transition-colors">إلغاء</button>
-              <button (click)="createKhatma()" [disabled]="createForm.invalid" class="flex-[2] h-14 rounded-2xl bg-gradient-to-r from-primary to-accent text-white font-bold shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:hover:scale-100">
-                إنشاء الختمة
-              </button>
-            </div>
+            </form>
           </div>
         </div>
       }
     </div>
   `,
-  styles: [`
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-  `]
 })
 export class KhatmaListComponent {
-  private router = inject(Router);
   khatmaService = inject(KhatmaService);
-
-  showCreateModal = false;
-  searchQuery = signal('');
-  activeFilter = signal<'all' | 'ongoing' | 'completed'>('all');
+  private router = inject(Router);
+  isCreating = signal(false);
+  searchQuery = '';
 
   createForm = new FormGroup({
-    createdBy: new FormControl('', [Validators.required]),
-    title: new FormControl('', [Validators.required]),
+    title: new FormControl('', Validators.required),
+    createdBy: new FormControl('', Validators.required),
     deceasedName: new FormControl(''),
-    description: new FormControl('', [Validators.required])
-  });
-
-  filters = computed(() => {
-    const all = this.khatmaService.khatmas();
-    return [
-      { id: 'all' as const, label: 'الكل', count: all.length },
-      { id: 'ongoing' as const, label: 'جارية', count: all.filter(k => k.progress < 100).length },
-      { id: 'completed' as const, label: 'مكتملة', count: all.filter(k => k.progress === 100).length }
-    ];
+    deceasedDeathDate: new FormControl(''),
+    description: new FormControl('', Validators.required),
   });
 
   filteredKhatmas = computed(() => {
-    let list = this.khatmaService.khatmas();
-    const q = this.searchQuery().toLowerCase().trim();
-    const filter = this.activeFilter();
-
-    if (filter === 'ongoing') list = list.filter(k => k.progress < 100);
-    if (filter === 'completed') list = list.filter(k => k.progress === 100);
-
-    if (q) {
-      list = list.filter(k =>
-        k.title.toLowerCase().includes(q) ||
-        k.createdBy.toLowerCase().includes(q) ||
-        (k.deceasedName && k.deceasedName.toLowerCase().includes(q))
-      );
-    }
-    return list;
+    const all = this.khatmaService.khatmas();
+    if (!this.searchQuery.trim()) return all;
+    const q = this.searchQuery.trim().toLowerCase();
+    return all.filter(k => k.title.toLowerCase().includes(q) || k.createdBy.toLowerCase().includes(q) || (k.deceasedName?.toLowerCase().includes(q)));
   });
 
-  getRemainingCount(khatma: any) { return khatma.parts.filter((p: any) => p.status === 'available').length; }
-
-  getRelativeTime(date: Date) {
-    // Simple relative time for demo
-    return 'منذ يومين';
+  onSubmit() {
+    if (this.createForm.invalid) return;
+    const v = this.createForm.value;
+    const id = this.khatmaService.addKhatma(
+      v.title!,
+      v.createdBy!,
+      v.deceasedName!,
+      v.description!,
+      v.deceasedDeathDate ? new Date(v.deceasedDeathDate) : undefined
+    );
+    this.isCreating.set(false);
+    this.createForm.reset();
+    this.router.navigate(['/khatmat', id]);
   }
 
-  openCreateModal() { this.createForm.reset(); this.showCreateModal = true; }
+  shareWhatsApp(k: any) {
+    const text = `أدعوك للمشاركة في ختمة القرآن: ${k.title}\n${location.origin}/#/khatmat/${k.id}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+  }
 
-  createKhatma() {
-    if (this.createForm.valid) {
-      const { title, createdBy, deceasedName, description } = this.createForm.value;
-      const id = this.khatmaService.addKhatma(title!, createdBy!, deceasedName!, description!);
-      this.showCreateModal = false;
-      this.router.navigate(['/khatmat', id]);
+  getDaysToAnniversary(date: Date): number {
+    const deathDate = new Date(date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Normalize today to start of day
+
+    const nextAnniversary = new Date(deathDate);
+    nextAnniversary.setFullYear(today.getFullYear());
+    nextAnniversary.setHours(0, 0, 0, 0); // Normalize anniversary to start of day
+
+    // If the anniversary has already passed this year, set it for next year
+    if (nextAnniversary < today) {
+      nextAnniversary.setFullYear(today.getFullYear() + 1);
     }
+
+    // Calculate the difference in days
+    const diffTime = nextAnniversary.getTime() - today.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
   }
 }
+

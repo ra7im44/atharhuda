@@ -21,11 +21,13 @@
     "@google/genai": "^1.40.0",
     "@modelcontextprotocol/sdk": "^1.26.0",
     "rxjs": "^7.8.2",
-    "tailwindcss": "latest",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "autoprefixer": "^10.4.24",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
     "typescript": "~5.7.0"
   }
 }
