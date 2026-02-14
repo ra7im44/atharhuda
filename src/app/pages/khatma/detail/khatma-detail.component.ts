@@ -12,6 +12,7 @@ import { KhatmaService, Khatma, KhatmaPart } from '../../../services/khatma.serv
   styleUrl: './khatma-detail.component.css'
 })
 export class KhatmaDetailComponent implements OnInit {
+  // Force Vercel rebuild with reactive fix
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private khatmaService = inject(KhatmaService);
