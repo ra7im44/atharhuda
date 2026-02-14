@@ -24,11 +24,11 @@ export class KhatmaDetailComponent implements OnInit {
     const kSignal = this.khatmaService.getKhatmaById(String(id));
     return kSignal();
   });
-  
+
   completedCount = computed(() => this.khatma()?.parts.filter(p => p.status === 'completed').length || 0);
 
   selectedPart = signal<any>(null);
-  toast = signal<{msg: string, type: 'success' | 'info'} | null>(null);
+  toast = signal<{ msg: string, type: 'success' | 'info' } | null>(null);
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -36,11 +36,11 @@ export class KhatmaDetailComponent implements OnInit {
       if (id) this.khatmaId.set(id);
     });
   }
-  
+
   selectPart(part: any) { this.selectedPart.set(part); }
 
   reserveAndRead(name: string) {
-    if (!name.trim() || !this.khatma()) return;
+    if (!name.trim() || !this.khatma() || !this.selectedPart()) return;
     this.khatmaService.updatePartStatus(this.khatma()!.id, this.selectedPart().juzNumber, 'reserved', name);
     this.showToast('تم حجز الجزء بنجاح', 'success');
     this.router.navigate(['/quran/juz', this.selectedPart().juzNumber], { queryParams: { khatmaId: this.khatma()!.id } });
@@ -67,32 +67,32 @@ export class KhatmaDetailComponent implements OnInit {
   }
 
   showToast(msg: string, type: 'success' | 'info') {
-    this.toast.set({msg, type});
+    this.toast.set({ msg, type });
     setTimeout(() => this.toast.set(null), 3000);
   }
 
-  getJuzName(juz: number) { return `الجزء ${juz}`; }
-  getJuzSurahs(juz: number) { return `سور الجزء ${juz}`; } // Placeholder
+  getJuzName(juz: number) { return this.khatmaService.getJuzName(juz); }
+  getJuzSurahs(juz: number) { return this.khatmaService.getJuzSurahs(juz).join('، '); }
 
   formatDate(date: Date) {
     return this.datePipe.transform(date, 'dd/MM/yyyy');
   }
-  
-  getAnniversaryInfo(deathDate: Date) {
-     const today = new Date();
-     const d = new Date(deathDate);
-     const years = today.getFullYear() - d.getFullYear();
-     const nextAnniv = new Date(d);
-     nextAnniv.setFullYear(today.getFullYear());
-     if (nextAnniv < today) nextAnniv.setFullYear(today.getFullYear() + 1);
-     
-     const diffTime = Math.abs(nextAnniv.getTime() - today.getTime());
-     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-     return {
-       years: years > 0 ? years : 1,
-       daysUntil: diffDays,
-       message: diffDays === 0 ? 'اليوم هو ذكرى الوفاة' : `باقي ${diffDays} يوم على الذكرى`
-     };
+  getAnniversaryInfo(deathDate: Date) {
+    const today = new Date();
+    const d = new Date(deathDate);
+    const years = today.getFullYear() - d.getFullYear();
+    const nextAnniv = new Date(d);
+    nextAnniv.setFullYear(today.getFullYear());
+    if (nextAnniv < today) nextAnniv.setFullYear(today.getFullYear() + 1);
+
+    const diffTime = Math.abs(nextAnniv.getTime() - today.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    return {
+      years: years > 0 ? years : 1,
+      daysUntil: diffDays,
+      message: diffDays === 0 ? 'اليوم هو ذكرى الوفاة' : `باقي ${diffDays} يوم على الذكرى`
+    };
   }
 }
