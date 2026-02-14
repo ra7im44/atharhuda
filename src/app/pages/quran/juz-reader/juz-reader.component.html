@@ -1,0 +1,197 @@
+<div class="min-h-screen pb-20 relative bg-surface" [class.dark]="isDarkMode()">
+    <!-- Reading Progress Bar -->
+    <div class="fixed top-0 left-0 right-0 h-1 z-50 bg-surface-el">
+        <div class="h-full bg-primary transition-all duration-300" [style.width.%]="scrollProgress()"></div>
+    </div>
+
+    <!-- Header / Controls -->
+    <div
+        class="sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-brd/60 px-4 py-3 transition-colors duration-300">
+        <div class="max-w-5xl mx-auto flex items-center justify-between">
+            <!-- Back / Title -->
+            <div class="flex items-center gap-4">
+                <a routerLink="/khatmat"
+                    class="w-9 h-9 flex items-center justify-center rounded-xl hover:bg-surface-el text-txt-muted hover:text-txt transition-colors">
+                    <svg class="w-5 h-5 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </a>
+                <div>
+                    <h1 class="font-bold text-txt text-sm md:text-base">الجزء {{juzNumber()}}</h1>
+                    @if (khatmaId(); as id) {<span class="text-[10px] text-txt-muted block">تابع لختمة #{{id}}</span>}
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-2">
+                <button (click)="toggleTafsir()"
+                    class="p-2 rounded-lg text-txt-muted hover:bg-surface-el hover:text-primary transition-colors"
+                    [ngClass]="{'bg-primary/10 text-primary': showTafsir()}">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                    </svg>
+                </button>
+                <button (click)="toggleTheme()"
+                    class="p-2 rounded-lg text-txt-muted hover:bg-surface-el hover:text-txt transition-colors">
+                    @if (isDarkMode()) {
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                    </svg>
+                    } @else {
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                    </svg>
+                    }
+                </button>
+                <div class="relative group">
+                    <button
+                        class="p-2 rounded-lg text-txt-muted hover:bg-surface-el hover:text-txt transition-colors font-bold text-xs flex items-center gap-1">A<span
+                            class="text-lg">A</span></button>
+                    <div
+                        class="absolute top-full left-0 mt-2 p-3 bg-surface border border-brd rounded-xl shadow-xl min-w-[140px] hidden group-hover:block animate-fade-up z-50">
+                        <div class="flex items-center justify-between gap-2">
+                            <button (click)="decreaseFontSize()"
+                                class="w-8 h-8 rounded-lg bg-surface-el flex items-center justify-center hover:bg-primary hover:text-white transition-colors">-</button>
+                            <span class="text-xs font-bold">{{fontSize()}}</span>
+                            <button (click)="increaseFontSize()"
+                                class="w-8 h-8 rounded-lg bg-surface-el flex items-center justify-center hover:bg-primary hover:text-white transition-colors">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="max-w-4xl mx-auto px-4 py-8 md:py-12" id="quran-content">
+        @if (loading()) {
+        <div class="space-y-8 animate-pulse">
+            @for(i of [1,2,3]; track i) {
+            <div class="h-8 bg-surface-el rounded-full w-3/4 mx-auto mb-6"></div>
+            <div class="space-y-4">
+                <div class="h-4 bg-surface-el rounded w-full"></div>
+                <div class="h-4 bg-surface-el rounded w-5/6"></div>
+                <div class="h-4 bg-surface-el rounded w-full"></div>
+            </div>
+            }
+        </div>
+        } @else {
+        <!-- BismiAllah -->
+        <div class="text-center mb-12 animate-fade-down">
+            <img src="assets/bismillah.png" alt="In the name of Allah"
+                class="h-16 md:h-20 mx-auto opacity-80 invert dark:invert-0" />
+        </div>
+
+        <!-- Verses -->
+        @for (verse of verses(); track verse.number) {
+        <div
+            class="group relative mb-8 transition-all duration-500 hover:bg-surface-el/30 rounded-2xl p-4 md:p-6 border border-transparent hover:border-brd/40">
+
+            <!-- Verse Actions (Hover) -->
+            <div
+                class="absolute top-2 left-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button (click)="playAudio(verse)"
+                    class="p-1.5 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors"><svg
+                        class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+                    </svg></button>
+                <button (click)="copyVerse(verse)"
+                    class="p-1.5 rounded-full bg-surface-el text-txt-muted hover:text-primary transition-colors"><svg
+                        class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9.75a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
+                    </svg></button>
+            </div>
+
+            <div class="text-center md:text-right" dir="rtl">
+                <p class="font-quran text-txt leading-[2.6] mb-4 transition-all duration-300"
+                    [style.fontSize.px]="fontSize()">
+                    {{verse.text}}
+                    <span
+                        class="inline-flex items-center justify-center w-8 h-8 mx-1 text-[0.4em] border border-current rounded-full align-middle font-normal opacity-70 font-sans"
+                        [style.fontSize.px]="fontSize()">{{verse.numberInSurah}}</span>
+                </p>
+
+                @if (showTafsir()) {
+                <div
+                    class="bg-surface-el/50 rounded-xl p-4 text-sm text-txt-secondary leading-relaxed animate-fade-up border-r-2 border-accent/30">
+                    <span class="font-bold text-accent text-xs block mb-1">التفسير الميسر:</span>
+                    {{verse.tafsir || 'جاري تحميل التفسير...'}}
+                </div>
+                }
+            </div>
+        </div>
+        }
+
+        <!-- Next Juz / Finish -->
+        <div class="mt-16 text-center animate-fade-up">
+            <button (click)="markAsCompleted()"
+                class="group relative inline-flex items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-primary to-secondary text-white font-black rounded-2xl shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 hover:-translate-y-1 transition-all overflow-hidden">
+                <div
+                    class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                </div>
+                <span class="relative">✨ صدق الله العظيم</span>
+                <span class="relative text-[10px] bg-white/20 px-2 py-0.5 rounded-md">إتمام الجزء</span>
+            </button>
+        </div>
+
+        }
+    </div>
+
+    <!-- AI Recitation Helper (Floating Action Button) -->
+    <div class="fixed bottom-6 left-6 z-40">
+        <button (click)="showAiCoach.set(!showAiCoach())"
+            class="group flex items-center gap-2 p-1.5 pr-4 bg-surface border border-brd rounded-full shadow-xl hover:shadow-2xl transition-all">
+            <span class="text-xs font-bold text-txt">المصحح الذكي</span>
+            <div
+                class="w-10 h-10 rounded-full bg-gradient-to-br from-info to-primary flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
+                </svg>
+            </div>
+        </button>
+    </div>
+
+    @if (showAiCoach()) {
+    <div
+        class="fixed bottom-20 left-6 z-40 w-80 h-[400px] bg-surface rounded-2xl shadow-2xl border border-brd flex flex-col overflow-hidden animate-scale-in origin-bottom-left">
+        <div
+            class="p-4 bg-gradient-to-r from-info/10 to-primary/10 border-b border-brd flex justify-between items-center">
+            <h3 class="font-bold text-txt">المصحح الذكي 🤖</h3>
+            <button (click)="showAiCoach.set(false)" class="text-txt-muted hover:text-txt"><svg class="w-4 h-4"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg></button>
+        </div>
+        <div class="flex-1 p-4 overflow-y-auto">
+            <!-- Simplified AI Coach Interface -->
+            <div class="text-center py-10" *ngIf="!aiRecording()">
+                <button (click)="startAiRecording()"
+                    class="w-16 h-16 rounded-full bg-gradient-to-br from-info to-primary text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform mx-auto mb-4">
+                    <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
+                    </svg>
+                </button>
+                <p class="text-sm font-bold text-txt">اضغط للتسجيل</p>
+                <p class="text-xs text-txt-muted mt-1">صحح تلاوتك للآية الحالية</p>
+            </div>
+            <div class="text-center py-10" *ngIf="aiRecording()">
+                <div
+                    class="w-16 h-16 rounded-full bg-err/10 text-err flex items-center justify-center mx-auto mb-4 animate-pulse">
+                    <div class="w-6 h-6 bg-err rounded sm"></div>
+                </div>
+                <p class="text-sm font-bold text-err">جارٍ التسجيل...</p>
+                <button (click)="stopAiRecording()"
+                    class="mt-4 text-xs bg-surface-el px-3 py-1.5 rounded-lg border hover:bg-err hover:text-white transition-colors">إيقاف</button>
+            </div>
+        </div>
+    </div>
+    }
+</div>

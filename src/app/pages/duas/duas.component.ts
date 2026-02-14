@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -6,101 +5,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-duas',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <div class="min-h-screen pb-20 relative overflow-hidden">
-      <!-- Ambient -->
-      <div class="fixed inset-0 pointer-events-none">
-        <div class="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-accent/[0.04] rounded-full blur-[120px] animate-drift"></div>
-        <div class="absolute bottom-[10%] right-[-8%] w-[400px] h-[400px] bg-secondary/[0.04] rounded-full blur-[100px] animate-drift" style="animation-delay:-7s"></div>
-      </div>
-      <div class="absolute inset-0 islamic-pattern-dense opacity-15 dark:opacity-[0.02] pointer-events-none"></div>
-
-      <div class="relative max-w-3xl mx-auto px-6 py-10">
-        <!-- Header -->
-        <div class="text-center mb-12 animate-fade-down">
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/[0.06] border border-accent/10 text-accent text-[11px] font-bold mb-4 uppercase tracking-wider">
-            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342"/></svg>
-            من السنة النبوية
-          </div>
-          <h1 class="text-2xl md:text-3xl font-black text-txt mb-2">أدعية <span class="gradient-text">للمتوفى</span></h1>
-          <p class="text-sm text-txt-muted">ادعُ لمن فقدت بأدعية صحيحة من السنة</p>
-        </div>
-
-        <!-- Categories -->
-        <div class="flex flex-wrap justify-center gap-2 mb-10 animate-fade-up delay-200">
-          @for (cat of categories; track cat.id) {
-            <button (click)="selectedCategory = cat.id"
-                    class="px-5 py-2 rounded-xl text-[11px] font-bold transition-all duration-300"
-                    [ngClass]="{
-                      'bg-gradient-to-r from-primary to-secondary text-white shadow-md shadow-primary/15': selectedCategory === cat.id,
-                      'bg-surface border border-brd text-txt-muted hover:text-txt hover:border-primary/30': selectedCategory !== cat.id
-                    }">
-              {{cat.label}}
-            </button>
-          }
-        </div>
-
-        <!-- Duas List -->
-        <div class="space-y-5">
-          @for (dua of filteredDuas; track dua.id; let i = $index) {
-            <div class="card-lift animate-fade-up" [style.animation-delay]="(i * 80) + 'ms'">
-              <div class="group relative bg-surface rounded-[1.75rem] border border-brd/70 overflow-hidden">
-                <!-- Top accent -->
-                <div class="h-[2px] bg-gradient-to-l from-accent via-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-
-                <div class="p-6 md:p-7">
-                  <!-- Dua Number & Source -->
-                  <div class="flex items-center justify-between mb-5">
-                    <div class="flex items-center gap-3">
-                      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/[0.08] to-accent/[0.08] flex items-center justify-center text-sm font-black text-primary group-hover:from-primary group-hover:to-secondary group-hover:text-white transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/20">{{dua.id}}</div>
-                      <div>
-                        <span class="text-xs font-bold text-txt">{{dua.title}}</span>
-                        <span class="block text-[9px] text-txt-muted mt-0.5">{{dua.source}}</span>
-                      </div>
-                    </div>
-                    <button (click)="copyDua(dua)" class="w-9 h-9 rounded-xl bg-surface-el border border-brd text-txt-muted hover:text-primary hover:border-primary/30 flex items-center justify-center transition-all hover:scale-110">
-                      @if (copiedId === dua.id) {
-                        <svg class="w-4 h-4 text-ok" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                      } @else {
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9.75a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/></svg>
-                      }
-                    </button>
-                  </div>
-
-                  <!-- Arabic -->
-                  <div class="mb-5 p-5 bg-gradient-to-l from-primary/[0.03] to-accent/[0.02] rounded-2xl border border-primary/[0.06]">
-                    <p class="text-lg md:text-xl font-quran leading-[2.6] text-txt text-center">{{dua.arabic}}</p>
-                  </div>
-
-                  <!-- Translation -->
-                  <div class="text-sm text-txt-secondary leading-relaxed border-r-3 border-accent/20 pr-4">
-                    {{dua.translation}}
-                  </div>
-
-                  @if (dua.note) {
-                    <div class="mt-4 flex items-start gap-2 p-3 bg-info/[0.04] border border-info/10 rounded-xl">
-                      <svg class="w-4 h-4 text-info flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
-                      <span class="text-[11px] text-info leading-relaxed">{{dua.note}}</span>
-                    </div>
-                  }
-                </div>
-              </div>
-            </div>
-          }
-        </div>
-
-        <!-- Hadith Footer -->
-        <div class="mt-16 text-center animate-fade-up">
-          <div class="inline-flex items-center gap-3 mb-5">
-            <div class="w-10 h-[1.5px] bg-accent/30 rounded-full"></div>
-            <div class="w-7 h-7 rounded-lg bg-accent/[0.07] flex items-center justify-center"><span class="text-xs">🤲</span></div>
-            <div class="w-10 h-[1.5px] bg-accent/30 rounded-full"></div>
-          </div>
-          <p class="text-sm text-txt-muted leading-relaxed max-w-md mx-auto">"اللهم اغفر لأمواتنا وأموات المسلمين أجمعين"</p>
-        </div>
-      </div>
-    </div>
-  `,
+  templateUrl: './duas.component.html',
+  styleUrl: './duas.component.css'
 })
 export class DuasComponent {
   selectedCategory = 'all';
