@@ -1,107 +1,195 @@
-<div class="sebha-page" dir="rtl">
+<div class="adhkar-page" dir="rtl">
   <div class="glow glow-a"></div>
   <div class="glow glow-b"></div>
 
-  <header class="stats-panel">
-    <div class="stats-item">
-      <span class="stats-label">مجموع اليوم</span>
-      <strong class="stats-value">{{ todayStats.totalCounts }}</strong>
+  <!-- ══════ VIEW 1: GROUPS DASHBOARD ══════ -->
+  <ng-container *ngIf="currentView === 'groups'">
+    <header class="page-header">
+      <div class="header-top">
+        <div>
+          <h1>الأذكار</h1>
+          <p class="subtitle">{{ groups.length }} مجموعة · {{ totalCategories }} قسم</p>
+        </div>
+        <div class="stats-badges">
+          <div class="stat-badge">
+            <span class="stat-num">{{ todayTotal }}</span>
+            <span class="stat-label">ذكر اليوم</span>
+          </div>
+          <div class="stat-badge accent">
+            <span class="stat-num">{{ todayCompleted }}</span>
+            <span class="stat-label">مكتمل</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="search-box">
+        <svg class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+        </svg>
+        <input type="text" [(ngModel)]="searchQuery" placeholder="ابحث في الأذكار..." />
+      </div>
+    </header>
+
+    <div class="groups-list">
+      <button *ngFor="let group of filteredGroups; let i = index" class="group-card" (click)="openGroup(group)"
+        [style.--grp-color]="group.groupColor" [style.animation-delay]="i * 40 + 'ms'">
+        <div class="grp-icon-wrap">
+          <span class="grp-icon">{{ group.groupIcon }}</span>
+        </div>
+        <div class="grp-info">
+          <h3>{{ group.groupTitle }}</h3>
+          <span class="grp-meta">{{ getGroupCategoryCount(group) }} قسم · {{ getGroupTotalAdhkar(group) }} ذكر</span>
+        </div>
+        <div class="grp-arrow">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </div>
+        <div class="grp-progress-bar" *ngIf="getGroupProgress(group) > 0">
+          <div class="grp-progress-fill" [style.width.%]="getGroupProgress(group)"></div>
+        </div>
+      </button>
     </div>
-    <div class="stats-item">
-      <span class="stats-label">أوراد مكتملة</span>
-      <strong class="stats-value">{{ todayStats.completedAwrad }}</strong>
+  </ng-container>
+
+  <!-- ══════ VIEW 2: CATEGORIES INSIDE A GROUP ══════ -->
+  <ng-container *ngIf="currentView === 'categories' && activeGroup">
+    <header class="detail-header">
+      <button class="back-btn" (click)="goBack()">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+        </svg>
+        الأذكار
+      </button>
+      <div class="detail-title-area">
+        <span class="detail-icon">{{ activeGroup.groupIcon }}</span>
+        <div>
+          <h1>{{ activeGroup.groupTitle }}</h1>
+          <p>{{ activeGroup.categories.length }} قسم</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="categories-list">
+      <button *ngFor="let cat of activeGroup.categories; let i = index" class="category-card"
+        (click)="openCategory(cat)" [style.--cat-color]="cat.color" [style.animation-delay]="i * 40 + 'ms'">
+        <div class="cat-icon-wrap">
+          <span class="cat-icon">{{ cat.icon }}</span>
+        </div>
+        <div class="cat-info">
+          <h3>{{ cat.title }}</h3>
+          <span class="cat-count">{{ cat.adhkar.length }} أذكار</span>
+        </div>
+        <div class="cat-arrow">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </div>
+        <div class="cat-progress-bar" *ngIf="getCategoryProgress(cat) > 0">
+          <div class="cat-progress-fill" [style.width.%]="getCategoryProgress(cat)" [style.background]="cat.color">
+          </div>
+        </div>
+        <div class="cat-badge" *ngIf="getCategoryCompletedCount(cat) > 0" [style.background]="cat.color">
+          {{ getCategoryCompletedCount(cat) }}/{{ cat.adhkar.length }}
+        </div>
+      </button>
     </div>
-  </header>
+  </ng-container>
 
-  <section class="category-strip no-scrollbar">
-    <button (click)="filterCategory('all')" class="chip" [class.chip-active]="activeCategory === 'all'">الكل</button>
-    <button (click)="filterCategory('prayer')" class="chip" [class.chip-active]="activeCategory === 'prayer'">بعد الصلاة</button>
-    <button (click)="filterCategory('daily')" class="chip" [class.chip-active]="activeCategory === 'daily'">أوراد يومية</button>
-    <button (click)="filterCategory('urgent')" class="chip" [class.chip-active]="activeCategory === 'urgent'">ورد سريع</button>
-    <button (click)="filterCategory('custom')" class="chip" [class.chip-active]="activeCategory === 'custom'">مخصص</button>
-    <button (click)="showAddModal = true" class="chip chip-add">+ ذكر جديد</button>
-  </section>
+  <!-- ══════ VIEW 3: ADHKAR LIST ══════ -->
+  <ng-container *ngIf="currentView === 'adhkar' && activeCategory">
+    <header class="detail-header">
+      <button class="back-btn" (click)="goBack()">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+        </svg>
+        رجوع
+      </button>
+      <div class="detail-title-area">
+        <span class="detail-icon">{{ activeCategory.icon }}</span>
+        <div>
+          <h1>{{ activeCategory.title }}</h1>
+          <p>{{ activeCategory.adhkar.length }} أذكار</p>
+        </div>
+      </div>
+    </header>
 
-  <main class="main-area" *ngIf="activeItem; else emptyState">
-    <article class="dhikr-card">
-      <h2>{{ activeItem.text }}</h2>
-      <p>{{ activeItem.benefit }}</p>
-    </article>
+    <div class="dhikr-list">
+      <button *ngFor="let d of activeCategory.adhkar; let i = index" class="dhikr-card" (click)="openCounter(d, i)"
+        [class.completed]="isCompleted(d)" [style.--cat-color]="activeCategory.color"
+        [style.animation-delay]="i * 40 + 'ms'">
+        <div class="dhikr-top">
+          <span class="dhikr-num">#{{ i + 1 }}</span>
+          <span class="dhikr-ref" *ngIf="d.reference">{{ d.reference }}</span>
+        </div>
+        <p class="dhikr-text">{{ d.text }}</p>
+        <div class="dhikr-bottom">
+          <div class="dhikr-count-info">
+            <span class="dhikr-current">{{ d.current }}</span>
+            <span class="dhikr-separator">/</span>
+            <span class="dhikr-target">{{ d.count }}</span>
+          </div>
+          <div class="dhikr-mini-bar">
+            <div class="dhikr-mini-fill" [style.width.%]="getProgress(d)" [style.background]="activeCategory.color">
+            </div>
+          </div>
+          <span *ngIf="isCompleted(d)" class="done-badge">✓ تم</span>
+        </div>
+      </button>
+    </div>
+  </ng-container>
 
-    <div class="counter-shell" (click)="tapSebha()">
-      <svg class="progress-ring" viewBox="0 0 120 120">
-        <circle cx="60" cy="60" r="54" fill="none" stroke="#21333d" stroke-width="7" />
-        <circle
-          cx="60"
-          cy="60"
-          r="54"
-          fill="none"
-          [attr.stroke]="isCompleted(activeItem) ? '#f7c948' : '#00b894'"
-          stroke-width="7"
-          stroke-linecap="round"
-          [style.stroke-dasharray]="circumference"
-          [style.stroke-dashoffset]="dashOffset"
-        />
-      </svg>
+  <!-- ══════ VIEW 4: COUNTER ══════ -->
+  <ng-container *ngIf="currentView === 'counter' && activeDhikr && activeCategory">
+    <header class="counter-header">
+      <button class="back-btn" (click)="goBack()">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+        </svg>
+        {{ activeCategory.title }}
+      </button>
+      <span class="counter-pos">{{ activeDhikrIndex + 1 }} / {{ activeCategory.adhkar.length }}</span>
+    </header>
 
-      <div class="counter-content">
-        <span class="tap-hint">اضغط للتسبيح</span>
-        <strong [class.done]="isCompleted(activeItem)">{{ activeItem.current }}</strong>
-        <span>الهدف {{ activeItem.count }}</span>
+    <div class="counter-body">
+      <article class="counter-dhikr-card" [style.--cat-color]="activeCategory.color">
+        <p>{{ activeDhikr.text }}</p>
+        <span class="counter-ref" *ngIf="activeDhikr.reference">{{ activeDhikr.reference }}</span>
+      </article>
+
+      <div class="counter-circle" (click)="tap()" [class.completed-circle]="isCompleted(activeDhikr)">
+        <svg class="ring-svg" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="54" fill="none" stroke="var(--ring-track)" stroke-width="6" />
+          <circle cx="60" cy="60" r="54" fill="none"
+            [attr.stroke]="isCompleted(activeDhikr) ? '#f7c948' : activeCategory.color" stroke-width="6"
+            stroke-linecap="round" [style.stroke-dasharray]="circumference" [style.stroke-dashoffset]="dashOffset" />
+        </svg>
+        <div class="circle-inner">
+          <span class="tap-label">{{ isCompleted(activeDhikr) ? 'اكتمل ✓' : 'اضغط' }}</span>
+          <strong [class.done-count]="isCompleted(activeDhikr)">{{ activeDhikr.current }}</strong>
+          <span class="target-label">من {{ activeDhikr.count }}</span>
+        </div>
+      </div>
+
+      <div class="counter-controls">
+        <button (click)="prevDhikr()" [disabled]="activeDhikrIndex === 0" class="ctrl-btn">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+          السابق
+        </button>
+        <button (click)="resetDhikr()" class="ctrl-btn reset">تصفير</button>
+        <button (click)="adjustCount(-1)" class="ctrl-btn">-1</button>
+        <button (click)="adjustCount(10)" class="ctrl-btn">+10</button>
+        <button (click)="nextDhikr()" [disabled]="activeDhikrIndex === activeCategory.adhkar.length - 1"
+          class="ctrl-btn">
+          التالي
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          </svg>
+        </button>
       </div>
     </div>
-
-    <div class="controls">
-      <button (click)="resetCurrent()">تصفير</button>
-      <button (click)="adjustCount(-1)">-1</button>
-      <button (click)="adjustCount(10)">+10</button>
-      <button (click)="shareDhikr()">مشاركة</button>
-    </div>
-  </main>
-
-  <ng-template #emptyState>
-    <div class="empty-state">
-      <p>لا يوجد أذكار ضمن هذا التصنيف.</p>
-      <button (click)="showAddModal = true">إضافة ذكر</button>
-    </div>
-  </ng-template>
-
-  <footer class="cards-strip no-scrollbar">
-    <button
-      *ngFor="let item of displayTasabeeh"
-      type="button"
-      (click)="setActive(item)"
-      class="tasbih-mini"
-      [class.active]="activeItem?.id === item.id"
-    >
-      <span *ngIf="item.isCustom" (click)="deleteCustomDhikr(item.id, $event)" class="delete-mini">×</span>
-      <h4>{{ item.title }}</h4>
-      <div class="mini-bar">
-        <span [style.width.%]="getTasbihProgress(item)"></span>
-      </div>
-      <small>{{ item.current }} / {{ item.count }}</small>
-    </button>
-  </footer>
-
-  <div *ngIf="showAddModal" class="modal">
-    <div class="modal-card">
-      <h3>إضافة ذكر جديد</h3>
-      <label>
-        اسم الذكر
-        <input [(ngModel)]="newDhikr.title" type="text" placeholder="مثال: لا حول ولا قوة إلا بالله" />
-      </label>
-      <label>
-        نص الذكر (اختياري)
-        <input [(ngModel)]="newDhikr.text" type="text" placeholder="سيظهر داخل العداد" />
-      </label>
-      <label>
-        العدد المستهدف
-        <input [(ngModel)]="newDhikr.count" type="number" min="1" />
-      </label>
-      <div class="modal-actions">
-        <button type="button" (click)="showAddModal = false">إلغاء</button>
-        <button type="button" (click)="addCustomDhikr()">حفظ</button>
-      </div>
-    </div>
-  </div>
+  </ng-container>
 </div>

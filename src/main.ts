@@ -55,7 +55,7 @@ import { provideHttpClient } from '@angular/common/http';
             <a routerLink="/khatmat" routerLinkActive="!bg-gradient-to-r !from-primary !to-secondary !text-white !shadow-md !shadow-primary/20" class="px-5 py-2 rounded-xl text-[13px] font-bold text-txt-muted hover:text-txt transition-all duration-300">الختمات</a>
             <a routerLink="/coach" routerLinkActive="!bg-gradient-to-r !from-primary !to-secondary !text-white !shadow-md !shadow-primary/20" class="px-5 py-2 rounded-xl text-[13px] font-bold text-txt-muted hover:text-txt transition-all duration-300">المصحّح</a>
             <a routerLink="/duas" routerLinkActive="!bg-gradient-to-r !from-primary !to-secondary !text-white !shadow-md !shadow-primary/20" class="px-5 py-2 rounded-xl text-[13px] font-bold text-txt-muted hover:text-txt transition-all duration-300">الأدعية</a>
-            <a routerLink="/tasabeeh" routerLinkActive="!bg-gradient-to-r !from-primary !to-secondary !text-white !shadow-md !shadow-primary/20" class="px-5 py-2 rounded-xl text-[13px] font-bold text-txt-muted hover:text-txt transition-all duration-300">التسابيح</a>
+            <a routerLink="/tasabeeh" routerLinkActive="!bg-gradient-to-r !from-primary !to-secondary !text-white !shadow-md !shadow-primary/20" class="px-5 py-2 rounded-xl text-[13px] font-bold text-txt-muted hover:text-txt transition-all duration-300">الأذكار</a>
             <a routerLink="/ramadan" routerLinkActive="!bg-gradient-to-r !from-primary !to-secondary !text-white !shadow-md !shadow-primary/20" class="px-5 py-2 rounded-xl text-[13px] font-bold text-txt-muted hover:text-txt transition-all duration-300">رمضانيات</a>
           </nav>
 
@@ -98,7 +98,7 @@ import { provideHttpClient } from '@angular/common/http';
           </a>
           <a routerLink="/tasabeeh" routerLinkActive="text-primary" class="flex flex-col items-center gap-1 px-2 py-1.5 rounded-xl text-txt-muted hover:text-primary transition-colors">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6"/></svg>
-            <span class="text-[9px] font-bold">التسابيح</span>
+            <span class="text-[9px] font-bold">الأذكار</span>
           </a>
           <a routerLink="/ramadan" routerLinkActive="text-primary" class="flex flex-col items-center gap-1 px-2 py-1.5 rounded-xl text-txt-muted hover:text-primary transition-colors">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/></svg>

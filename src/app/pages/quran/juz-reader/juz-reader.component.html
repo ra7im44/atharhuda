@@ -1,9 +1,18 @@
-<div class="quran-page min-h-screen pb-24 relative" [class.dark]="isDarkMode()" dir="rtl">
+<div class="quran-page min-h-screen pb-24 relative" [class.dark]="isDarkMode()" [class.focus-active]="focusMode()"
+  dir="rtl">
   <div class="fixed top-0 left-0 right-0 h-1.5 z-50 bg-surface-el/70">
     <div class="h-full quran-progress transition-all duration-300" [style.width.%]="scrollProgress()"></div>
   </div>
 
-  <header class="relative z-30 px-4 md:px-6 py-4 quran-header">
+  <!-- ═══ CONTINUE READING BANNER ═══ -->
+  <div class="continue-banner" *ngIf="showContinueReading() && !loading()">
+    <span>📖 متابعة من آخر موضع قراءة</span>
+    <button (click)="continueReading()" class="continue-btn">متابعة</button>
+    <button (click)="showContinueReading.set(false)" class="continue-dismiss">✕</button>
+  </div>
+
+  <!-- ═══ HEADER (hideable in focus) ═══ -->
+  <header class="relative z-30 px-4 md:px-6 py-4 quran-header chrome-el">
     <div class="max-w-5xl mx-auto quran-header-inner rounded-3xl border border-brd/60 px-4 md:px-6 py-4">
       <div class="flex items-start justify-between gap-3 md:gap-6">
         <div class="flex items-start gap-3 md:gap-4 min-w-0">
@@ -24,6 +33,29 @@
         </div>
 
         <div class="flex items-center gap-2 md:gap-2.5 flex-wrap justify-end">
+          <!-- Reading Mode Switcher -->
+          <div class="mode-switcher">
+            <button (click)="setReadingMode('continuous')" [class.active]="readingMode() === 'continuous'"
+              title="تمرير مستمر">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </button>
+            <button (click)="setReadingMode('verse')" [class.active]="readingMode() === 'verse'" title="آية بآية">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+              </svg>
+            </button>
+            <button (click)="setReadingMode('mushaf')" [class.active]="readingMode() === 'mushaf'" title="وضع المصحف">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Reciter -->
           <div class="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-xl border border-brd/60 bg-surface-el/60">
             <span class="text-[10px] font-bold text-txt-muted">القارئ</span>
             <select #reciterSelect [value]="reciterId()" (change)="setReciter(reciterSelect.value)"
@@ -34,11 +66,58 @@
             </select>
           </div>
 
+          <!-- Font Size -->
           <div class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl border border-brd/60 bg-surface-el/60">
-            <button (click)="decreaseFontSize()" class="quran-size-btn" title="تصغير">-</button>
-            <span class="text-[11px] font-bold text-txt-muted w-7 text-center">{{fontSize()}}</span>
             <button (click)="increaseFontSize()" class="quran-size-btn" title="تكبير">+</button>
+            <span class="text-[11px] font-bold text-txt-muted w-7 text-center">{{fontSize()}}</span>
+            <button (click)="decreaseFontSize()" class="quran-size-btn" title="تصغير">-</button>
+            <button (click)="resetFontSize()" class="quran-size-btn" title="إعادة تعيين"
+              style="font-size:9px">↺</button>
           </div>
+
+          <!-- Search -->
+          <button (click)="toggleSearch()" class="quran-control" [class.active]="showSearch()" title="بحث">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+          </button>
+
+          <!-- Go To -->
+          <button (click)="toggleGoTo()" class="quran-control" [class.active]="showGoTo()" title="اذهب إلى">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+            </svg>
+          </button>
+
+          <!-- Bookmarks -->
+          <button (click)="showBookmarksPanel.set(!showBookmarksPanel())" class="quran-control"
+            [class.active]="showBookmarksPanel()" title="العلامات المرجعية">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
+            </svg>
+          </button>
+
+          <!-- Audio Settings (Phase 2) -->
+          <button (click)="showAudioSettings.set(!showAudioSettings())" class="quran-control"
+            [class.active]="showAudioSettings()" title="إعدادات الصوت">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" />
+            </svg>
+          </button>
+
+          <!-- Memorization (Phase 2) -->
+          <button (click)="showMemorizationPanel.set(!showMemorizationPanel())" class="quran-control"
+            [class.active]="showMemorizationPanel() || memorizationMode()" title="أدوات الحفظ">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+            </svg>
+          </button>
 
           <!-- Translation Toggle -->
           <button (click)="toggleTranslation()" class="quran-control" [class.active]="showTranslation()"
@@ -49,23 +128,275 @@
             </svg>
           </button>
 
-          <button (click)="toggleTheme()" class="quran-control" title="الوضع الليلي">
-            @if (isDarkMode()) {
+          <!-- Focus Mode -->
+          <button (click)="toggleFocusMode()" class="quran-control" [class.active]="focusMode()"
+            title="وضع التركيز (F)">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round"
-                d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
             </svg>
-            } @else {
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
-            </svg>
-            }
           </button>
+
         </div>
       </div>
     </div>
   </header>
+
+  <!-- ═══ SEARCH PANEL ═══ -->
+  <div class="search-panel" *ngIf="showSearch()">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="search-input-wrap">
+        <input type="text" [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event); performSearch()"
+          placeholder="ابحث في آيات هذا الجزء..." class="search-input" autofocus />
+        <button (click)="toggleSearch()" class="search-close">✕</button>
+      </div>
+      <div class="search-results" *ngIf="searchResults().length > 0">
+        <p class="search-count">{{ searchResults().length }} نتيجة</p>
+        <button *ngFor="let r of searchResults()" class="search-result-item" (click)="jumpToSearchResult(r)">
+          <span class="sr-surah">{{ r.verse.surahName || 'سورة ' + r.verse.surahNumber }} : {{ r.verse.numberInSurah
+            }}</span>
+          <p class="sr-text">{{ r.verse.text }}</p>
+          <span class="sr-context" *ngIf="r.contextBefore">...{{ r.contextBefore }}</span>
+        </button>
+      </div>
+      <p class="search-empty" *ngIf="searchQuery().length >= 2 && searchResults().length === 0">لا توجد نتائج</p>
+    </div>
+  </div>
+
+  <!-- ═══ GO TO PANEL ═══ -->
+  <div class="goto-panel" *ngIf="showGoTo()">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="goto-inner">
+        <h3>اذهب إلى</h3>
+        <div class="goto-type-btns">
+          <button [class.active]="goToType() === 'surah'" (click)="goToType.set('surah')">سورة</button>
+          <button [class.active]="goToType() === 'juz'" (click)="goToType.set('juz')">جزء</button>
+          <button [class.active]="goToType() === 'ayah'" (click)="goToType.set('ayah')">آية (رقم عام)</button>
+        </div>
+        <div class="goto-input-row">
+          <input type="number" [ngModel]="goToValue()" (ngModelChange)="goToValue.set($event)"
+            [placeholder]="goToType() === 'surah' ? 'رقم السورة' : goToType() === 'juz' ? 'رقم الجزء (1-30)' : 'رقم الآية'"
+            class="goto-input" (keydown.enter)="executeGoTo()" />
+          <button (click)="executeGoTo()" class="goto-go-btn">اذهب</button>
+        </div>
+        <!-- Surahs in this Juz -->
+        <div class="goto-surahs" *ngIf="goToType() === 'surah' && surahsInJuz().length">
+          <p class="goto-hint">السور في هذا الجزء:</p>
+          <button *ngFor="let s of surahsInJuz()" class="goto-surah-chip"
+            (click)="navigateToVerseIndex(s.startIndex); showGoTo.set(false)">
+            {{ s.name }} ({{ s.versesCount }} آية)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BOOKMARKS PANEL ═══ -->
+  <div class="bookmarks-panel" *ngIf="showBookmarksPanel()">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="bm-inner">
+        <div class="bm-head">
+          <h3>العلامات المرجعية</h3>
+          <button (click)="showBookmarksPanel.set(false)" class="bm-close">✕</button>
+        </div>
+        <div class="bm-filter">
+          <button [class.active]="bookmarkTypeFilter() === 'all'" (click)="bookmarkTypeFilter.set('all')">الكل</button>
+          <button [class.active]="bookmarkTypeFilter() === 'khatma'"
+            (click)="bookmarkTypeFilter.set('khatma')">ختمة</button>
+          <button [class.active]="bookmarkTypeFilter() === 'hifz'" (click)="bookmarkTypeFilter.set('hifz')">حفظ</button>
+          <button [class.active]="bookmarkTypeFilter() === 'tadabbur'"
+            (click)="bookmarkTypeFilter.set('tadabbur')">تدبر</button>
+        </div>
+        <div class="bm-list" *ngIf="filteredBookmarks().length; else noBm">
+          <div *ngFor="let b of filteredBookmarks()" class="bm-item">
+            <div class="bm-item-info">
+              <span class="bm-type-badge" [attr.data-type]="b.type">{{ b.type === 'khatma' ? 'ختمة' : b.type === 'hifz'
+                ? 'حفظ' : 'تدبر' }}</span>
+              <span>{{ b.surahName || 'آية' }} : {{ b.ayahInSurah }}</span>
+            </div>
+            <button (click)="removeBookmark(b.verseNumber, b.type)" class="bm-remove">حذف</button>
+          </div>
+        </div>
+        <ng-template #noBm>
+          <p class="bm-empty">لا توجد علامات مرجعية</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ AUDIO SETTINGS PANEL (Phase 2) ═══ -->
+  <div class="audio-settings-panel" *ngIf="showAudioSettings()">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="as-inner">
+        <div class="as-head">
+          <h3>🎧 إعدادات الصوت</h3>
+          <button (click)="showAudioSettings.set(false)" class="bm-close">✕</button>
+        </div>
+
+        <!-- Continuous Play -->
+        <div class="as-row">
+          <span class="as-label">تشغيل متواصل</span>
+          <button (click)="toggleContinuousPlay()" class="as-toggle-btn" [class.active]="continuousPlay()">
+            {{ continuousPlay() ? '⏹ إيقاف' : '▶ تشغيل' }}
+          </button>
+        </div>
+
+        <!-- Speed -->
+        <div class="as-row">
+          <span class="as-label">سرعة التلاوة</span>
+          <div class="as-speed-btns">
+            <button *ngFor="let s of [0.5, 0.75, 1, 1.25, 1.5, 2]" [class.active]="playbackSpeed() === s"
+              (click)="setPlaybackSpeed(s)">{{ s }}x</button>
+          </div>
+        </div>
+
+        <!-- Repeat -->
+        <div class="as-row">
+          <span class="as-label">تكرار كل آية</span>
+          <div class="as-repeat-ctrl">
+            <button (click)="setRepeatCount(repeatCount() - 1)">−</button>
+            <span>{{ repeatCount() }} مرة</span>
+            <button (click)="setRepeatCount(repeatCount() + 1)">+</button>
+          </div>
+        </div>
+
+        <!-- Sleep Timer -->
+        <div class="as-row">
+          <span class="as-label">مؤقت النوم</span>
+          <div class="as-timer-btns" *ngIf="!sleepTimerActive()">
+            <button *ngFor="let m of [5, 10, 15, 30, 60]" (click)="startSleepTimer(m)">{{ m }} د</button>
+          </div>
+          <div class="as-timer-active" *ngIf="sleepTimerActive()">
+            <span class="as-timer-countdown">⏰ {{ formatTimerDisplay(sleepTimerRemaining()) }}</span>
+            <button (click)="clearSleepTimer()" class="as-timer-cancel">إلغاء</button>
+          </div>
+        </div>
+
+        <!-- Repeat Remaining indicator -->
+        <div class="as-row" *ngIf="repeatRemaining() > 0 && continuousPlay()">
+          <span class="as-label">التكرارات المتبقية</span>
+          <span class="as-badge">{{ repeatRemaining() }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ MEMORIZATION PANEL (Phase 2) ═══ -->
+  <div class="memorization-panel" *ngIf="showMemorizationPanel()">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="mem-inner">
+        <div class="mem-head">
+          <h3>📚 أدوات الحفظ</h3>
+          <button (click)="showMemorizationPanel.set(false)" class="bm-close">✕</button>
+        </div>
+
+        <div class="mem-actions">
+          <button (click)="toggleMemorizationMode()" class="mem-action-btn" [class.active]="memorizationMode()">
+            {{ memorizationMode() ? '🔓 إظهار النص' : '🔒 وضع الحفظ (إخفاء)' }}
+          </button>
+          <button (click)="startQuickTest()" class="mem-action-btn">
+            ✍️ اختبار سريع
+          </button>
+        </div>
+
+        <!-- Playlist -->
+        <div class="mem-playlist" *ngIf="memorizationPlaylist().length > 0">
+          <p class="mem-playlist-title">قائمة الحفظ ({{ memorizationPlaylist().length }})</p>
+          <div *ngFor="let item of memorizationPlaylist()" class="mem-playlist-item">
+            <span>{{ item.surahName || 'آية' }} : {{ item.ayahInSurah }}</span>
+            <button (click)="removeFromPlaylist(item.verseNumber)" class="bm-remove">حذف</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ NOTE EDITOR OVERLAY (Phase 2) ═══ -->
+  <div class="note-editor-overlay" *ngIf="activeNoteVerse() !== null">
+    <div class="note-editor-card">
+      <div class="note-editor-head">
+        <h3>📝 ملاحظة على الآية</h3>
+        <button (click)="closeNoteEditor()" class="bm-close">✕</button>
+      </div>
+      <div class="note-editor-body">
+        <label class="note-label">ملاحظتك</label>
+        <textarea [ngModel]="noteText()" (ngModelChange)="noteText.set($event)" placeholder="اكتب ملاحظتك أو تدبرك..."
+          class="note-textarea" rows="4"></textarea>
+        <label class="note-label">تأمل (اختياري)</label>
+        <textarea [ngModel]="reflectionText()" (ngModelChange)="reflectionText.set($event)"
+          placeholder="ماذا تعلمت من هذه الآية؟" class="note-textarea" rows="3"></textarea>
+        <div class="note-editor-actions">
+          <button (click)="saveNote()" class="note-save-btn">حفظ</button>
+          <button *ngIf="hasNote(activeNoteVerse()!)" (click)="deleteNote(activeNoteVerse()!)"
+            class="note-delete-btn">حذف</button>
+          <button (click)="closeNoteEditor()" class="note-cancel-btn">إلغاء</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ QUICK TEST OVERLAY (Phase 2) ═══ -->
+  <div class="quick-test-overlay" *ngIf="quickTestMode()">
+    <div class="quick-test-card">
+      <div class="quick-test-head">
+        <h3>✍️ اختبار سريع</h3>
+        <button (click)="exitQuickTest()" class="bm-close">✕</button>
+      </div>
+      @if (quickTestVerse(); as v) {
+      <div class="quick-test-body">
+        <p class="quick-test-hint">
+          {{ v.surahName || 'سورة ' + v.surahNumber }} — الآية {{ v.numberInSurah }}
+        </p>
+        <p class="quick-test-prompt">هل تستطيع تلاوة هذه الآية من ذاكرتك؟</p>
+
+        @if (!quickTestRevealed()) {
+        <div class="quick-test-hidden">
+          <span>????</span>
+          <button (click)="revealQuickTest()" class="quick-test-reveal-btn">كشف الآية</button>
+        </div>
+        } @else {
+        <p class="quick-test-verse" [style.font-size.px]="fontSize()">{{ v.text }}</p>
+        @if (v.translationEn && showTranslation()) {
+        <p class="quick-test-translation">{{ v.translationEn }}</p>
+        }
+        }
+
+        <div class="quick-test-nav">
+          <button (click)="nextQuickTest()" class="quick-test-next-btn">سؤال آخر</button>
+          <button (click)="exitQuickTest()" class="quick-test-exit-btn">إنهاء</button>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+
+  <!-- ═══ VERSE OF THE DAY ═══ -->
+  @if (verseOfTheDay(); as votd) {
+  <div class="votd-card" *ngIf="!loading() && !focusMode()">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="votd-inner">
+        <span class="votd-badge">🌟 آية اليوم</span>
+        <p class="votd-text" [style.font-size.px]="fontSize() - 2">{{ votd.text }}</p>
+        <p class="votd-ref">{{ votd.surahName || 'سورة ' + votd.surahNumber }} — الآية {{ votd.numberInSurah }}</p>
+        @if (votd.translationEn && showTranslation()) {
+        <p class="votd-translation">{{ votd.translationEn }}</p>
+        }
+      </div>
+    </div>
+  </div>
+  }
+
+  <!-- ═══ WHERE AM I BAR ═══ -->
+  <div class="where-bar chrome-el" *ngIf="verses().length && !loading() && !focusMode()">
+    <div class="max-w-5xl mx-auto px-4 flex items-center justify-between gap-2 text-[11px] font-bold text-txt-muted">
+      <span>الجزء {{ juzNumber() }}</span>
+      <span *ngIf="surahsInJuz().length">{{ surahsInJuz().length > 1 ? surahsInJuz().length + ' سور' :
+        surahsInJuz()[0]?.name }}</span>
+      <span>{{ verses().length }} آية</span>
+      <span *ngIf="mushafPages().length">صفحات {{ mushafPages()[0] }} - {{ mushafPages()[mushafPages().length - 1]
+        }}</span>
+    </div>
+  </div>
 
   <main class="max-w-5xl mx-auto px-4 md:px-6 py-6 md:py-8">
     @if (loading()) {
@@ -100,15 +431,16 @@
       <p>لم يتم العثور على بيانات لهذا الجزء</p>
     </section>
     } @else {
-    <section class="quran-hero rounded-[2rem] border border-brd/60 p-6 md:p-8 mb-8">
+
+    <!-- HERO (hideable in focus) -->
+    <section class="quran-hero rounded-[2rem] border border-brd/60 p-6 md:p-8 mb-8 chrome-el">
       <div class="quran-hero-top">
         <div class="quran-hero-title">
           <p class="quran-hero-kicker">نبذة الجزء</p>
           <h2>الجزء {{juzNumber()}} - {{getJuzName(juzNumber())}}</h2>
-          <p>اضغط على أي كلمة لسماع نطقها مع باقي الكلمات. اضغط مرة أخرى للإيقاف.</p>
+          <p>اضغط على أي كلمة لسماع نطقها. اضغط F لوضع التركيز.</p>
         </div>
       </div>
-
       <div class="quran-meta mt-5">
         <span class="quran-meta-chip">عدد الآيات: {{verses().length}}</span>
         <span class="quran-meta-chip">السور: {{getJuzSurahs(juzNumber())}}</span>
@@ -118,10 +450,18 @@
       </div>
     </section>
 
-    <!-- ═══ CONTINUOUS QURAN TEXT ═══ -->
+    <!-- ═══ MODE: CONTINUOUS ═══ -->
+    @if (readingMode() === 'continuous') {
     <section class="quran-continuous-section rounded-[2rem] border border-brd/50 p-6 md:p-10 bg-surface">
-      <div class="quran-continuous-text font-quran leading-[2.8] md:leading-[3.2]" [style.fontSize.px]="fontSize()">
+      <div class="quran-continuous-text font-quran leading-[2.8] md:leading-[3.2]" [style.fontSize.px]="fontSize()"
+        [class.mem-blurred]="memorizationMode()">
         @for (verse of verses(); track verse.number) {
+        <!-- Surah header if first ayah -->
+        @if (verse.numberInSurah === 1) {
+        <div class="surah-header-inline" [id]="'verse-' + verse.number">
+          <span class="surah-header-name">{{ verse.surahName }}</span>
+        </div>
+        }
         @for (word of getVerseWords(verse); track $index) {
         <button type="button" class="quran-word"
           [class.quran-word-playing]="currentPlayingVerse() === verse.number && currentPlayingWordIndex() === $index"
@@ -130,7 +470,24 @@
         }
         <span class="quran-ayah-badge" [style.fontSize.px]="fontSize() * 0.45">{{verse.numberInSurah}}</span>
 
-        <!-- Inline translation (shown below verse when toggled) -->
+        <!-- Verse actions (bookmark) -->
+        <span class="verse-actions-inline">
+          <button class="va-btn" (click)="playAudio(verse)" title="تشغيل">🔊</button>
+          <button class="va-btn" (click)="copyVerse(verse)" title="نسخ">📋</button>
+          <button class="va-btn" [class.bookmarked]="isBookmarked(verse.number)" (click)="addBookmark(verse, 'khatma')"
+            title="إضافة علامة">🔖</button>
+          <button class="va-btn" [class.bookmarked]="hasNote(verse.number)" (click)="openNoteEditor(verse.number)"
+            title="ملاحظة">📝</button>
+          <button class="va-btn" [class.bookmarked]="isInPlaylist(verse.number)" (click)="addToPlaylist(verse)"
+            title="إضافة لقائمة الحفظ">📚</button>
+        </span>
+
+        @if (memorizationMode()) {
+        <button class="mem-reveal-btn" (click)="toggleRevealVerse(verse.number)">
+          {{ isVerseRevealed(verse.number) ? 'إخفاء' : 'كشف' }}
+        </button>
+        }
+
         @if (showTranslation()) {
         <span class="quran-inline-translation block w-full">
           {{verse.translationEn || 'Translation not available.'}}
@@ -139,8 +496,108 @@
         }
       </div>
     </section>
+    }
 
-    <!-- Verse Actions Bar (sticky bottom) -->
+    <!-- ═══ MODE: VERSE BY VERSE ═══ -->
+    @if (readingMode() === 'verse' && currentVerse(); as v) {
+    <section class="verse-mode-section">
+      <div class="verse-card">
+        <!-- Surah info -->
+        <div class="verse-surah-label">{{ v.surahName }} — آية {{ v.numberInSurah }}</div>
+
+        <p class="verse-mode-text font-quran" [style.fontSize.px]="fontSize()">{{ v.text }}</p>
+
+        @if (showTranslation() && v.translationEn) {
+        <p class="verse-mode-translation">{{ v.translationEn }}</p>
+        }
+
+        <!-- Verse actions -->
+        <div class="verse-mode-actions">
+          <button (click)="playAudio(v)" class="vma-btn">🔊 تشغيل</button>
+          <button (click)="copyVerse(v)" class="vma-btn">📋 نسخ</button>
+          <button (click)="addBookmark(v, 'hifz')" class="vma-btn">📝 حفظ</button>
+          <button (click)="addBookmark(v, 'tadabbur')" class="vma-btn">💭 تدبر</button>
+          <button (click)="openNoteEditor(v.number)" class="vma-btn">✏️ ملاحظة</button>
+          <button (click)="addToPlaylist(v)" class="vma-btn">📚 قائمة الحفظ</button>
+          <button (click)="shareVerse(v, 'whatsapp')" class="vma-btn">📤 مشاركة</button>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="verse-nav">
+        <button (click)="prevVerse()" [disabled]="currentVerseIndex() === 0" class="verse-nav-btn">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+          السابقة
+        </button>
+        <span class="verse-nav-counter">{{ currentVerseIndex() + 1 }} / {{ verses().length }}</span>
+        <button (click)="nextVerse()" [disabled]="currentVerseIndex() === verses().length - 1" class="verse-nav-btn">
+          التالية
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+      </div>
+    </section>
+    }
+
+    <!-- ═══ MODE: MUSHAF (text simulation) ═══ -->
+    @if (readingMode() === 'mushaf') {
+    <section class="mushaf-section">
+      <div class="mushaf-page-card">
+        <div class="mushaf-page-header">
+          <span class="mushaf-page-num">صفحة {{ mushafCurrentPage() }}</span>
+          <span class="mushaf-juz-label">الجزء {{ juzNumber() }}</span>
+        </div>
+
+        <div class="mushaf-text font-quran" [style.fontSize.px]="fontSize()">
+          @for (verse of mushafPageVerses(); track verse.number) {
+          @if (verse.numberInSurah === 1) {
+          <div class="surah-header-mushaf">
+            <span>{{ verse.surahName }}</span>
+          </div>
+          }
+          @for (word of getVerseWords(verse); track $index) {
+          <button type="button" class="quran-word"
+            [class.quran-word-playing]="currentPlayingVerse() === verse.number && currentPlayingWordIndex() === $index"
+            (click)="pronounceWord(word, verse, $index)" [style.fontSize.px]="fontSize()">{{word}}</button>
+          }
+          <span class="quran-ayah-badge" [style.fontSize.px]="fontSize() * 0.45">{{verse.numberInSurah}}</span>
+          }
+        </div>
+
+        <div class="mushaf-footer">
+          @if (showTranslation()) {
+          @for (verse of mushafPageVerses(); track verse.number) {
+          <p class="mushaf-translation">{{ verse.numberInSurah }}. {{ verse.translationEn || '' }}</p>
+          }
+          }
+        </div>
+      </div>
+
+      <!-- Mushaf Pagination -->
+      <div class="mushaf-nav">
+        <button (click)="nextMushafPage()" [disabled]="mushafCurrentPage() === mushafPages()[mushafPages().length - 1]"
+          class="verse-nav-btn">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+          السابقة
+        </button>
+        <span class="verse-nav-counter">{{ mushafPages().indexOf(mushafCurrentPage()) + 1 }} / {{ mushafPages().length
+          }}</span>
+        <button (click)="prevMushafPage()" [disabled]="mushafCurrentPage() === mushafPages()[0]" class="verse-nav-btn">
+          التالية
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+      </div>
+    </section>
+    }
+
+    <!-- Playing Bar -->
     @if (currentPlayingVerse(); as playingNum) {
     <div class="quran-playing-bar">
       <div class="flex items-center gap-3">
@@ -169,7 +626,8 @@
     }
   </main>
 
-  <div class="fixed bottom-6 left-6 z-40">
+  <!-- AI Coach FAB -->
+  <div class="fixed bottom-6 left-6 z-40 chrome-el">
     <button (click)="showAiCoach.set(!showAiCoach())" class="quran-ai-fab">
       <span class="text-xs font-bold text-txt">المصحح الذكي</span>
       <div class="quran-ai-fab-icon">

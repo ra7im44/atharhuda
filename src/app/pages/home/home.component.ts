@@ -74,8 +74,8 @@ export class HomeComponent {
     },
     {
       id: 'tasabeeh',
-      title: 'التسابيح والأذكار',
-      desc: 'سبحة إلكترونية متطورة مع عداد ذكي وإحصائيات يومية لأذكارك وتسابيحك.',
+      title: 'الأذكار',
+      desc: 'أكثر من 50 قسماً من الأذكار المأثورة مع عدّاد ذكي وإحصائيات يومية لكل ذكر.',
       icon: 'counter',
       route: '/tasabeeh',
       gradient: 'from-secondary to-accent',
