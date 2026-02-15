@@ -1,0 +1,1400 @@
+
+> app@0.0.0 dev
+> ng serve --port 4200 --host 127.0.0.1
+
+Node.js version v25.2.1 detected.
+Odd numbered Node.js versions will not enter LTS status and should not be used for production. For more information, please see https://nodejs.org/en/about/previous-releases/.
+[1m[33mComponent HMR has been enabled, see https://angular.dev/hmr for more info.[39m[22m
+[33m❯[39m Building...
+[32m✔[39m Building...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m         [2m | [22m[36m399.46 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m       [2m | [22m [36m69.40 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m468.85 kB[22m
+
+Application bundle generation complete. [8.600 seconds]
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://127.0.0.1:[1m4200[22m/[39m
+[2m[32m  ➜[39m[22m[2m  press [22m[1mh + enter[22m[2m to show help[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m399.62 kB[39m[2m | [22m
+
+Application bundle generation complete. [3.745 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m399.34 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.107 seconds]
+
+Component update sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m399.32 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.317 seconds]
+
+Page reload sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m         [2m | [22m[36m402.55 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m       [2m | [22m [36m69.44 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m471.99 kB[22m
+
+Application bundle generation complete. [1.146 seconds]
+
+Stylesheet update sent to client(s).
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+
+No output file changes.
+
+Application bundle generation complete. [1.506 seconds]
+
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m402.89 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.465 seconds]
+
+Component update sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m406.22 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.971 seconds]
+
+Page reload sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [1.020 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: "as" expression is only allowed on the primary @if block[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:91:33:
+[37m      91 │         } @else if (loadError(); [32mas errorMessage[37m) {
+         ╵                                  [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:33:15:
+[37m      33 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'errorMessage' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:93:40:
+[37m      93 │             <p class="font-bold mb-3">{{[32merrorMessage[37m}}</p>
+         ╵                                         [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:33:15:
+[37m      33 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [1.807 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: "as" expression is only allowed on the primary @if block[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:91:33:
+[37m      91 │         } @else if (loadError(); [32mas errorMessage[37m) {
+         ╵                                  [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:33:15:
+[37m      33 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'errorMessage' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:93:40:
+[37m      93 │             <p class="font-bold mb-3">{{[32merrorMessage[37m}}</p>
+         ╵                                         [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:33:15:
+[37m      33 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m         [2m | [22m[36m407.78 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m       [2m | [22m [36m69.44 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m477.22 kB[22m
+
+Application bundle generation complete. [1.004 seconds]
+
+Page reload sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m         [2m | [22m[36m404.05 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m       [2m | [22m [36m70.88 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m474.94 kB[22m
+
+Application bundle generation complete. [1.064 seconds]
+
+Stylesheet update sent to client(s).
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m420.14 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.187 seconds]
+
+Component update sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m420.83 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.205 seconds]
+
+Page reload sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m423.78 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.273 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m425.67 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.200 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [1.082 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'translation' does not exist on type 'Verse'. Did you mean 'translationAr'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:131:58:
+[37m      131 │ ...translation-text">{{verse.[32mtranslation[37m || 'لا توجد ترج...
+          ╵                              [32m~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:34:15:
+[37m      34 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m         [2m | [22m[36m428.51 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m       [2m | [22m [36m70.88 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m499.39 kB[22m
+
+Application bundle generation complete. [1.413 seconds]
+
+Page reload sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m431.15 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.927 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [1.009 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'toggleTafsir' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:27:27:
+[37m      27 │           <button (click)="[32mtoggleTafsir[37m()"
+         ╵                            [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'showTafsir' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:29:48:
+[37m      29 │             [ngClass]="{'quran-control-active': [32mshowTafsir[37m()}"
+         ╵                                                 [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'toggleTranslationLanguage' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:42:27:
+[37m      42 │           <button (click)="[32mtoggleTranslationLanguage[37m()"
+         ╵                            [32m~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'translationLang' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:44:45:
+[37m      44 │ ...     [ngClass]="{'quran-lang-btn-en': [32mtranslationLang[37m() === 'en'}"
+         ╵                                          [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'translationLang' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:47:22:
+[37m      47 │             <strong>{{[32mtranslationLang[37m() === 'ar' ? 'AR' : 'EN'}}</...
+         ╵                       [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'translationLang' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:138:53:
+[37m      138 │ ...an-translation-title">{{[32mtranslationLang[37m() === 'en' ? 'English ...
+          ╵                            [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'translationLang' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:140:20:
+[37m      140 │                   {{[32mtranslationLang[37m() === 'en' ? (verse.translati...
+          ╵                     [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'translationAr' does not exist on type 'Verse'. Did you mean 'translationEn'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:140:138:
+[37m      140 │ ...is verse yet.') : (verse.[32mtranslationAr[37m || 'لا توجد تر�...
+          ╵                             [32m~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'showTafsir' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:144:19:
+[37m      144 │               @if ([32mshowTafsir[37m()) {
+          ╵                    [32m~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'tafsir' does not exist on type 'Verse'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:147:80:
+[37m      147 │ ...ry leading-relaxed">{{verse.[32mtafsir[37m || 'جاري تحميل ا�...
+          ╵                                [32m~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m         [2m | [22m[36m424.18 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m       [2m | [22m [36m70.88 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m495.06 kB[22m
+
+Application bundle generation complete. [1.349 seconds]
+
+Page reload sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m421.13 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.642 seconds]
+
+Component update sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m421.38 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.899 seconds]
+
+Page reload sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m422.48 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.869 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m425.03 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.816 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m425.03 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.102 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m424.65 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.776 seconds]
+
+Component update sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m425.15 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.871 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m         [2m | [22m[36m425.21 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m       [2m | [22m [36m70.97 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m496.18 kB[22m
+
+Application bundle generation complete. [1.009 seconds]
+
+Stylesheet update sent to client(s).
+Component update sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m426.53 kB[39m[2m | [22m
+
+Application bundle generation complete. [2.383 seconds]
+
+Component update sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m426.47 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.808 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m425.15 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.033 seconds]
+
+Component update sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m424.65 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.812 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [2.463 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'currentPlayingVerse' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:165:40:
+[37m      165 │ ...    @if (isPlaying() && [32mcurrentPlayingVerse[37m() === verse.number) {
+          ╵                            [32m~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'toggleBookmark' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:182:35:
+[37m      182 │ ...       <button (click)="[32mtoggleBookmark[37m(verse)" class="verse-ac...
+          ╵                            [32m~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'isBookmarked' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:182:103:
+[37m      182 │ ...btn" [class.bookmarked]="[32misBookmarked[37m(verse.number)" aria-labe...
+          ╵                             [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'isBookmarked' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:183:54:
+[37m      183 │ ...s="icon-sm" [attr.fill]="[32misBookmarked[37m(verse.number) ? 'current...
+          ╵                             [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'currentPlayingVerse' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:196:21:
+[37m      196 │                 @if ([32mcurrentPlayingVerse[37m() === verse.number && is...
+          ╵                      [32m~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'showToast' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:323:7:
+[37m      323 │   @if ([32mshowToast[37m()) {
+          ╵        [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'toastMessage' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:328:14:
+[37m      328 │       <span>{{[32mtoastMessage[37m()}}</span>
+          ╵               [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [1.483 seconds]
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mExpected ":"[0m [1m[35m[plugin angular-compiler][0m [css-syntax-error]
+
+    src/app/pages/quran/juz-reader/juz-reader.component.css:112:16:
+[37m      112 │   justify-center[32m[37m;
+          │                 [32m^[37m
+          ╵                 [32m:[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'currentPlayingVerse' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:165:40:
+[37m      165 │ ...    @if (isPlaying() && [32mcurrentPlayingVerse[37m() === verse.number) {
+          ╵                            [32m~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'toggleBookmark' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:182:35:
+[37m      182 │ ...       <button (click)="[32mtoggleBookmark[37m(verse)" class="verse-ac...
+          ╵                            [32m~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'isBookmarked' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:182:103:
+[37m      182 │ ...btn" [class.bookmarked]="[32misBookmarked[37m(verse.number)" aria-labe...
+          ╵                             [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'isBookmarked' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:183:54:
+[37m      183 │ ...s="icon-sm" [attr.fill]="[32misBookmarked[37m(verse.number) ? 'current...
+          ╵                             [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'currentPlayingVerse' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:196:21:
+[37m      196 │                 @if ([32mcurrentPlayingVerse[37m() === verse.number && is...
+          ╵                      [32m~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'showToast' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:323:7:
+[37m      323 │   @if ([32mshowToast[37m()) {
+          ╵        [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'toastMessage' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:328:14:
+[37m      328 │       <span>{{[32mtoastMessage[37m()}}</span>
+          ╵               [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.723 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'currentPlayingVerse' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:165:40:
+[37m      165 │ ...    @if (isPlaying() && [32mcurrentPlayingVerse[37m() === verse.number) {
+          ╵                            [32m~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'toggleBookmark' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:182:35:
+[37m      182 │ ...       <button (click)="[32mtoggleBookmark[37m(verse)" class="verse-ac...
+          ╵                            [32m~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'isBookmarked' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:182:103:
+[37m      182 │ ...btn" [class.bookmarked]="[32misBookmarked[37m(verse.number)" aria-labe...
+          ╵                             [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'isBookmarked' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:183:54:
+[37m      183 │ ...s="icon-sm" [attr.fill]="[32misBookmarked[37m(verse.number) ? 'current...
+          ╵                             [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'currentPlayingVerse' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:196:21:
+[37m      196 │                 @if ([32mcurrentPlayingVerse[37m() === verse.number && is...
+          ╵                      [32m~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'showToast' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:323:7:
+[37m      323 │   @if ([32mshowToast[37m()) {
+          ╵        [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'toastMessage' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:328:14:
+[37m      328 │       <span>{{[32mtoastMessage[37m()}}</span>
+          ╵               [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [0.780 seconds]
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mExpected "{" but found end of file[0m [1m[35m[plugin angular-compiler][0m [css-syntax-error]
+
+    src/app/pages/quran/juz-reader/juz-reader.component.css:1:1:
+[37m      1 │ w[32m[37m
+        │  [32m^[37m
+        ╵  [32m{[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'currentPlayingVerse' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:165:40:
+[37m      165 │ ...    @if (isPlaying() && [32mcurrentPlayingVerse[37m() === verse.number) {
+          ╵                            [32m~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'toggleBookmark' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:182:35:
+[37m      182 │ ...       <button (click)="[32mtoggleBookmark[37m(verse)" class="verse-ac...
+          ╵                            [32m~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'isBookmarked' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:182:103:
+[37m      182 │ ...btn" [class.bookmarked]="[32misBookmarked[37m(verse.number)" aria-labe...
+          ╵                             [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'isBookmarked' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:183:54:
+[37m      183 │ ...s="icon-sm" [attr.fill]="[32misBookmarked[37m(verse.number) ? 'current...
+          ╵                             [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'currentPlayingVerse' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:196:21:
+[37m      196 │                 @if ([32mcurrentPlayingVerse[37m() === verse.number && is...
+          ╵                      [32m~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'showToast' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:323:7:
+[37m      323 │   @if ([32mshowToast[37m()) {
+          ╵        [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'toastMessage' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:328:14:
+[37m      328 │       <span>{{[32mtoastMessage[37m()}}</span>
+          ╵               [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [1.487 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'currentPlayingVerse' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:165:40:
+[37m      165 │ ...    @if (isPlaying() && [32mcurrentPlayingVerse[37m() === verse.number) {
+          ╵                            [32m~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'toggleBookmark' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:182:35:
+[37m      182 │ ...       <button (click)="[32mtoggleBookmark[37m(verse)" class="verse-ac...
+          ╵                            [32m~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'isBookmarked' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:182:103:
+[37m      182 │ ...btn" [class.bookmarked]="[32misBookmarked[37m(verse.number)" aria-labe...
+          ╵                             [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'isBookmarked' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:183:54:
+[37m      183 │ ...s="icon-sm" [attr.fill]="[32misBookmarked[37m(verse.number) ? 'current...
+          ╵                             [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'currentPlayingVerse' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:196:21:
+[37m      196 │                 @if ([32mcurrentPlayingVerse[37m() === verse.number && is...
+          ╵                      [32m~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'showToast' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:323:7:
+[37m      323 │   @if ([32mshowToast[37m()) {
+          ╵        [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'toastMessage' does not exist on type 'JuzReaderComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:328:14:
+[37m      328 │       <span>{{[32mtoastMessage[37m()}}</span>
+          ╵               [32m~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:32:15:
+[37m      32 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m         [2m | [22m[36m446.11 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m       [2m | [22m [36m71.39 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m517.50 kB[22m
+
+Application bundle generation complete. [1.192 seconds]
+
+Page reload sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m         [2m | [22m[36m430.12 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m       [2m | [22m [36m71.42 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m501.54 kB[22m
+
+Application bundle generation complete. [1.640 seconds]
+
+Stylesheet update sent to client(s).
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m430.72 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.359 seconds]
+
+Page reload sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m         [2m | [22m[36m433.93 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m       [2m | [22m [36m71.49 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m505.42 kB[22m
+
+Application bundle generation complete. [1.179 seconds]
+
+Stylesheet update sent to client(s).
+Component update sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m         [2m | [22m[36m437.87 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m       [2m | [22m [36m71.59 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m509.46 kB[22m
+
+Application bundle generation complete. [1.114 seconds]
+
+Stylesheet update sent to client(s).
+Component update sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m440.44 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.026 seconds]
+
+Component update sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m443.37 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.811 seconds]
+
+Component update sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m445.33 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.909 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m445.42 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.850 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m445.88 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.785 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m445.94 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.119 seconds]
+
+Page reload sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m445.88 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.027 seconds]
+
+Page reload sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m         [2m | [22m[36m445.87 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m       [2m | [22m [36m71.62 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m517.49 kB[22m
+
+Application bundle generation complete. [0.729 seconds]
+
+Stylesheet update sent to client(s).
+Component update sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m445.79 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.979 seconds]
+
+Component update sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m445.09 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.232 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m444.63 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.209 seconds]
+
+Component update sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [1.210 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'audio' does not exist on type 'Verse'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:259:14:
+[37m      259 │     if (verse.[32maudio[37m) {
+          ╵               [32m~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m         [2m | [22m[36m445.64 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m       [2m | [22m [36m71.62 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m517.26 kB[22m
+
+Application bundle generation complete. [1.152 seconds]
+
+Page reload sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m448.11 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.260 seconds]
+
+Component update sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m449.04 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.716 seconds]
+
+Component update sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m449.96 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.070 seconds]
+
+Page reload sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m450.96 kB[39m[2m | [22m
+
+Application bundle generation complete. [2.518 seconds]
+
+Page reload sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m452.08 kB[39m[2m | [22m
+
+Application bundle generation complete. [5.759 seconds]
+
+Page reload sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m453.67 kB[39m[2m | [22m
+
+Application bundle generation complete. [3.339 seconds]
+
+Component update sent to client(s).
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m455.06 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.906 seconds]
+
+Component update sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [3.978 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG4: Expected 2 arguments, but got 1.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:141:68:
+[37m      141 │ ...ss="quran-word" (click)="[32mpronounceWord[37m(word)" [style.fontSize....
+          ╵                             [32m~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:38:15:
+[37m      38 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m         [2m | [22m[36m454.72 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m       [2m | [22m [36m71.62 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m526.34 kB[22m
+
+Application bundle generation complete. [4.031 seconds]
+
+Page reload sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+Application bundle generation failed. [1.932 seconds]
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG4: Expected 3 arguments, but got 2.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/quran/juz-reader/juz-reader.component.html:141:68:
+[37m      141 │ ...ss="quran-word" (click)="[32mpronounceWord[37m(word, verse)" [style.fo...
+          ╵                             [32m~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component JuzReaderComponent.
+
+    src/app/pages/quran/juz-reader/juz-reader.component.ts:42:15:
+[37m      42 │   templateUrl: [32m'./juz-reader.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m         [2m | [22m[36m456.27 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m       [2m | [22m [36m71.62 kB[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m527.89 kB[22m
+
+Application bundle generation complete. [1.642 seconds]
+
+Page reload sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m[2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m [2m | [22m[36m457.17 kB[39m[2m | [22m
+
+Application bundle generation complete. [1.595 seconds]
+
+Page reload sent to client(s).
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m
+[1m[33mRequest for HTML file "/rss/index.html" was received but no asset found. Asset may be missing from build.[39m[22m

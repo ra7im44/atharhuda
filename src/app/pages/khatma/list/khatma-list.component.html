@@ -39,9 +39,38 @@
                 <circle cx="11" cy="11" r="8" />
                 <path d="m21 21-4.3-4.3" />
             </svg>
-            <input [(ngModel)]="searchQuery" type="text" placeholder="ابحث باسم الختمة أو المنشئ..."
+            <input [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)" type="text"
+                placeholder="ابحث باسم الختمة أو المنشئ أو المتوفى..."
                 class="w-full md:w-96 pr-12 pl-4 py-3.5 rounded-xl border border-input-brd bg-input-bg text-txt text-sm outline-none transition-all focus:border-focus focus:shadow-[0_0_0_3px_rgba(var(--focus-rgb),0.08)]" />
         </div>
+
+        <!-- Completion Log -->
+        @if (khatmaService.completionLog().length) {
+        <section class="mb-10 animate-fade-up delay-200">
+            <div class="flex items-center gap-2 mb-4">
+                <span class="w-1 h-7 bg-gradient-to-b from-ok to-accent rounded-full"></span>
+                <h2 class="text-lg md:text-xl font-black text-txt">سجل الختمات المكتملة</h2>
+            </div>
+            <div class="bg-surface border border-brd/70 rounded-2xl p-4 md:p-5 space-y-3">
+                @for (item of khatmaService.completionLog(); track item.id; let i = $index) {
+                <div
+                    class="rounded-xl border border-brd/70 bg-surface-el/50 p-3.5 text-xs md:text-sm text-txt-secondary leading-relaxed">
+                    <span class="font-bold text-ok">#{{i + 1}}</span>
+                    ختمة
+                    <span class="font-bold text-txt">"{{item.title}}"</span>
+                    باسم
+                    <span class="font-bold text-txt">{{item.createdBy}}</span>
+                    @if (item.deceasedName) {
+                    عن روح
+                    <span class="font-bold text-accent">{{item.deceasedName}}</span>
+                    }
+                    تم إكمالها يوم
+                    <span class="font-bold text-txt">{{item.completedAt | date:'dd/MM/yyyy - HH:mm'}}</span>.
+                </div>
+                }
+            </div>
+        </section>
+        }
 
         <!-- Khatma Grid -->
         @if (filteredKhatmas().length > 0) {

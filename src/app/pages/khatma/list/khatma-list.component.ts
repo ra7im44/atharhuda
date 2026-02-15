@@ -16,7 +16,7 @@ export class KhatmaListComponent {
   khatmaService = inject(KhatmaService);
   private router = inject(Router);
   isCreating = signal(false);
-  searchQuery = '';
+  searchQuery = signal('');
 
   createForm = new FormGroup({
     title: new FormControl('', Validators.required),
@@ -28,9 +28,13 @@ export class KhatmaListComponent {
 
   filteredKhatmas = computed(() => {
     const all = this.khatmaService.khatmas();
-    if (!this.searchQuery.trim()) return all;
-    const q = this.searchQuery.trim().toLowerCase();
-    return all.filter(k => k.title.toLowerCase().includes(q) || k.createdBy.toLowerCase().includes(q) || (k.deceasedName?.toLowerCase().includes(q)));
+    const q = this.searchQuery().trim().toLowerCase();
+    if (!q) return all;
+    return all.filter(k =>
+      k.title.toLowerCase().includes(q) ||
+      k.createdBy.toLowerCase().includes(q) ||
+      (k.deceasedName?.toLowerCase().includes(q))
+    );
   });
 
   onSubmit() {

@@ -1,1 +1,296 @@
-/* HomeComponent styles */
+/* ══════════════════════════════════════
+   Home Component — Premium Styles
+   ══════════════════════════════════════ */
+
+/* ── Feature Hero Card ── */
+.feature-hero-card {
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-hero-card:hover {
+    border-color: color-mix(in srgb, var(--primary) 30%, transparent);
+}
+
+/* ── Card Lift Effect ── */
+.card-lift {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
+}
+
+.card-lift:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.04),
+        0 8px 16px rgba(0, 0, 0, 0.02);
+    border-color: color-mix(in srgb, var(--primary) 20%, var(--border));
+}
+
+:host-context(.dark) .card-lift:hover {
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.2),
+        0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Gradient Animation ── */
+@keyframes gradient-shift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 6s ease infinite;
+}
+
+/* ── Pulse Glow ── */
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        box-shadow:
+            0 20px 50px rgba(0, 0, 0, 0.05),
+            inset 0 0 20px rgba(var(--primary-rgb), 0.02);
+    }
+
+    50% {
+        box-shadow:
+            0 20px 50px rgba(0, 0, 0, 0.08),
+            inset 0 0 30px rgba(var(--primary-rgb), 0.04);
+    }
+}
+
+.animate-pulse-glow {
+    animation: pulse-glow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ── Float Slow ── */
+@keyframes float-slow {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.animate-float-slow {
+    animation: float-slow 5s ease-in-out infinite;
+}
+
+/* ── Pop In ── */
+@keyframes pop-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    70% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-pop-in {
+    opacity: 0;
+    animation: pop-in 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.delay-500 {
+    animation-delay: 500ms;
+}
+
+.delay-600 {
+    animation-delay: 600ms;
+}
+
+.delay-700 {
+    animation-delay: 700ms;
+}
+
+/* ── Hero Heading ── */
+@keyframes hero-in {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+        filter: blur(4px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+.animate-hero {
+    animation: hero-in 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ── Fade Up ── */
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-up {
+    opacity: 0;
+    animation: fade-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.delay-200 {
+    animation-delay: 200ms;
+}
+
+.delay-300 {
+    animation-delay: 300ms;
+}
+
+/* ── Scale In ── */
+@keyframes scale-in {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-scale-in {
+    opacity: 0;
+    animation: scale-in 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ── Count Up ── */
+@keyframes count-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.animate-count {
+    opacity: 0;
+    animation: count-in 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ── Glass ── */
+.glass {
+    background: color-mix(in srgb, var(--surface) 80%, transparent);
+    backdrop-filter: blur(16px);
+    border: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+}
+
+/* ── Amber / Orange colors (not in Tailwind config) ── */
+.text-amber-500 {
+    color: #f59e0b;
+}
+
+.text-amber-600 {
+    color: #d97706;
+}
+
+.text-orange-500 {
+    color: #f97316;
+}
+
+.text-orange-600 {
+    color: #ea580c;
+}
+
+.text-info {
+    color: #06b6d4;
+}
+
+:host-context(.dark) .text-amber-400 {
+    color: #fbbf24;
+}
+
+:host-context(.dark) .text-orange-400 {
+    color: #fb923c;
+}
+
+.bg-amber-500\/10,
+.bg-amber-500\/\[0\.06\] {
+    background: rgba(245, 158, 11, 0.06);
+}
+
+.bg-amber-500\/\[0\.03\] {
+    background: rgba(245, 158, 11, 0.03);
+}
+
+.bg-orange-500\/\[0\.06\] {
+    background: rgba(249, 115, 22, 0.06);
+}
+
+.bg-info\/10 {
+    background: rgba(6, 182, 212, 0.1);
+}
+
+.bg-info\/\[0\.03\] {
+    background: rgba(6, 182, 212, 0.03);
+}
+
+.from-amber-500 {
+    --tw-gradient-from: #f59e0b;
+}
+
+.to-orange-500 {
+    --tw-gradient-to: #f97316;
+}
+
+.from-info {
+    --tw-gradient-from: #06b6d4;
+}
+
+.to-primary {
+    --tw-gradient-to: var(--primary);
+}
+
+.shadow-amber-500\/20 {
+    --tw-shadow-color: rgba(245, 158, 11, 0.2);
+}
+
+.shadow-info\/20 {
+    --tw-shadow-color: rgba(6, 182, 212, 0.2);
+}
+
+/* Responsive: reduce card lift effect on mobile */
+@media (max-width: 640px) {
+    .card-lift:hover {
+        transform: translateY(-3px);
+    }
+
+    .feature-hero-card .flex {
+        flex-direction: column;
+        text-align: center;
+    }
+}

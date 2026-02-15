@@ -1,0 +1,107 @@
+<div class="sebha-page" dir="rtl">
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+
+  <header class="stats-panel">
+    <div class="stats-item">
+      <span class="stats-label">مجموع اليوم</span>
+      <strong class="stats-value">{{ todayStats.totalCounts }}</strong>
+    </div>
+    <div class="stats-item">
+      <span class="stats-label">أوراد مكتملة</span>
+      <strong class="stats-value">{{ todayStats.completedAwrad }}</strong>
+    </div>
+  </header>
+
+  <section class="category-strip no-scrollbar">
+    <button (click)="filterCategory('all')" class="chip" [class.chip-active]="activeCategory === 'all'">الكل</button>
+    <button (click)="filterCategory('prayer')" class="chip" [class.chip-active]="activeCategory === 'prayer'">بعد الصلاة</button>
+    <button (click)="filterCategory('daily')" class="chip" [class.chip-active]="activeCategory === 'daily'">أوراد يومية</button>
+    <button (click)="filterCategory('urgent')" class="chip" [class.chip-active]="activeCategory === 'urgent'">ورد سريع</button>
+    <button (click)="filterCategory('custom')" class="chip" [class.chip-active]="activeCategory === 'custom'">مخصص</button>
+    <button (click)="showAddModal = true" class="chip chip-add">+ ذكر جديد</button>
+  </section>
+
+  <main class="main-area" *ngIf="activeItem; else emptyState">
+    <article class="dhikr-card">
+      <h2>{{ activeItem.text }}</h2>
+      <p>{{ activeItem.benefit }}</p>
+    </article>
+
+    <div class="counter-shell" (click)="tapSebha()">
+      <svg class="progress-ring" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="54" fill="none" stroke="#21333d" stroke-width="7" />
+        <circle
+          cx="60"
+          cy="60"
+          r="54"
+          fill="none"
+          [attr.stroke]="isCompleted(activeItem) ? '#f7c948' : '#00b894'"
+          stroke-width="7"
+          stroke-linecap="round"
+          [style.stroke-dasharray]="circumference"
+          [style.stroke-dashoffset]="dashOffset"
+        />
+      </svg>
+
+      <div class="counter-content">
+        <span class="tap-hint">اضغط للتسبيح</span>
+        <strong [class.done]="isCompleted(activeItem)">{{ activeItem.current }}</strong>
+        <span>الهدف {{ activeItem.count }}</span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button (click)="resetCurrent()">تصفير</button>
+      <button (click)="adjustCount(-1)">-1</button>
+      <button (click)="adjustCount(10)">+10</button>
+      <button (click)="shareDhikr()">مشاركة</button>
+    </div>
+  </main>
+
+  <ng-template #emptyState>
+    <div class="empty-state">
+      <p>لا يوجد أذكار ضمن هذا التصنيف.</p>
+      <button (click)="showAddModal = true">إضافة ذكر</button>
+    </div>
+  </ng-template>
+
+  <footer class="cards-strip no-scrollbar">
+    <button
+      *ngFor="let item of displayTasabeeh"
+      type="button"
+      (click)="setActive(item)"
+      class="tasbih-mini"
+      [class.active]="activeItem?.id === item.id"
+    >
+      <span *ngIf="item.isCustom" (click)="deleteCustomDhikr(item.id, $event)" class="delete-mini">×</span>
+      <h4>{{ item.title }}</h4>
+      <div class="mini-bar">
+        <span [style.width.%]="getTasbihProgress(item)"></span>
+      </div>
+      <small>{{ item.current }} / {{ item.count }}</small>
+    </button>
+  </footer>
+
+  <div *ngIf="showAddModal" class="modal">
+    <div class="modal-card">
+      <h3>إضافة ذكر جديد</h3>
+      <label>
+        اسم الذكر
+        <input [(ngModel)]="newDhikr.title" type="text" placeholder="مثال: لا حول ولا قوة إلا بالله" />
+      </label>
+      <label>
+        نص الذكر (اختياري)
+        <input [(ngModel)]="newDhikr.text" type="text" placeholder="سيظهر داخل العداد" />
+      </label>
+      <label>
+        العدد المستهدف
+        <input [(ngModel)]="newDhikr.count" type="number" min="1" />
+      </label>
+      <div class="modal-actions">
+        <button type="button" (click)="showAddModal = false">إلغاء</button>
+        <button type="button" (click)="addCustomDhikr()">حفظ</button>
+      </div>
+    </div>
+  </div>
+</div>

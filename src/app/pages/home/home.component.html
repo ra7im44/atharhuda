@@ -1,18 +1,13 @@
 <!-- ═══ HERO ═══ -->
-<section
-  class="relative min-h-[92vh] flex items-center overflow-hidden"
->
-  <!-- Ambient Blobs (Optimized) -->
+<section class="relative min-h-[92vh] flex items-center overflow-hidden">
+  <!-- Ambient Blobs -->
   <div
-    class="absolute top-[-15%] right-[-8%] w-[500px] h-[500px] rounded-full blur-[100px] opacity-[0.06] bg-primary animate-drift pointer-events-none"
-  ></div>
+    class="absolute top-[-15%] right-[-8%] w-[500px] h-[500px] rounded-full blur-[100px] opacity-[0.06] bg-primary animate-drift pointer-events-none">
+  </div>
   <div
     class="absolute bottom-[-15%] left-[-10%] w-[400px] h-[400px] rounded-full blur-[80px] opacity-[0.04] bg-accent animate-drift pointer-events-none"
-    style="animation-delay: -7s"
-  ></div>
-  <div
-    class="absolute inset-0 islamic-pattern-dense opacity-25 dark:opacity-[0.04] pointer-events-none"
-  ></div>
+    style="animation-delay: -7s"></div>
+  <div class="absolute inset-0 islamic-pattern-dense opacity-25 dark:opacity-[0.04] pointer-events-none"></div>
 
   <div class="relative z-10 max-w-6xl mx-auto px-6 w-full py-12">
     <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -20,25 +15,16 @@
       <div class="text-center lg:text-right order-2 lg:order-1">
         <!-- Badge -->
         <div
-          class="animate-fade-up inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-accent/15 bg-accent/[0.05] mb-8"
-        >
+          class="animate-fade-up inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-accent/15 bg-accent/[0.05] mb-8">
           <span class="relative flex h-2 w-2">
-            <span
-              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-50"
-            ></span>
-            <span
-              class="relative inline-flex rounded-full h-2 w-2 bg-accent"
-            ></span>
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-50"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
           </span>
-          <span class="text-accent text-xs font-bold tracking-wide"
-            >صدقة جارية للمتوفى</span
-          >
+          <span class="text-accent text-xs font-bold tracking-wide">صدقة جارية للمتوفى</span>
         </div>
 
         <!-- Heading -->
-        <h1
-          class="animate-hero text-[2.8rem] md:text-[3.6rem] lg:text-[4rem] font-black leading-[1.12] text-txt mb-7"
-        >
+        <h1 class="animate-hero text-[2.8rem] md:text-[3.6rem] lg:text-[4rem] font-black leading-[1.12] text-txt mb-7">
           اختم القرآن
           <br />
           <span class="gradient-text">لمن تحب</span>
@@ -46,55 +32,29 @@
 
         <!-- Description -->
         <p
-          class="animate-fade-up delay-200 text-txt-secondary text-[15px] md:text-base leading-[2] max-w-xl mx-auto lg:mx-0 lg:mr-0 mb-10"
-        >
-          أنشئ ختمة قرآنية جماعية وأهدِ ثوابها لروح من فقدت.
+          class="animate-fade-up delay-200 text-txt-secondary text-[15px] md:text-base leading-[2] max-w-xl mx-auto lg:mx-0 lg:mr-0 mb-10">
+          منصة إسلامية شاملة — ختمات جماعية، مصحّح تلاوة ذكي، أدعية، تسابيح، ورمضانيات.
           <br class="hidden md:block" />
-          ادعُ عائلتك وأصدقاءك للمشاركة في قراءة الأجزاء.
+          كل ما تحتاجه لتقرّب إلى الله في مكان واحد.
         </p>
 
         <!-- CTAs -->
-        <div
-          class="animate-fade-up delay-300 flex flex-col sm:flex-row gap-3.5 justify-center lg:justify-start"
-        >
-          <button
-            (click)="showCreateModal.set(true)"
-            aria-label="إنشاء ختمة جديدة"
-            class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_100%] text-white font-bold text-[15px] shadow-xl shadow-primary/20 transition-all duration-500 hover:bg-right hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/30 overflow-hidden"
-          >
-            <svg
-              class="w-5 h-5 relative transition-transform group-hover:rotate-90 duration-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2.5"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 4v16m8-8H4"
-              />
+        <div class="animate-fade-up delay-300 flex flex-col sm:flex-row gap-3.5 justify-center lg:justify-start">
+          <button (click)="showCreateModal.set(true)" aria-label="إنشاء ختمة جديدة"
+            class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_100%] text-white font-bold text-[15px] shadow-xl shadow-primary/20 transition-all duration-500 hover:bg-right hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/30 overflow-hidden">
+            <svg class="w-5 h-5 relative transition-transform group-hover:rotate-90 duration-500" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
             </svg>
             <span class="relative">أنشئ ختمة جديدة</span>
           </button>
 
-          <a
-            routerLink="/duas"
-            aria-label="أدعية للمتوفى"
-            class="group inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl border-2 border-brd text-txt-secondary hover:text-accent hover:border-accent/30 hover:bg-accent/[0.03] font-semibold text-sm transition-all duration-300"
-          >
-            <svg
-              class="w-4 h-4 transition-transform group-hover:scale-110 duration-300"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
-              />
+          <a routerLink="/duas" aria-label="تصفح المنصة"
+            class="group inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl border-2 border-brd text-txt-secondary hover:text-accent hover:border-accent/30 hover:bg-accent/[0.03] font-semibold text-sm transition-all duration-300">
+            <svg class="w-4 h-4 transition-transform group-hover:scale-110 duration-300" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
             </svg>
             أدعية للمتوفى
           </a>
@@ -102,103 +62,52 @@
       </div>
 
       <!-- Visual Orb -->
-      <div
-        class="order-1 lg:order-2 flex justify-center animate-scale-in delay-200"
-      >
+      <div class="order-1 lg:order-2 flex justify-center animate-scale-in delay-200">
         <div class="relative w-72 h-72 md:w-80 md:h-80">
-          <!-- Outer decorative rings -->
-          <div
-            class="absolute inset-0 rounded-full border-2 border-dashed border-primary/[0.06] animate-orbit"
-          ></div>
-          <div
-            class="absolute inset-4 rounded-full border border-accent/[0.05] animate-orbit-reverse"
-          ></div>
+          <div class="absolute inset-0 rounded-full border-2 border-dashed border-primary/[0.06] animate-orbit"></div>
+          <div class="absolute inset-4 rounded-full border border-accent/[0.05] animate-orbit-reverse"></div>
 
           <!-- Center Card -->
           <div
-            class="absolute inset-10 rounded-[2rem] glass shadow-2xl flex flex-col items-center justify-center text-center p-5 animate-pulse-glow"
-          >
+            class="absolute inset-10 rounded-[2rem] glass shadow-2xl flex flex-col items-center justify-center text-center p-5 animate-pulse-glow">
             <div
-              class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-3"
-            >
-              <svg
-                class="w-7 h-7 text-primary animate-float-slow"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
-                />
+              class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-3">
+              <svg class="w-7 h-7 text-primary animate-float-slow" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
               </svg>
             </div>
             <span class="text-4xl font-black text-txt">30</span>
-            <span class="text-primary text-[11px] font-bold mt-1"
-              >جزء في كل ختمة</span
-            >
+            <span class="text-primary text-[11px] font-bold mt-1">جزء في كل ختمة</span>
           </div>
 
           <!-- Floating Icons -->
           <div class="absolute top-2 right-6 animate-pop-in delay-500">
-            <div
-              class="w-12 h-12 rounded-2xl glass shadow-lg flex items-center justify-center animate-float"
-              style="animation-delay: -2s"
-            >
-              <svg
-                class="w-5 h-5 text-primary"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-                />
+            <div class="w-12 h-12 rounded-2xl glass shadow-lg flex items-center justify-center animate-float"
+              style="animation-delay: -2s">
+              <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
               </svg>
             </div>
           </div>
           <div class="absolute bottom-3 left-1 animate-pop-in delay-600">
-            <div
-              class="w-11 h-11 rounded-xl glass shadow-lg flex items-center justify-center animate-float"
-              style="animation-delay: -4s"
-            >
-              <svg
-                class="w-5 h-5 text-accent"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"
-                />
+            <div class="w-11 h-11 rounded-xl glass shadow-lg flex items-center justify-center animate-float"
+              style="animation-delay: -4s">
+              <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
               </svg>
             </div>
           </div>
           <div class="absolute top-1/2 left-[-10px] animate-pop-in delay-700">
-            <div
-              class="w-10 h-10 rounded-xl glass shadow-lg flex items-center justify-center animate-float"
-              style="animation-delay: -1s"
-            >
-              <svg
-                class="w-4 h-4 text-secondary"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                />
+            <div class="w-10 h-10 rounded-xl glass shadow-lg flex items-center justify-center animate-float"
+              style="animation-delay: -1s">
+              <svg class="w-4 h-4 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
               </svg>
             </div>
           </div>
@@ -208,16 +117,13 @@
 
     <!-- Stats Row -->
     <div
-      class="animate-fade-up delay-500 mt-16 pt-10 border-t border-brd/40 grid grid-cols-3 gap-8 max-w-md mx-auto lg:mx-0 text-center lg:text-right"
-    >
+      class="animate-fade-up delay-500 mt-16 pt-10 border-t border-brd/40 grid grid-cols-3 gap-8 max-w-md mx-auto lg:mx-0 text-center lg:text-right">
       @for (stat of statsData(); track stat.label) {
       <div class="animate-count" [style.animation-delay]="stat.delay">
         <div class="text-2xl md:text-3xl font-black" [class]="stat.color">
           {{ stat.value || '—' }}
         </div>
-        <div
-          class="text-[10px] text-txt-muted mt-1.5 font-bold uppercase tracking-wider"
-        >
+        <div class="text-[10px] text-txt-muted mt-1.5 font-bold uppercase tracking-wider">
           {{ stat.label }}
         </div>
       </div>
@@ -226,58 +132,319 @@
   </div>
 </section>
 
-<!-- ═══ HADITH ═══ -->
-<section class="animate-fade-up py-24 relative overflow-hidden">
-  <div
-    class="absolute inset-0 bg-gradient-to-b from-surface/50 via-surface to-surface/50"
-  ></div>
-  <div
-    class="absolute inset-0 islamic-pattern-dense opacity-20 dark:opacity-[0.03] pointer-events-none"
-  ></div>
+<!-- ═══ DAILY VERSE ═══ -->
+<section class="animate-fade-up py-16 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-surface/50 via-surface to-surface/50"></div>
+  <div class="absolute inset-0 islamic-pattern-dense opacity-20 dark:opacity-[0.03] pointer-events-none"></div>
   <div class="relative max-w-2xl mx-auto px-6 text-center">
     <div class="inline-flex items-center gap-3 mb-8">
       <div class="w-12 h-[1.5px] bg-accent/30 rounded-full"></div>
-      <div
-        class="w-8 h-8 rounded-lg bg-accent/[0.07] flex items-center justify-center"
-      >
-        <svg
-          class="w-4 h-4 text-accent"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="1.5"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
-          />
+      <div class="w-8 h-8 rounded-lg bg-accent/[0.07] flex items-center justify-center">
+        <svg class="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
         </svg>
       </div>
       <div class="w-12 h-[1.5px] bg-accent/30 rounded-full"></div>
     </div>
     <p class="text-lg md:text-xl font-quran leading-[2.4] text-txt">
-      « إذا مات ابن آدم انقطع عمله إلا من ثلاث:
-      <span class="text-primary font-bold">صدقة جارية</span>، أو علم يُنتفع به،
-      أو ولد صالح يدعو له »
+      {{ dailyVerse.text }}
     </p>
-    <div
-      class="mt-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/[0.06] border border-accent/10"
-    >
-      <svg
-        class="w-3.5 h-3.5 text-accent"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
-        />
+    <div class="mt-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/[0.06] border border-accent/10">
+      <svg class="w-3.5 h-3.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
       </svg>
-      <span class="text-accent text-[11px] font-bold">رواه مسلم</span>
+      <span class="text-accent text-[11px] font-bold">{{ dailyVerse.surah }}</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURES - ALL PAGES ═══ -->
+<section class="py-24 relative">
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface/40 to-transparent"></div>
+  <div class="relative max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/[0.05] border border-secondary/10 text-secondary text-[11px] font-bold mb-4 uppercase tracking-wider">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+        </svg>
+        أدوات شاملة
+      </div>
+      <h2 class="text-2xl md:text-4xl font-black text-txt mb-3">
+        كل ما تحتاجه <span class="gradient-text">في مكان واحد</span>
+      </h2>
+      <p class="text-txt-muted text-sm max-w-lg mx-auto">
+        منصة متكاملة تجمع أهم الأدوات الإسلامية لمساعدتك في عبادتك اليومية
+      </p>
+    </div>
+
+    <!-- Featured Card (Khatmat) - Full Width -->
+    <a routerLink="/khatmat"
+      class="feature-hero-card group block mb-8 relative rounded-[2rem] overflow-hidden border border-brd/60 bg-surface shadow-lg hover:shadow-2xl transition-all duration-700 hover:-translate-y-1">
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-primary/[0.03] via-transparent to-accent/[0.03] opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+      </div>
+      <div
+        class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-l from-primary via-secondary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+      </div>
+      <div
+        class="absolute -top-32 -right-32 w-64 h-64 bg-primary/[0.03] rounded-full blur-3xl group-hover:bg-primary/[0.07] transition-colors duration-700">
+      </div>
+
+      <div class="relative z-10 p-8 md:p-10 flex flex-col md:flex-row items-center gap-8">
+        <div
+          class="w-20 h-20 md:w-24 md:h-24 rounded-[1.75rem] bg-gradient-to-br from-primary/[0.08] to-accent/[0.08] flex items-center justify-center flex-shrink-0 group-hover:from-primary group-hover:to-secondary group-hover:shadow-2xl group-hover:shadow-primary/25 transition-all duration-500 group-hover:scale-110">
+          <svg class="w-10 h-10 md:w-12 md:h-12 text-primary group-hover:text-white transition-colors duration-500"
+            fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+          </svg>
+        </div>
+        <div class="text-center md:text-right flex-1">
+          <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
+            <h3 class="text-xl md:text-2xl font-black text-txt group-hover:text-primary transition-colors">الختمات
+              الجماعية</h3>
+            <span class="px-2.5 py-1 rounded-lg bg-primary/10 text-primary text-[9px] font-bold">الأكثر استخداماً</span>
+          </div>
+          <p class="text-sm text-txt-muted leading-relaxed max-w-lg">
+            أنشئ ختمة قرآنية وشارك الأجر مع عائلتك وأحبابك. قسّم 30 جزءاً بين المشاركين وتتبّع التقدم لحظة بلحظة.
+          </p>
+        </div>
+        <div class="flex-shrink-0">
+          <div
+            class="w-12 h-12 rounded-xl border border-brd bg-surface-el flex items-center justify-center group-hover:bg-primary group-hover:border-primary group-hover:text-white text-txt-muted transition-all duration-500">
+            <svg class="w-5 h-5 rotate-180 group-hover:translate-x-[-4px] transition-transform duration-300" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Feature Cards Grid -->
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Coach Card -->
+      <a routerLink="/coach"
+        class="card-lift group relative bg-surface rounded-[1.75rem] border border-brd/70 overflow-hidden">
+        <div
+          class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-l from-info to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+        </div>
+        <div
+          class="absolute -top-20 -right-20 w-40 h-40 bg-info/[0.03] rounded-full blur-2xl group-hover:bg-info/[0.06] transition-all duration-700">
+        </div>
+        <div class="relative z-10 p-7">
+          <div class="flex items-start gap-5">
+            <div
+              class="w-14 h-14 rounded-2xl bg-gradient-to-br from-info/10 to-primary/10 flex items-center justify-center flex-shrink-0 group-hover:from-info group-hover:to-primary group-hover:shadow-xl group-hover:shadow-info/20 transition-all duration-500 group-hover:scale-110">
+              <svg class="w-7 h-7 text-info group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-1.5">
+                <h3 class="text-base font-bold text-txt group-hover:text-info transition-colors">المصحّح الذكي</h3>
+                <span class="px-2 py-0.5 rounded-md bg-info/10 text-info text-[8px] font-bold">AI</span>
+              </div>
+              <p class="text-xs text-txt-muted leading-relaxed">
+                سجّل تلاوتك واحصل على تقييم فوري بالذكاء الاصطناعي مع ملاحظات تجويدية دقيقة.
+              </p>
+            </div>
+          </div>
+          <div class="mt-5 flex items-center justify-between pt-4 border-t border-brd/40">
+            <div class="flex items-center gap-2">
+              <div class="flex -space-x-1.5 space-x-reverse">
+                <div class="w-5 h-5 rounded-full bg-info/20 border border-surface"></div>
+                <div class="w-5 h-5 rounded-full bg-primary/20 border border-surface"></div>
+                <div class="w-5 h-5 rounded-full bg-accent/20 border border-surface"></div>
+              </div>
+              <span class="text-[10px] text-txt-muted font-medium">تحليل • تجويد • تقييم</span>
+            </div>
+            <svg
+              class="w-4 h-4 text-txt-muted group-hover:text-info rotate-180 group-hover:translate-x-[-3px] transition-all"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- Duas Card -->
+      <a routerLink="/duas"
+        class="card-lift group relative bg-surface rounded-[1.75rem] border border-brd/70 overflow-hidden">
+        <div
+          class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-l from-accent to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+        </div>
+        <div
+          class="absolute -top-20 -right-20 w-40 h-40 bg-accent/[0.03] rounded-full blur-2xl group-hover:bg-accent/[0.06] transition-all duration-700">
+        </div>
+        <div class="relative z-10 p-7">
+          <div class="flex items-start gap-5">
+            <div
+              class="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/10 to-secondary/10 flex items-center justify-center flex-shrink-0 group-hover:from-accent group-hover:to-secondary group-hover:shadow-xl group-hover:shadow-accent/20 transition-all duration-500 group-hover:scale-110">
+              <svg class="w-7 h-7 text-accent group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-base font-bold text-txt group-hover:text-accent transition-colors mb-1.5">أدعية للمتوفى
+              </h3>
+              <p class="text-xs text-txt-muted leading-relaxed">
+                أدعية مختارة من القرآن الكريم والسنة النبوية الصحيحة للدعاء لأمواتنا.
+              </p>
+            </div>
+          </div>
+          <div class="mt-5 flex items-center justify-between pt-4 border-t border-brd/40">
+            <div class="flex items-center gap-2">
+              <span class="text-[10px] text-txt-muted font-medium">📖 من القرآن والسنة</span>
+            </div>
+            <svg
+              class="w-4 h-4 text-txt-muted group-hover:text-accent rotate-180 group-hover:translate-x-[-3px] transition-all"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- Tasabeeh Card -->
+      <a routerLink="/tasabeeh"
+        class="card-lift group relative bg-surface rounded-[1.75rem] border border-brd/70 overflow-hidden">
+        <div
+          class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-l from-secondary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+        </div>
+        <div
+          class="absolute -top-20 -right-20 w-40 h-40 bg-secondary/[0.03] rounded-full blur-2xl group-hover:bg-secondary/[0.06] transition-all duration-700">
+        </div>
+        <div class="relative z-10 p-7">
+          <div class="flex items-start gap-5">
+            <div
+              class="w-14 h-14 rounded-2xl bg-gradient-to-br from-secondary/10 to-accent/10 flex items-center justify-center flex-shrink-0 group-hover:from-secondary group-hover:to-accent group-hover:shadow-xl group-hover:shadow-secondary/20 transition-all duration-500 group-hover:scale-110">
+              <svg class="w-7 h-7 text-secondary group-hover:text-white transition-colors" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-base font-bold text-txt group-hover:text-secondary transition-colors mb-1.5">التسابيح
+                والأذكار</h3>
+              <p class="text-xs text-txt-muted leading-relaxed">
+                سبحة إلكترونية متطورة مع عداد ذكي وإحصائيات يومية لأذكارك وتسابيحك.
+              </p>
+            </div>
+          </div>
+          <div class="mt-5 flex items-center justify-between pt-4 border-t border-brd/40">
+            <div class="flex items-center gap-3">
+              <div class="flex items-center gap-1">
+                <div class="w-2 h-2 rounded-full bg-secondary/40"></div>
+                <span class="text-[10px] text-txt-muted font-medium">عداد</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <div class="w-2 h-2 rounded-full bg-accent/40"></div>
+                <span class="text-[10px] text-txt-muted font-medium">إحصائيات</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <div class="w-2 h-2 rounded-full bg-primary/40"></div>
+                <span class="text-[10px] text-txt-muted font-medium">أذكار مخصصة</span>
+              </div>
+            </div>
+            <svg
+              class="w-4 h-4 text-txt-muted group-hover:text-secondary rotate-180 group-hover:translate-x-[-3px] transition-all"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- Ramadan Card -->
+      <a routerLink="/ramadan"
+        class="card-lift group relative bg-surface rounded-[1.75rem] border border-brd/70 overflow-hidden">
+        <div
+          class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-l from-amber-500 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+        </div>
+        <div
+          class="absolute -top-20 -right-20 w-40 h-40 bg-amber-500/[0.03] rounded-full blur-2xl group-hover:bg-amber-500/[0.06] transition-all duration-700">
+        </div>
+        <div class="relative z-10 p-7">
+          <div class="flex items-start gap-5">
+            <div
+              class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500/10 to-orange-500/10 flex items-center justify-center flex-shrink-0 group-hover:from-amber-500 group-hover:to-orange-500 group-hover:shadow-xl group-hover:shadow-amber-500/20 transition-all duration-500 group-hover:scale-110">
+              <svg class="w-7 h-7 text-amber-500 group-hover:text-white transition-colors" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-1.5">
+                <h3 class="text-base font-bold text-txt group-hover:text-amber-500 transition-colors">رمضانيات</h3>
+                <span class="px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-500 text-[8px] font-bold">موسمي</span>
+              </div>
+              <p class="text-xs text-txt-muted leading-relaxed">
+                أدعية وأذكار يومية ومهام الورد وفقه الصيام والعشر الأواخر ومكتبة رمضانية شاملة.
+              </p>
+            </div>
+          </div>
+          <div class="mt-5 flex items-center justify-between pt-4 border-t border-brd/40">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span
+                class="px-2 py-0.5 rounded-md bg-amber-500/[0.06] text-amber-600 dark:text-amber-400 text-[9px] font-bold">أدعية</span>
+              <span
+                class="px-2 py-0.5 rounded-md bg-orange-500/[0.06] text-orange-600 dark:text-orange-400 text-[9px] font-bold">أذكار</span>
+              <span
+                class="px-2 py-0.5 rounded-md bg-amber-500/[0.06] text-amber-600 dark:text-amber-400 text-[9px] font-bold">سبحة</span>
+              <span
+                class="px-2 py-0.5 rounded-md bg-orange-500/[0.06] text-orange-600 dark:text-orange-400 text-[9px] font-bold">فقه</span>
+            </div>
+            <svg
+              class="w-4 h-4 text-txt-muted group-hover:text-amber-500 rotate-180 group-hover:translate-x-[-3px] transition-all"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HADITH ═══ -->
+<section class="animate-fade-up py-20 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-surface/50 via-surface to-surface/50"></div>
+  <div class="relative max-w-2xl mx-auto px-6 text-center">
+    <div class="relative bg-surface rounded-[2rem] border border-brd/60 p-8 md:p-12 overflow-hidden shadow-lg">
+      <div class="absolute inset-0 bg-gradient-to-br from-primary/[0.02] to-accent/[0.02]"></div>
+      <div class="absolute -top-20 -left-20 w-40 h-40 bg-primary/[0.03] rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-20 -right-20 w-40 h-40 bg-accent/[0.03] rounded-full blur-3xl"></div>
+
+      <div class="relative z-10">
+        <div class="inline-flex items-center gap-3 mb-6">
+          <div class="w-10 h-[1.5px] bg-primary/20 rounded-full"></div>
+          <div
+            class="w-8 h-8 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
+            <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+            </svg>
+          </div>
+          <div class="w-10 h-[1.5px] bg-primary/20 rounded-full"></div>
+        </div>
+        <p class="text-base md:text-lg font-quran leading-[2.4] text-txt mb-6">
+          « إذا مات ابن آدم انقطع عمله إلا من ثلاث:
+          <span class="text-primary font-bold">صدقة جارية</span>، أو علم يُنتفع به،
+          أو ولد صالح يدعو له »
+        </p>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/[0.06] border border-primary/10">
+          <span class="text-primary text-[11px] font-bold">📖 رواه مسلم</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -287,8 +454,7 @@
   <div class="max-w-5xl mx-auto px-6">
     <div class="text-center mb-16">
       <div
-        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/[0.05] border border-primary/10 text-primary text-[11px] font-bold mb-4 uppercase tracking-wider"
-      >
+        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/[0.05] border border-primary/10 text-primary text-[11px] font-bold mb-4 uppercase tracking-wider">
         كيف تعمل المنصة
       </div>
       <h2 class="text-2xl md:text-4xl font-black text-txt">
@@ -299,99 +465,63 @@
     <div class="grid md:grid-cols-3 gap-8">
       @for (step of steps; track step.num; let i = $index) {
       <div class="card-lift relative group">
-        <!-- Connector Lines (hidden on mobile) -->
-        @if (i < 2) {
-        <div
-          class="hidden md:block absolute top-12 left-0 translate-x-[-50%] w-full h-[2px] bg-gradient-to-l from-primary/10 via-accent/10 to-transparent z-0"
-        ></div>
-        }
-
-        <div
-          class="relative bg-surface rounded-3xl p-8 border border-brd/70 text-center overflow-hidden z-10"
-        >
-          <div
-            class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-l from-primary via-accent to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-          ></div>
-          <div
-            class="absolute -top-24 -right-24 w-48 h-48 bg-primary/[0.02] rounded-full blur-2xl group-hover:bg-primary/[0.05] transition-colors duration-700"
-          ></div>
-
-          <div
-            class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/[0.08] to-accent/[0.08] text-primary text-xl font-black flex items-center justify-center mx-auto mb-6 transition-all duration-500 group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-secondary group-hover:text-white group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-primary/20 group-hover:rotate-3 relative z-10"
-          >
-            {{ step.num }}
-          </div>
-          <h3 class="text-base font-bold text-txt mb-2 relative z-10">
-            {{ step.title }}
-          </h3>
-          <p class="text-[13px] text-txt-muted leading-relaxed relative z-10">
-            {{ step.desc }}
-          </p>
-        </div>
+        @if (i < 2) { <div
+          class="hidden md:block absolute top-12 left-0 translate-x-[-50%] w-full h-[2px] bg-gradient-to-l from-primary/10 via-accent/10 to-transparent z-0">
       </div>
       }
+      <div class="relative bg-surface rounded-3xl p-8 border border-brd/70 text-center overflow-hidden z-10">
+        <div
+          class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-l from-primary via-accent to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+        </div>
+        <div
+          class="absolute -top-24 -right-24 w-48 h-48 bg-primary/[0.02] rounded-full blur-2xl group-hover:bg-primary/[0.05] transition-colors duration-700">
+        </div>
+
+        <div
+          class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/[0.08] to-accent/[0.08] text-primary text-xl font-black flex items-center justify-center mx-auto mb-6 transition-all duration-500 group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-secondary group-hover:text-white group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-primary/20 group-hover:rotate-3 relative z-10">
+          {{ step.num }}
+        </div>
+        <h3 class="text-base font-bold text-txt mb-2 relative z-10">{{ step.title }}</h3>
+        <p class="text-[13px] text-txt-muted leading-relaxed relative z-10">{{ step.desc }}</p>
+      </div>
     </div>
+    }
+  </div>
   </div>
 </section>
 
 <!-- ═══ LIVE KHATMAS ═══ -->
 <section class="py-24 relative">
-  <div
-    class="absolute inset-0 bg-gradient-to-b from-transparent via-surface/60 to-transparent"
-  ></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface/60 to-transparent"></div>
   <div class="relative max-w-5xl mx-auto px-6">
-    <div
-      class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-12"
-    >
+    <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-12">
       <div>
         <div
-          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/[0.05] border border-primary/10 text-primary text-[10px] font-bold mb-3 uppercase tracking-wider"
-        >
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/[0.05] border border-primary/10 text-primary text-[10px] font-bold mb-3 uppercase tracking-wider">
           <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
           مباشر
         </div>
-        <h2 class="text-xl md:text-3xl font-black text-txt mb-1.5">
-          ختمات جارية
-        </h2>
+        <h2 class="text-xl md:text-3xl font-black text-txt mb-1.5">ختمات جارية</h2>
         <p class="text-txt-muted text-sm">شارك في ختمة أو أنشئ واحدة جديدة</p>
       </div>
       <div class="flex items-center gap-3 w-full sm:w-auto">
         <div class="relative flex-1 sm:flex-initial">
-          <svg
-            class="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-txt-muted"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
+          <svg class="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-txt-muted" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="8" />
             <path d="m21 21-4.3-4.3" />
           </svg>
-          <input
-            [ngModel]="searchQuery()"
-            (ngModelChange)="searchQuery.set($event)"
-            type="text"
+          <input [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)" type="text"
             placeholder="ابحث باسم الختمة..."
-            class="w-full sm:w-56 pr-11 pl-4 py-3 rounded-xl border border-input-brd bg-input-bg text-txt text-xs outline-none transition-all focus:border-focus focus:shadow-[0_0_0_3px_rgba(var(--focus-rgb),0.08)]"
-          />
+            class="w-full sm:w-56 pr-11 pl-4 py-3 rounded-xl border border-input-brd bg-input-bg text-txt text-xs outline-none transition-all focus:border-focus focus:shadow-[0_0_0_3px_rgba(var(--focus-rgb),0.08)]" />
         </div>
-        <a
-          routerLink="/khatmat"
-          class="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-link hover:text-accent transition-colors whitespace-nowrap"
-          >عرض الكل
-          <svg
-            class="w-3.5 h-3.5 rotate-180"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2.5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M9 5l7 7-7 7"
-            /></svg
-        ></a>
+        <a routerLink="/khatmat"
+          class="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-link hover:text-accent transition-colors whitespace-nowrap">
+          عرض الكل
+          <svg class="w-3.5 h-3.5 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
       </div>
     </div>
 
@@ -402,32 +532,18 @@
       }
     </div>
     } @else if (hasNoKhatmas()) {
-    <div
-      class="text-center py-20 bg-surface rounded-3xl border-2 border-dashed border-brd"
-    >
+    <div class="text-center py-20 bg-surface rounded-3xl border-2 border-dashed border-brd">
       <div
-        class="w-20 h-20 bg-gradient-to-br from-primary/[0.06] to-accent/[0.06] rounded-3xl flex items-center justify-center mx-auto mb-5"
-      >
-        <svg
-          class="w-8 h-8 text-primary"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="1.5"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
-          />
+        class="w-20 h-20 bg-gradient-to-br from-primary/[0.06] to-accent/[0.06] rounded-3xl flex items-center justify-center mx-auto mb-5">
+        <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
         </svg>
       </div>
       <h3 class="text-lg font-bold text-txt mb-2">لا توجد ختمات حالية</h3>
       <p class="text-txt-muted text-sm mb-6">ابدأ ختمة جديدة وشارك الأجر</p>
-      <button
-        (click)="showCreateModal.set(true)"
-        class="px-7 py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl text-sm hover:shadow-lg hover:shadow-primary/20 transition-all"
-      >
+      <button (click)="showCreateModal.set(true)"
+        class="px-7 py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl text-sm hover:shadow-lg hover:shadow-primary/20 transition-all">
         إنشاء أول ختمة
       </button>
     </div>
@@ -436,146 +552,25 @@
       <p class="text-txt-muted text-sm">لا توجد نتائج لـ "{{ searchQuery() }}"</p>
     </div>
     }
-    <a
-      routerLink="/khatmat"
-      class="sm:hidden mt-6 block text-center text-xs font-bold text-link"
-      >عرض كل الختمات</a
-    >
-  </div>
-</section>
-
-<!-- ═══ TOOLS ═══ -->
-<section class="py-24">
-  <div class="max-w-3xl mx-auto px-6">
-    <div class="text-center mb-12">
-      <div
-        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/[0.05] border border-secondary/10 text-secondary text-[11px] font-bold mb-4 uppercase tracking-wider"
-      >
-        أدوات ذكية
-      </div>
-      <h2 class="text-xl md:text-2xl font-black text-txt">
-        المزيد من طرق الخير
-      </h2>
-    </div>
-    <div class="grid md:grid-cols-2 gap-6">
-      <a
-        routerLink="/coach"
-        aria-label="المصحح الذكي"
-        class="card-lift group flex items-center gap-5 bg-surface rounded-[1.75rem] p-7 border border-brd/70 overflow-hidden relative"
-      >
-        <div
-          class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-l from-info to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-        ></div>
-        <div
-          class="absolute -top-20 -right-20 w-40 h-40 bg-info/[0.03] rounded-full blur-2xl group-hover:bg-info/[0.06] transition-all duration-700"
-        ></div>
-        <div
-          class="w-14 h-14 rounded-2xl bg-gradient-to-br from-info/10 to-primary/10 flex items-center justify-center flex-shrink-0 group-hover:from-info group-hover:to-primary group-hover:shadow-xl group-hover:shadow-info/20 transition-all duration-500 group-hover:scale-110 relative z-10"
-        >
-          <svg
-            class="w-6 h-6 text-info group-hover:text-white transition-colors"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="1.5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"
-            />
-          </svg>
-        </div>
-        <div class="relative z-10">
-          <h3
-            class="text-sm font-bold text-txt group-hover:text-primary transition-colors mb-1"
-          >
-            المصحح الذكي
-          </h3>
-          <p class="text-xs text-txt-muted leading-relaxed">
-            تقييم فوري للتلاوة بالذكاء الاصطناعي
-          </p>
-        </div>
-      </a>
-
-      <a
-        routerLink="/duas"
-        aria-label="أدعية للمتوفى"
-        class="card-lift group flex items-center gap-5 bg-surface rounded-[1.75rem] p-7 border border-brd/70 overflow-hidden relative"
-      >
-        <div
-          class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-l from-accent to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-        ></div>
-        <div
-          class="absolute -top-20 -right-20 w-40 h-40 bg-accent/[0.03] rounded-full blur-2xl group-hover:bg-accent/[0.06] transition-all duration-700"
-        ></div>
-        <div
-          class="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/10 to-secondary/10 flex items-center justify-center flex-shrink-0 group-hover:from-accent group-hover:to-secondary group-hover:shadow-xl group-hover:shadow-accent/20 transition-all duration-500 group-hover:scale-110 relative z-10"
-        >
-          <svg
-            class="w-6 h-6 text-accent group-hover:text-white transition-colors"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="1.5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-        </div>
-        <div class="relative z-10">
-          <h3
-            class="text-sm font-bold text-txt group-hover:text-accent transition-colors mb-1"
-          >
-            أدعية للمتوفى
-          </h3>
-          <p class="text-xs text-txt-muted leading-relaxed">
-            أدعية مختارة من القرآن والسنة
-          </p>
-        </div>
-      </a>
-    </div>
+    <a routerLink="/khatmat" class="sm:hidden mt-6 block text-center text-xs font-bold text-link">عرض كل الختمات</a>
   </div>
 </section>
 
 <!-- ═══ CTA ═══ -->
 <section class="py-16">
   <div class="max-w-2xl mx-auto px-6">
-    <div
-      class="relative rounded-[2rem] overflow-hidden shadow-2xl shadow-primary/10"
-    >
-      <div
-        class="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-accent animate-gradient"
-      ></div>
-      <div
-        class="absolute inset-0 islamic-pattern-dense opacity-[0.06] pointer-events-none"
-      ></div>
-      <div
-        class="absolute top-[-40%] right-[-15%] w-72 h-72 rounded-full bg-white/[0.04] blur-3xl"
-      ></div>
-      <div
-        class="absolute bottom-[-30%] left-[-10%] w-60 h-60 rounded-full bg-black/[0.06] blur-3xl"
-      ></div>
+    <div class="relative rounded-[2rem] overflow-hidden shadow-2xl shadow-primary/10">
+      <div class="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-accent animate-gradient"></div>
+      <div class="absolute inset-0 islamic-pattern-dense opacity-[0.06] pointer-events-none"></div>
+      <div class="absolute top-[-40%] right-[-15%] w-72 h-72 rounded-full bg-white/[0.04] blur-3xl"></div>
+      <div class="absolute bottom-[-30%] left-[-10%] w-60 h-60 rounded-full bg-black/[0.06] blur-3xl"></div>
 
       <div class="relative z-10 p-10 md:p-16 text-center">
         <div
-          class="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mx-auto mb-6 animate-float-slow backdrop-blur-sm border border-white/10"
-        >
-          <svg
-            class="w-8 h-8 text-white"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="1.5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-            />
+          class="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mx-auto mb-6 animate-float-slow backdrop-blur-sm border border-white/10">
+          <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
           </svg>
         </div>
         <h2 class="text-2xl md:text-4xl font-black text-white mb-4 leading-tight">
@@ -584,23 +579,12 @@
         <p class="text-white/50 mb-10 max-w-sm mx-auto text-sm leading-relaxed">
           ختمة واحدة قد تكون نوراً في قبر من تحب
         </p>
-        <button
-          (click)="showCreateModal.set(true)"
-          class="group inline-flex items-center gap-3 px-10 py-4 bg-white text-primary font-bold rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-[15px] shadow-xl"
-        >
+        <button (click)="showCreateModal.set(true)"
+          class="group inline-flex items-center gap-3 px-10 py-4 bg-white text-primary font-bold rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-[15px] shadow-xl">
           ابدأ الآن
-          <svg
-            class="w-4 h-4 transition-transform group-hover:translate-x-[-6px] duration-300"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2.5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15.75 19.5L8.25 12l7.5-7.5"
-            />
+          <svg class="w-4 h-4 transition-transform group-hover:translate-x-[-6px] duration-300" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
           </svg>
         </button>
       </div>
@@ -610,8 +594,6 @@
 
 <!-- ═══ CREATE MODAL ═══ -->
 @if (showCreateModal()) {
-<app-create-khatma-modal
-  (close)="showCreateModal.set(false)"
-  (created)="onKhatmaCreated($event)"
-></app-create-khatma-modal>
+<app-create-khatma-modal (close)="showCreateModal.set(false)"
+  (created)="onKhatmaCreated($event)"></app-create-khatma-modal>
 }

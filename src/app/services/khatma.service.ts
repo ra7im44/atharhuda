@@ -20,6 +20,17 @@ export interface Khatma {
   status: 'active' | 'completed';
   progress: number;
   parts: KhatmaPart[];
+  completedAt?: Date;
+}
+
+export interface KhatmaCompletionRecord {
+  id: string;
+  khatmaId: string;
+  title: string;
+  createdBy: string;
+  deceasedName?: string;
+  completedAt: Date;
+  participants: string[];
 }
 
 export const JUZ_NAMES = [
@@ -66,7 +77,12 @@ export const JUZ_SURAHS: { [key: number]: string[] } = {
   providedIn: 'root'
 })
 export class KhatmaService {
-  private khatmasSignal = signal<Khatma[]>([
+  private readonly STORAGE_KEYS = {
+    khatmas: 'khatma-list-v1',
+    completionLog: 'khatma-completion-log-v1'
+  } as const;
+
+  private readonly initialKhatmas: Khatma[] = [
     {
       id: 'k1',
       title: 'ختمة شهر رمضان المبارك',
@@ -100,9 +116,23 @@ export class KhatmaService {
         readSurahs: i < 15 ? JUZ_SURAHS[i + 1] : undefined
       }))
     }
-  ]);
+  ];
+
+  private khatmasSignal = signal<Khatma[]>(this.initialKhatmas);
+  private completionLogSignal = signal<KhatmaCompletionRecord[]>([]);
 
   readonly khatmas = this.khatmasSignal.asReadonly();
+  readonly completionLog = computed(() => {
+    return [...this.completionLogSignal()].sort((a, b) => {
+      return b.completedAt.getTime() - a.completedAt.getTime();
+    });
+  });
+
+  constructor() {
+    this.loadFromStorage();
+    this.syncCompletionLogWithCurrentState();
+    this.saveToStorage();
+  }
 
   getKhatmaById(id: string) {
     return computed(() => this.khatmasSignal().find(k => k.id === id));
@@ -131,6 +161,7 @@ export class KhatmaService {
       parts: Array.from({ length: 30 }, (_, i) => ({ juzNumber: i + 1, status: 'available' }))
     };
     this.khatmasSignal.update(list => [newKhatma, ...list]);
+    this.saveToStorage();
     return id;
   }
 
@@ -152,9 +183,32 @@ export class KhatmaService {
 
       const completedCount = updatedParts.filter(p => p.status === 'completed').length;
       const progress = Math.round((completedCount / 30) * 100);
+      const isNowCompleted = completedCount === 30;
+      const completedAt = isNowCompleted ? (k.completedAt || new Date()) : undefined;
+      const participants = this.collectParticipantsFromParts(updatedParts);
 
-      return { ...k, parts: updatedParts, progress };
+      if (isNowCompleted) {
+        const completionDate = completedAt ?? new Date();
+        this.addCompletionRecordIfMissing({
+          id: this.buildCompletionRecordId(k.id, completionDate),
+          khatmaId: k.id,
+          title: k.title,
+          createdBy: k.createdBy,
+          deceasedName: k.deceasedName,
+          completedAt: completionDate,
+          participants
+        });
+      }
+
+      return {
+        ...k,
+        parts: updatedParts,
+        progress,
+        status: isNowCompleted ? 'completed' : 'active',
+        completedAt
+      };
     }));
+    this.saveToStorage();
   }
 
   getParticipants(khatmaId: string) {
@@ -168,5 +222,119 @@ export class KhatmaService {
       });
       return Array.from(names);
     });
+  }
+
+  private collectParticipantsFromParts(parts: KhatmaPart[]): string[] {
+    const names = new Set<string>();
+    parts.forEach(p => {
+      if (p.completedBy) names.add(p.completedBy);
+      if (p.reservedBy) names.add(p.reservedBy);
+    });
+    return Array.from(names);
+  }
+
+  private buildCompletionRecordId(khatmaId: string, completedAt: Date): string {
+    return `${khatmaId}-${completedAt.getTime()}`;
+  }
+
+  private addCompletionRecordIfMissing(record: KhatmaCompletionRecord) {
+    this.completionLogSignal.update(records => {
+      if (records.some(r => r.id === record.id)) return records;
+      return [record, ...records];
+    });
+  }
+
+  private syncCompletionLogWithCurrentState() {
+    const currentCompleted = this.khatmasSignal()
+      .filter(k => k.parts.every(p => p.status === 'completed'))
+      .map(k => {
+        const completedAt = k.completedAt || new Date();
+        return {
+          id: this.buildCompletionRecordId(k.id, completedAt),
+          khatmaId: k.id,
+          title: k.title,
+          createdBy: k.createdBy,
+          deceasedName: k.deceasedName,
+          completedAt,
+          participants: this.collectParticipantsFromParts(k.parts)
+        } as KhatmaCompletionRecord;
+      });
+
+    if (!currentCompleted.length) return;
+
+    this.completionLogSignal.update(existing => {
+      const map = new Map(existing.map(item => [item.id, item]));
+      currentCompleted.forEach(item => map.set(item.id, item));
+      return Array.from(map.values()).sort((a, b) => b.completedAt.getTime() - a.completedAt.getTime());
+    });
+
+    this.khatmasSignal.update(list => list.map(k => {
+      const completedCount = k.parts.filter(p => p.status === 'completed').length;
+      const isCompleted = completedCount === 30;
+      return {
+        ...k,
+        progress: Math.round((completedCount / 30) * 100),
+        status: isCompleted ? 'completed' : 'active',
+        completedAt: isCompleted ? (k.completedAt || new Date()) : undefined
+      };
+    }));
+  }
+
+  private loadFromStorage() {
+    try {
+      const rawKhatmas = localStorage.getItem(this.STORAGE_KEYS.khatmas);
+      const rawLog = localStorage.getItem(this.STORAGE_KEYS.completionLog);
+
+      if (rawKhatmas) {
+        const parsed = JSON.parse(rawKhatmas) as any[];
+        if (Array.isArray(parsed) && parsed.length) {
+          this.khatmasSignal.set(parsed.map(item => this.hydrateKhatma(item)));
+        }
+      }
+
+      if (rawLog) {
+        const parsedLog = JSON.parse(rawLog) as any[];
+        if (Array.isArray(parsedLog)) {
+          this.completionLogSignal.set(parsedLog.map(item => this.hydrateCompletionRecord(item)));
+        }
+      }
+    } catch {
+      this.khatmasSignal.set(this.initialKhatmas);
+      this.completionLogSignal.set([]);
+    }
+  }
+
+  private saveToStorage() {
+    try {
+      localStorage.setItem(this.STORAGE_KEYS.khatmas, JSON.stringify(this.khatmasSignal()));
+      localStorage.setItem(this.STORAGE_KEYS.completionLog, JSON.stringify(this.completionLogSignal()));
+    } catch {
+      // Ignore write failures to keep app usable in restricted environments.
+    }
+  }
+
+  private hydrateKhatma(item: any): Khatma {
+    return {
+      ...item,
+      createdAt: item?.createdAt ? new Date(item.createdAt) : new Date(),
+      deceasedDeathDate: item?.deceasedDeathDate ? new Date(item.deceasedDeathDate) : undefined,
+      completedAt: item?.completedAt ? new Date(item.completedAt) : undefined,
+      parts: Array.isArray(item?.parts) ? item.parts.map((part: any) => ({
+        ...part,
+        updatedAt: part?.updatedAt ? new Date(part.updatedAt) : undefined
+      })) : []
+    };
+  }
+
+  private hydrateCompletionRecord(item: any): KhatmaCompletionRecord {
+    return {
+      id: item?.id || Math.random().toString(36).substring(2, 11),
+      khatmaId: item?.khatmaId || '',
+      title: item?.title || 'ختمة',
+      createdBy: item?.createdBy || 'غير معروف',
+      deceasedName: item?.deceasedName || undefined,
+      completedAt: item?.completedAt ? new Date(item.completedAt) : new Date(),
+      participants: Array.isArray(item?.participants) ? item.participants : []
+    };
   }
 }

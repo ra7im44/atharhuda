@@ -12,8 +12,8 @@ export class ThemeService {
         if (savedTheme) {
             this.isDarkMode.set(savedTheme === 'dark');
         } else {
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            this.isDarkMode.set(prefersDark);
+            // Default to light mode unless the user explicitly changed it before.
+            this.isDarkMode.set(false);
         }
 
         // Apply theme whenever signal changes

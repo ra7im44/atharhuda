@@ -1,1 +1,63 @@
-/* KhatmaDetailComponent styles */
+.reserve-modal-overlay {
+  animation: modal-fade 180ms ease-out;
+}
+
+.reserve-modal {
+  background:
+    radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--primary) 7%, transparent), transparent 60%),
+    radial-gradient(100% 80% at 0% 100%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 60%),
+    var(--surface);
+}
+
+.reserve-flow .reserve-hint {
+  border: 1px dashed color-mix(in srgb, var(--primary) 35%, transparent);
+  background: color-mix(in srgb, var(--primary) 8%, var(--surface));
+  color: var(--txt-secondary);
+  border-radius: 0.95rem;
+  padding: 0.65rem 0.75rem;
+  font-size: 0.73rem;
+  line-height: 1.7;
+}
+
+.reserve-input-group {
+  position: relative;
+}
+
+.reserve-input-icon {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.reserve-input {
+  padding-right: 2.1rem !important;
+  font-weight: 600;
+}
+
+.reserve-note {
+  line-height: 1.6;
+}
+
+.reserve-cancel-btn,
+.reserve-submit-btn {
+  letter-spacing: 0.01em;
+}
+
+.reserve-submit-btn:disabled {
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+@keyframes modal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,1 +1,512 @@
-/* JuzReaderComponent styles */
+.quran-page {
+  background:
+    radial-gradient(1200px 380px at 50% -120px, rgba(20, 184, 166, 0.1), transparent 70%),
+    radial-gradient(900px 260px at 15% 0%, rgba(13, 148, 136, 0.08), transparent 70%),
+    var(--bg);
+}
+
+.quran-progress {
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+}
+
+.quran-header {
+  backdrop-filter: blur(6px);
+}
+
+.quran-header-inner {
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.quran-control {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--brd) 85%, transparent);
+  background: color-mix(in srgb, var(--surface-el) 85%, transparent);
+  color: var(--txt-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.quran-control:hover {
+  border-color: color-mix(in srgb, var(--primary) 40%, transparent);
+  color: var(--primary);
+}
+
+.quran-control.active {
+  background: color-mix(in srgb, var(--primary) 14%, var(--surface-el));
+  border-color: color-mix(in srgb, var(--primary) 45%, transparent);
+  color: var(--primary);
+}
+
+.quran-size-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 9px;
+  border: 1px solid color-mix(in srgb, var(--brd) 90%, transparent);
+  background: var(--surface);
+  color: var(--txt);
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.quran-reciter-select {
+  border: 1px solid color-mix(in srgb, var(--brd) 80%, transparent);
+  border-radius: 0.6rem;
+  background: var(--surface);
+  color: var(--txt);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.28rem 0.5rem;
+  outline: none;
+}
+
+.quran-reciter-select:focus {
+  border-color: color-mix(in srgb, var(--primary) 45%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 16%, transparent);
+}
+
+.quran-size-btn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.quran-skeleton {
+  border: 1px solid color-mix(in srgb, var(--brd) 70%, transparent);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+}
+
+.quran-state {
+  max-width: 42rem;
+  margin: 2rem auto;
+  text-align: center;
+  border-radius: 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--brd) 70%, transparent);
+  padding: 1.4rem 1.2rem;
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+}
+
+.quran-state h2 {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--txt);
+  margin-bottom: 0.5rem;
+}
+
+.quran-state p {
+  font-size: 0.86rem;
+  color: var(--txt-muted);
+  line-height: 1.8;
+}
+
+.quran-state.warn {
+  border-color: color-mix(in srgb, var(--warn) 35%, transparent);
+  background: color-mix(in srgb, var(--warn) 8%, var(--surface));
+}
+
+.quran-state.err {
+  border-color: color-mix(in srgb, var(--err) 35%, transparent);
+  background: color-mix(in srgb, var(--err) 8%, var(--surface));
+}
+
+.quran-state-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.8rem;
+  border: 0;
+  border-radius: 0.9rem;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.55rem 1rem;
+}
+
+.quran-hero {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface-el) 40%, transparent), transparent),
+    color-mix(in srgb, var(--surface) 92%, transparent);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+}
+
+.quran-hero-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.quran-hero-title {
+  text-align: center;
+}
+
+.quran-hero-kicker {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--primary) 78%, var(--txt-muted));
+  margin-bottom: 0.2rem;
+}
+
+.quran-hero-title h2 {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--txt);
+}
+
+.quran-hero-title p {
+  margin-top: 0.35rem;
+  color: var(--txt-muted);
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.quran-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.quran-meta-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--brd) 80%, transparent);
+  background: color-mix(in srgb, var(--surface-el) 75%, transparent);
+  color: var(--txt-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.28rem 0.62rem;
+}
+
+/* ══════════════════════════════════════
+   CONTINUOUS FLOW SECTION
+   ══════════════════════════════════════ */
+
+.quran-continuous-section {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+}
+
+.quran-continuous-text {
+  text-align: center;
+  color: var(--txt);
+  word-spacing: 0.08em;
+}
+
+.quran-ayah-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.15em;
+  height: 2.15em;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--primary) 45%, transparent);
+  color: var(--primary);
+  margin-inline-start: 0.18rem;
+  margin-inline-end: 0.35rem;
+  font-size: 0.42em;
+  opacity: 0.85;
+  vertical-align: middle;
+  font-weight: 800;
+}
+
+.quran-word {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  margin-inline-start: 0.1em;
+  margin-inline-end: 0.1em;
+  padding: 0.08em 0.18em;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quran-word:hover {
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+  color: color-mix(in srgb, var(--primary) 70%, var(--txt));
+}
+
+.quran-word:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--primary) 55%, transparent);
+  outline-offset: 1px;
+}
+
+/* Word currently being played */
+.quran-word-playing {
+  background: color-mix(in srgb, var(--primary) 18%, transparent) !important;
+  color: var(--primary) !important;
+  border-radius: 0.45rem;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 30%, transparent);
+  transform: scale(1.06);
+}
+
+/* Other words in the currently playing verse (subtle dimming) */
+.quran-word-active-verse {
+  opacity: 0.65;
+}
+
+/* ══════════════════════════════════════
+   INLINE TRANSLATION
+   ══════════════════════════════════════ */
+
+.quran-inline-translation {
+  display: block;
+  width: 100%;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 0.82rem !important;
+  line-height: 1.7 !important;
+  color: var(--txt-secondary);
+  text-align: center;
+  padding: 0.5rem 1rem;
+  margin: 0.4rem 0 0.8rem;
+  border-top: 1px dashed color-mix(in srgb, var(--brd) 50%, transparent);
+  border-bottom: 1px dashed color-mix(in srgb, var(--brd) 50%, transparent);
+  background: color-mix(in srgb, var(--surface-el) 40%, transparent);
+  border-radius: 0.5rem;
+}
+
+/* ══════════════════════════════════════
+   PLAYING BAR (sticky bottom)
+   ══════════════════════════════════════ */
+
+.quran-playing-bar {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0.8rem 0.6rem 1.2rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: blur(14px);
+  border: 1px solid color-mix(in srgb, var(--primary) 30%, var(--brd));
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(0, 0, 0, 0.03);
+  animation: playing-bar-in 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes playing-bar-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.quran-playing-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--primary);
+  animation: pulse-dot 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+.quran-playing-stop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 0;
+  background: color-mix(in srgb, var(--err) 12%, var(--surface-el));
+  color: var(--err);
+  font-size: 0.75rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quran-playing-stop:hover {
+  background: var(--err);
+  color: #fff;
+}
+
+/* ══════════════════════════════════════
+   EXISTING (unchanged)
+   ══════════════════════════════════════ */
+
+.quran-icon-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  border: 1px solid color-mix(in srgb, var(--brd) 85%, transparent);
+  background: color-mix(in srgb, var(--surface-el) 70%, transparent);
+  color: var(--txt-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.quran-icon-btn:hover {
+  background: color-mix(in srgb, var(--primary) 12%, var(--surface-el));
+  border-color: color-mix(in srgb, var(--primary) 35%, transparent);
+  color: var(--primary);
+}
+
+.quran-complete-btn {
+  border: 0;
+  border-radius: 1.1rem;
+  padding: 0.95rem 1.6rem;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: #fff;
+  font-weight: 900;
+  font-size: 0.95rem;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--primary) 30%, transparent);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.quran-complete-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px color-mix(in srgb, var(--primary) 40%, transparent);
+}
+
+.quran-complete-btn small {
+  font-size: 0.68rem;
+  opacity: 0.9;
+}
+
+.quran-ai-fab {
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--brd) 80%, transparent);
+  border-radius: 999px;
+  padding: 0.4rem 0.45rem 0.4rem 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+
+.quran-ai-fab-icon {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--info), var(--primary));
+}
+
+.quran-ai-panel {
+  border-radius: 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--brd) 80%, transparent);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.quran-ai-panel-head {
+  padding: 0.95rem 1rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--brd) 75%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: color-mix(in srgb, var(--info) 8%, var(--surface));
+}
+
+.quran-record-btn {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 999px;
+  border: 0;
+  color: #fff;
+  background: linear-gradient(135deg, var(--info), var(--primary));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 14px 26px color-mix(in srgb, var(--primary) 30%, transparent);
+  cursor: pointer;
+}
+
+.quran-recording-indicator {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--err) 14%, transparent);
+  border: 2px solid color-mix(in srgb, var(--err) 45%, transparent);
+  position: relative;
+}
+
+.quran-recording-indicator::after {
+  content: '';
+  position: absolute;
+  inset: 18%;
+  background: var(--err);
+  border-radius: 0.35rem;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .quran-ai-fab {
+    padding-inline-start: 0.6rem;
+  }
+
+  .quran-ai-fab span {
+    display: none;
+  }
+
+  .quran-continuous-section {
+    padding: 1rem !important;
+  }
+
+  .quran-playing-bar {
+    bottom: 4.5rem;
+    width: calc(100% - 2rem);
+    justify-content: space-between;
+  }
+}

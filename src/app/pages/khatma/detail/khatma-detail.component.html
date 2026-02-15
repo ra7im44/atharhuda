@@ -272,9 +272,9 @@
     <!-- Modals... Same as before but with updated styling if needed -->
     @if (selectedPart()) {
     <!-- ... Part details modal ... -->
-    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 reserve-modal-overlay"
         (click)="selectedPart.set(null)">
-        <div class="animate-scale-in bg-surface rounded-[2rem] w-full max-w-sm p-8 shadow-2xl border border-brd/70 relative overflow-hidden"
+        <div class="animate-scale-in bg-surface rounded-[2rem] w-full max-w-sm p-8 shadow-2xl border border-brd/70 relative overflow-hidden reserve-modal"
             (click)="$event.stopPropagation()">
 
             <div class="text-center mb-6">
@@ -296,16 +296,33 @@
             <!-- Actions based on status -->
             @switch (selectedPart()!.status) {
             @case ('available') {
-            <div class="space-y-4">
-                <div><label class="block text-xs font-bold text-txt-secondary mb-1.5">اسمك</label><input #nameInput
-                        class="w-full rounded-xl border border-input-brd bg-input-bg text-txt focus:border-focus focus:ring-4 focus:ring-primary/10 p-3.5 text-sm outline-none transition-all"
-                        placeholder="اكتب اسمك لحجز الجزء"></div>
+            <div class="space-y-4 reserve-flow">
+                <div class="reserve-hint">
+                    بعد الحجز سيتم فتح صفحة الجزء مباشرة لتبدأ القراءة.
+                </div>
+                <div class="reserve-input-wrap">
+                    <label class="block text-xs font-bold text-txt-secondary mb-1.5">الاسم الكامل</label>
+                    <div class="reserve-input-group">
+                        <span class="reserve-input-icon">👤</span>
+                        <input #nameInput (keyup.enter)="reserveAndRead(nameInput.value)"
+                            class="w-full rounded-xl border border-input-brd bg-input-bg text-txt focus:border-focus focus:ring-4 focus:ring-primary/10 p-3.5 text-sm outline-none transition-all reserve-input"
+                            placeholder="اكتب اسمك لحجز الجزء">
+                    </div>
+                    <p class="reserve-note text-[11px] text-txt-muted mt-2">سيظهر اسمك بجانب الجزء المحجوز.</p>
+                </div>
                 <div class="flex gap-3">
                     <button (click)="selectedPart.set(null)"
-                        class="flex-1 py-3.5 text-txt-muted bg-surface-el border border-brd rounded-xl font-bold text-xs hover:bg-bg transition-colors">إلغاء</button>
+                        class="flex-1 py-3.5 text-txt-muted bg-surface-el border border-brd rounded-xl font-bold text-xs hover:bg-bg transition-colors reserve-cancel-btn">إلغاء</button>
+                    @if (nameInput.value.trim()) {
                     <button (click)="reserveAndRead(nameInput.value)" [disabled]="!nameInput.value.trim()"
-                        class="flex-[2] py-3.5 text-white bg-gradient-to-r from-primary to-secondary rounded-xl font-bold text-xs disabled:opacity-40 transition-all shadow-lg shadow-primary/15 hover:shadow-xl hover:scale-[1.02]">📖
-                        احجز وابدأ القراءة</button>
+                        class="flex-[2] py-3.5 text-white bg-gradient-to-r from-primary to-secondary rounded-xl font-bold text-xs disabled:opacity-40 transition-all shadow-lg shadow-primary/15 hover:shadow-xl hover:scale-[1.02] reserve-submit-btn">🚪
+                        دخول وحجز الجزء</button>
+                    } @else {
+                    <div
+                        class="flex-[2] py-3.5 text-center text-[11px] font-bold text-txt-muted/70 bg-surface-el/50 border border-dashed border-brd rounded-xl">
+                        اكتب الاسم أولاً ليظهر زر الدخول
+                    </div>
+                    }
                 </div>
             </div>
             }
