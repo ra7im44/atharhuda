@@ -122,7 +122,7 @@ import { provideHttpClient } from '@angular/common/http';
               </div>
             </div>
             <div class="flex flex-wrap items-center justify-center gap-3 md:gap-6">
-              <span class="text-[11px] text-txt-muted font-medium">❤️  صنع بحب لوجه الله</span>
+              <span class="text-[11px] text-txt-muted font-medium">لا تنسوا الدعاء لأمواتنا، فهم في قلوبنا تاركين بصمة لاتُزال أبدًا</span>
               <span class="w-1 h-1 rounded-full bg-brd"></span>
               <p class="text-[11px] text-txt-muted font-medium">© {{currentYear}} جميع الحقوق محفوظة</p>
             </div>
