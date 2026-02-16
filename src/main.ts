@@ -45,7 +45,7 @@ import { provideHttpClient } from '@angular/common/http';
             </div>
             <div class="leading-tight hidden sm:block">
               <p class="text-lg font-black tracking-tight">أثر هدى</p>
-              <p class="text-[9px] text-txt-muted font-medium tracking-wider uppercase">athr huda</p>
+              <p class="text-[9px] text-txt-muted font-medium tracking-wider uppercase">athar huda</p>
             </div>
           </a>
 
@@ -122,7 +122,7 @@ import { provideHttpClient } from '@angular/common/http';
               </div>
             </div>
             <div class="flex flex-wrap items-center justify-center gap-3 md:gap-6">
-              <span class="text-[11px] text-txt-muted font-medium">لا تنسوا الدعاء لأمواتنا، فهم في قلوبنا تاركين بصمة لاتُزال أبدًا</span>
+              <span class="text-[20px] text-txt-muted font-bold">لا تنسوا الدعاء لأمواتنا، فهم في قلوبنا تاركين بصمة لاتُزال أبدًا</span>
               <span class="w-1 h-1 rounded-full bg-brd"></span>
               <p class="text-[11px] text-txt-muted font-medium">© {{currentYear}} جميع الحقوق محفوظة</p>
             </div>
